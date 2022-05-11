@@ -1,0 +1,142 @@
+﻿<Window x:Class="PokupochkaCompany.Modules.Administrator.Tables.AddOrChangeWorkerWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PokupochkaCompany.Modules.Administrator.Tables"
+        mc:Ignorable="d"
+        Title="Добавление или изменение пользователя" Height="300" Width="600"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="TbData" TargetType="TextBox" BasedOn="{StaticResource TbData}">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="PbData" TargetType="PasswordBox" BasedOn="{StaticResource PbData}">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="CbData" TargetType="ComboBox" BasedOn="{StaticResource CbData}">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TblData}">
+                <Run Text="*" Foreground="Red"/>
+                <Run Text="Фамилия:"/>
+            </TextBlock>
+
+            <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                     Name="TbSecondName"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TblData}">
+                <Run Text="*" Foreground="Red"/>
+                <Run Text="Имя:"/>
+            </TextBlock>
+
+            <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                     Name="TbFirstName"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TblData}"
+                       Text="Отчество:"/>
+
+            <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                     Name="TbPatronymic"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TblData}">
+                <Run Text="*" Foreground="Red"/>
+                <Run Text="Телефон:"/>
+            </TextBlock>
+
+            <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                     MaxLength="11" Name="TbPhone"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TblData}">
+                <Run Text="*" Foreground="Red"/>
+                <Run Text="Логин:"/>
+            </TextBlock>
+
+            <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                     Name="TbLogin"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TblData}">
+                <Run Text="*" Foreground="Red"/>
+                <Run Text="Пароль:"/>
+            </TextBlock>
+
+            <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                     Name="TbPassword"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TblData}"
+                       Text="Роль:"/>
+
+            <ComboBox Grid.Column="1" Style="{StaticResource CbData}"
+                      Name="CbRole"/>
+        </Grid>
+
+        <Button Grid.Column="1" Grid.Row="4" Margin="5" Background="GreenYellow"
+                FontWeight="Bold" Content="Сохранить или изменить"
+                Name="BtnAddOrChange" Click="BtnAddOrChange_Click"/>
+    </Grid>
+</Window>
