@@ -12,8 +12,8 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
     /// </summary>
     public partial class MainTablePage : Page
     {
-        private FrameWithHistory fwhTables = null!;
-        private ButtonSelector btnSel = null!;
+        private FrameWithHistory _fwhTables = null!;
+        private ButtonSelector _btnSel = null!;
 
         public MainTablePage()
         {
@@ -24,9 +24,9 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
         private void TryApplySettings()
         {
-            if (fwhTables == null)
+            if (_fwhTables == null)
             {
-                fwhTables = new FrameWithHistory(FrmMain);
+                _fwhTables = new FrameWithHistory(FrmMain);
 
                 List<Button> buttons = new List<Button>();
                 foreach(var item in SpButtons.Children)
@@ -35,21 +35,19 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                         buttons.Add((Button)item);
                 }
 
-                btnSel = new(buttons.ToArray(), UserStyles.DefaultButtonStyle, UserStyles.SelectButtonStyle);
+                _btnSel = new(buttons.ToArray(), UserStyles.DefaultButtonStyle, UserStyles.SelectButtonStyle);
                 BtnRoles_Click(BtnRoles, new RoutedEventArgs());
             }
         }
 
         private void BtnRoles_Click(object sender, RoutedEventArgs e)
         {
-            fwhTables.Navigate(new RolesPage());
-            btnSel.SelectButton((Button)sender);
+            _fwhTables.Navigate(new RolesPage());
         }
 
         private void BtnUsers_Click(object sender, RoutedEventArgs e)
         {
-            fwhTables.Navigate(new WorkersPage());
-            btnSel.SelectButton((Button)sender);
+            _fwhTables.Navigate(new WorkersPage());
         }
 
         private void BtnClients_Click(object sender, RoutedEventArgs e)

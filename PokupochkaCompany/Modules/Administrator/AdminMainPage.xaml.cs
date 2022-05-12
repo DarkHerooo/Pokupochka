@@ -10,8 +10,8 @@ namespace PokupochkaCompany.Modules.Administrator
 {
     public partial class AdminMainPage : Page
     {
-        private FrameWithHistory fwhMain = null!;
-        private ButtonSelector btnSel = null!;
+        private FrameWithHistory _fwhMain = null!;
+        private ButtonSelector _btnSel = null!;
 
         public AdminMainPage()
         {
@@ -22,9 +22,9 @@ namespace PokupochkaCompany.Modules.Administrator
 
         private void TryApplySettings()
         {
-            if (fwhMain == null)
+            if (_fwhMain == null)
             {
-                fwhMain = new FrameWithHistory(FrmMain);
+                _fwhMain = new FrameWithHistory(FrmMain);
 
                 List<Button> buttons = new List<Button>();
                 foreach (var item in GrButtons.Children)
@@ -33,21 +33,19 @@ namespace PokupochkaCompany.Modules.Administrator
                         buttons.Add((Button)item);
                 }
 
-                btnSel = new(buttons.ToArray(), UserStyles.DefaultButtonStyle, UserStyles.SelectButtonStyle);
+                _btnSel = new(buttons.ToArray(), UserStyles.DefaultButtonStyle, UserStyles.SelectButtonStyle);
                 BtnTables_Click(BtnTables, new RoutedEventArgs());
             }
         }
 
         private void BtnTables_Click(object sender, RoutedEventArgs e)
         {
-            fwhMain.Navigate(new MainTablePage());
-            btnSel.SelectButton((Button)sender);
+            _fwhMain.Navigate(new MainTablePage());
         }
 
         private void BtnDocs_Click(object sender, RoutedEventArgs e)
         {
-            fwhMain.Navigate(new testPage());
-            btnSel.SelectButton((Button)sender);
+            _fwhMain.Navigate(new testPage());
         }
     }
 }

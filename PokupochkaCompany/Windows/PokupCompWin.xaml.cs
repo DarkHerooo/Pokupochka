@@ -24,7 +24,6 @@ namespace PokupochkaCompany.Windows
         /// <param name="user"></param>
         private void SetUserFunctions(User user)
         {
-            LoginUser.User = user;
             TblFIO.Text = user.Worker!.FIO;
 
             if (user.Role != null)
@@ -33,7 +32,7 @@ namespace PokupochkaCompany.Windows
                 Title = "Покупочка (" + user.Role?.Title + ")";
             }
 
-            switch (user.Role?.Id)
+            switch (user.Role!.Id)
             {
                 case (int)RoleKey.Administratior:
                     SetUserStyles("/Styles/AdminStyle.xaml");

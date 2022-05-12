@@ -19,9 +19,17 @@ namespace PokupochkaCompany.Classes
             _selectedButton = _buttons.First();
 
             foreach (var button in _buttons)
+            {
                 button.Style = _defaultStyle;
+                button.Click += Button_Click;
+            }
 
             SelectButton(_selectedButton);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SelectButton((Button)sender);
         }
 
         public void SelectButton(Button button)

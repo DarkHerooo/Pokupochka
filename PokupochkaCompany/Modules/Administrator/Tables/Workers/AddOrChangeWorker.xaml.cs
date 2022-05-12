@@ -11,12 +11,14 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
     /// </summary>
     public partial class AddOrChangeWorkerWin : Window
     {
+        private PhoneTextBox _ptbPhone;
         private ItemGenerator _ig = new ItemGenerator();
         private Worker _worker;
         public AddOrChangeWorkerWin(Worker worker)
         {
             InitializeComponent();
 
+             _ptbPhone = new PhoneTextBox(TbPhone);
             _worker = worker;
             SetData();
         }
@@ -95,7 +97,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 _worker.User!.Role = role;
                 _worker.User!.AddOrChange();
 
-                _worker.SetData(TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, TbPhone.Text);
+                _worker.SetData(TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, _ptbPhone.GetPhone());
                 _worker.AddOrChange();
 
                 DialogResult = true;

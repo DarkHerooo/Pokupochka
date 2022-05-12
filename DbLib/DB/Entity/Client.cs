@@ -14,7 +14,7 @@ namespace DbLib
         public string? Patronymic { get; set; }
         public string Email { get; set; } = null!;
         public string Phone { get; set; } = null!;
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public User? User { get; set; }
         public int? CompanyId { get; set; }
         public Company? Company { get; set; }

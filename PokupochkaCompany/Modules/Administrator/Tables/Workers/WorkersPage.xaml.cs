@@ -114,8 +114,6 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 AddOrChangeWorkerWin win = new AddOrChangeWorkerWin(worker);
                 win.ShowDialog();
 
-                // DbConnect.Db.ChangeTracker.Entries().ToList().ForEach(u => u.Reload());
-
                 if (win.DialogResult == true)
                     DgUsers.ItemsSource = ShowWorkers();
             }
@@ -129,7 +127,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 if (MessageBox.Show("Вы уверены, что хотите удалить этого работника?", "Удаление работника",
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    worker.Delete();
+                    worker.User!.Delete();
                     DgUsers.ItemsSource = ShowWorkers();
                 }
             }
