@@ -39,4 +39,8 @@
     <Folder Include="Modules\Agent\Pages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>

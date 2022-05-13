@@ -11,25 +11,18 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
     /// </summary>
     public partial class AddOrChangeWorkerWin : Window
     {
-        private PhoneTextBox _ptbPhone;
-        private ItemGenerator _ig = new ItemGenerator();
         private Worker _worker;
         public AddOrChangeWorkerWin(Worker worker)
         {
             InitializeComponent();
 
-             _ptbPhone = new PhoneTextBox(TbPhone);
             _worker = worker;
             SetData();
         }
 
         private void SetData()
         {
-            foreach (Role role in DbConnect.Db.Roles)
-            {
-                StackPanel sp = _ig.GenerateItem(role.CorrectImage, role.Title);
-                CbRole.Items.Add(sp);
-            }
+            CbRole.ItemsSource = DbConnect.Db.Roles.ToList();
 
             if (_worker.Id == 0)
             {
@@ -44,8 +37,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 Title = "Изменить пользователя";
                 BtnAddOrChange.Content = "Изменить пользователя";
 
-                Role? role = _worker!.User!.Role;
-                CbRole.SelectedItem = _ig.GetItemDependingText(CbRole.Items, role!.Title);
+                CbRole.SelectedItem = _worker.User!.Role;
             }
 
             TbSecondName.Text = _worker!.SecondName;
@@ -67,8 +59,6 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
             if (string.IsNullOrEmpty(TbPhone.Text) || string.IsNullOrWhiteSpace(TbPhone.Text))
                 errorMessage += "Не введен телефон\n";
-            else if (!long.TryParse(TbPhone.Text, out _))
-                errorMessage += "Телефон может содержать только цифры\n";
 
             if (string.IsNullOrEmpty(TbLogin.Text) || string.IsNullOrWhiteSpace(TbLogin.Text))
                 errorMessage += "Не введен логин\n";
@@ -89,15 +79,11 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         {
             if (CheckData())
             {
-                StackPanel sp = (StackPanel)CbRole.SelectedItem;
-                string title = _ig.GetText(sp);
-                Role? role = DbConnect.Db.Roles.FirstOrDefault(r => r.Title == title);
-
                 _worker.User!.SetData(TbLogin.Text, TbPassword.Text);
-                _worker.User!.Role = role;
+                _worker.User!.Role = CbRole.SelectedItem as Role;
                 _worker.User!.AddOrChange();
 
-                _worker.SetData(TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, _ptbPhone.GetPhone());
+                _worker.SetData(TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, TbPhone.Text);
                 _worker.AddOrChange();
 
                 DialogResult = true;

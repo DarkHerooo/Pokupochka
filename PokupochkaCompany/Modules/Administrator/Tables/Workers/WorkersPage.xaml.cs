@@ -59,12 +59,9 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         /// <returns></returns>
         private List<Worker> FilterWorkers(List<Worker> workers)
         {
-            StackPanel sp = (StackPanel)CbFilter.SelectedItem;
-            if (sp != null)
-            {
-                string? title = new ItemGenerator().GetText(sp);
-                workers = workers.Where(w => w.User!.Role!.Title == title).ToList();
-            }
+            Role? role = CbFilter.SelectedItem as Role;
+
+            workers = workers.Where(w => w.User!.Role == role).ToList();
 
             return workers;
         }
@@ -74,14 +71,8 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         /// </summary>
         private void GenerateFilterList()
         {
-            CbFilter.Items.Add("- НЕТ -");
-
-            ItemGenerator ig = new ItemGenerator();
-            foreach (Role role in DbConnect.Db.Roles)
-            {
-                StackPanel sp = ig.GenerateItem(role.CorrectImage, role.Title);
-                CbFilter.Items.Add(sp);
-            }
+            foreach (var role in DbConnect.Db.Roles)
+                CbFilter.Items.Add(role);
 
             CbFilter.SelectedIndex = 0;
         }

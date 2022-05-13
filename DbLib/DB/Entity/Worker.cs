@@ -14,8 +14,6 @@ namespace DbLib
         public string SecondName { get; set; } = null!;
         public string FirstName { get; set; } = null!;
         public string? Patronymic { get; set; }
-
-        [MaxLength(11)]
         public string Phone { get; set; } = null!;
         public int UserId { get; set; }
         public User? User { get; set; }
@@ -48,27 +46,6 @@ namespace DbLib
                 patronymic = patronymic.Trim();
 
                 return secondName + " " + firstName + " " + patronymic;
-            }
-            set { }
-        }
-
-        [NotMapped]
-        public string CorrectPhone
-        {
-            get
-            {
-                string phone = "+";
-                try
-                {
-                    phone += Phone[0] + " ";
-                    phone += "(" + Phone.Substring(1, 3) + ") ";
-                    phone += Phone.Substring(4, 3) + "-";
-                    phone += Phone.Substring(7, 2) + "-";
-                    phone += Phone.Substring(9, 2);
-                }
-                catch { }
-
-                return phone;
             }
             set { }
         }
