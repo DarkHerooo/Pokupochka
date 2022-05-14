@@ -45,10 +45,13 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         /// <returns></returns>
         private List<Worker> FindWorkers(List<Worker> workers)
         {
-            string text = TbFinder.Text;
-            workers = workers.Where(w => 
-                w.FIO.ToLower().Contains(text.ToLower()) ||
-                w.User!.Login.ToLower().Contains(text.ToLower())).ToList();
+            if (TbFinder.IsFocused)
+            {
+                string text = TbFinder.Text;
+                workers = workers.Where(w =>
+                    w.FIO.ToLower().Contains(text.ToLower()) ||
+                    w.User!.Login.ToLower().Contains(text.ToLower())).ToList();
+            }
 
             return workers;
         }
@@ -90,7 +93,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddOrChangeWorkerWin win = new AddOrChangeWorkerWin(new Worker());
+            WorkersWorkWin win = new WorkersWorkWin(new Worker());
             win.ShowDialog();
 
             if (win.DialogResult == true)
@@ -102,7 +105,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
             Worker? worker = DgUsers.SelectedItem as Worker;
             if (worker != null)
             {
-                AddOrChangeWorkerWin win = new AddOrChangeWorkerWin(worker);
+                WorkersWorkWin win = new WorkersWorkWin(worker);
                 win.ShowDialog();
 
                 if (win.DialogResult == true)

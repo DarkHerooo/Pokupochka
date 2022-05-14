@@ -11,18 +11,7 @@
     <Grid>
         <DataGrid Name="DgRoles">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Изображение" MinWidth="128">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Border Margin="10" CornerRadius="5" BorderBrush="Black" BorderThickness="2">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding CorrectImage}"/>
-                                </Border.Background>
-                            </Border>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Название" MinWidth="100">
+                <DataGridTemplateColumn Header="Название" MinWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -33,6 +22,17 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding CorrectDescription}" Margin="5" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Изображение" MinWidth="128">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Margin="10" CornerRadius="5" BorderBrush="Black" BorderThickness="2">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding CorrectImage}"/>
+                                </Border.Background>
+                            </Border>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

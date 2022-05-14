@@ -4,6 +4,7 @@ using DbLib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbLib.Migrations
 {
     [DbContext(typeof(PokupochkaContext))]
-    partial class PokupochkaContextModelSnapshot : ModelSnapshot
+    [Migration("20220514075628_edit-phone1")]
+    partial class editphone1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,66 @@ namespace DbLib.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("DbLib.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Patronymic")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("DbLib.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Company");
+                });
 
             modelBuilder.Entity("DbLib.Contract", b =>
                 {
@@ -49,52 +111,6 @@ namespace DbLib.Migrations
                     b.HasIndex("WorkerId");
 
                     b.ToTable("Contract");
-                });
-
-            modelBuilder.Entity("DbLib.Counterparty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Patronymic")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Counterparties");
                 });
 
             modelBuilder.Entity("DbLib.Role", b =>
@@ -154,10 +170,6 @@ namespace DbLib.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -184,9 +196,26 @@ namespace DbLib.Migrations
                     b.ToTable("Workers");
                 });
 
+            modelBuilder.Entity("DbLib.Client", b =>
+                {
+                    b.HasOne("DbLib.Company", "Company")
+                        .WithMany("Clients")
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("DbLib.User", "User")
+                        .WithOne("Client")
+                        .HasForeignKey("DbLib.Client", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("DbLib.Contract", b =>
                 {
-                    b.HasOne("DbLib.Counterparty", "Client")
+                    b.HasOne("DbLib.Client", "Client")
                         .WithMany("Contracts")
                         .HasForeignKey("ClientId");
 
@@ -197,17 +226,6 @@ namespace DbLib.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Worker");
-                });
-
-            modelBuilder.Entity("DbLib.Counterparty", b =>
-                {
-                    b.HasOne("DbLib.User", "User")
-                        .WithOne("Counterparty")
-                        .HasForeignKey("DbLib.Counterparty", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DbLib.User", b =>
@@ -230,9 +248,14 @@ namespace DbLib.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DbLib.Counterparty", b =>
+            modelBuilder.Entity("DbLib.Client", b =>
                 {
                     b.Navigation("Contracts");
+                });
+
+            modelBuilder.Entity("DbLib.Company", b =>
+                {
+                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("DbLib.Role", b =>
@@ -242,7 +265,7 @@ namespace DbLib.Migrations
 
             modelBuilder.Entity("DbLib.User", b =>
                 {
-                    b.Navigation("Counterparty");
+                    b.Navigation("Client");
 
                     b.Navigation("Worker");
                 });

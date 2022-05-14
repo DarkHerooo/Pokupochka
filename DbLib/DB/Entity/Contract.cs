@@ -14,6 +14,6 @@ namespace DbLib
         public int? WorkerId { get; set; }
         public Worker? Worker { get; set; }
         public int? ClientId { get; set; }
-        public Client? Client { get; set; }
+        public Counterparty? Client { get; set; }
     }
 }

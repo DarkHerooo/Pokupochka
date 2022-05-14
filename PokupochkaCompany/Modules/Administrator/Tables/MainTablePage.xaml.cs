@@ -1,6 +1,8 @@
-﻿using PokupochkaCompany.Classes;
+﻿using DbLib;
+using PokupochkaCompany.Classes;
 using PokupochkaCompany.Modules.Administrator.Tables;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -50,14 +52,20 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
             _fwhTables.Navigate(new WorkersPage());
         }
 
-        private void BtnClients_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BtnSuppliers_Click(object sender, RoutedEventArgs e)
         {
+            Role? role = DbConnect.Db.Roles.FirstOrDefault(r => r.Id == (int)RoleKey.Supplier);
+            CntrpartiesPage page = new(role!);
+            page.Title = "SuppliersPage";
+            _fwhTables.Navigate(page);
+        }
 
+        private void BtnClients_Click(object sender, RoutedEventArgs e)
+        {
+            Role? role = DbConnect.Db.Roles.FirstOrDefault(r => r.Id == (int)RoleKey.Client);
+            CntrpartiesPage page = new(role!);
+            page.Title = "ClientsPage";
+            _fwhTables.Navigate(page);
         }
     }
 }

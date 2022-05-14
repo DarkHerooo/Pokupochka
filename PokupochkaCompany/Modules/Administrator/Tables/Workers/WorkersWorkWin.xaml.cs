@@ -9,14 +9,15 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
     /// <summary>
     /// Логика взаимодействия для AddOrChangeUser.xaml
     /// </summary>
-    public partial class AddOrChangeWorkerWin : Window
+    public partial class WorkersWorkWin : Window
     {
         private Worker _worker;
-        public AddOrChangeWorkerWin(Worker worker)
+        public WorkersWorkWin(Worker worker)
         {
             InitializeComponent();
 
             _worker = worker;
+            Style = UserStyles.WindowBackground;
             SetData();
         }
 
@@ -29,7 +30,6 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 Title = "Добавить пользователя";
                 BtnAddOrChange.Content = "Добавить пользователя";
 
-                _worker.User = new User();
                 CbRole.SelectedIndex = 0;
             }
             else
@@ -44,6 +44,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
             TbFirstName.Text = _worker.FirstName;
             TbPatronymic.Text = _worker.Patronymic;
             TbPhone.Text = _worker.Phone;
+            TbEmail.Text = _worker.Email;
             TbLogin.Text = _worker.User!.Login;
             TbPassword.Text = _worker.User!.Password;
         }
@@ -57,11 +58,21 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
             if (string.IsNullOrEmpty(TbFirstName.Text) || string.IsNullOrWhiteSpace(TbFirstName.Text))
                 errorMessage += "Не введено имя\n";
 
-            if (string.IsNullOrEmpty(TbPhone.Text) || string.IsNullOrWhiteSpace(TbPhone.Text))
+            string clearPhone = AdditionalFields.GetClearPhone(TbPhone.Text);
+            if (string.IsNullOrEmpty(clearPhone) || string.IsNullOrWhiteSpace(clearPhone))
                 errorMessage += "Не введен телефон\n";
+
+            if (string.IsNullOrEmpty(TbEmail.Text) || string.IsNullOrWhiteSpace(TbEmail.Text))
+                errorMessage += "Не введена почта\n";
 
             if (string.IsNullOrEmpty(TbLogin.Text) || string.IsNullOrWhiteSpace(TbLogin.Text))
                 errorMessage += "Не введен логин\n";
+            else
+            {
+                User? user = DbConnect.Db.Users.FirstOrDefault(u => u.Login == TbLogin.Text);
+                if (user!.Id != _worker.User!.Id)
+                    errorMessage += "Пользователь с таким логином уже существует\n";
+            } 
 
             if (string.IsNullOrEmpty(TbPassword.Text) || string.IsNullOrWhiteSpace(TbPassword.Text))
                 errorMessage += "Не введен пароль\n";
@@ -83,7 +94,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 _worker.User!.Role = CbRole.SelectedItem as Role;
                 _worker.User!.AddOrChange();
 
-                _worker.SetData(TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, TbPhone.Text);
+                _worker.SetData(TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, TbPhone.Text, TbEmail.Text);
                 _worker.AddOrChange();
 
                 DialogResult = true;

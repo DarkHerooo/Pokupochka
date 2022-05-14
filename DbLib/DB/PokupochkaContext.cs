@@ -13,6 +13,7 @@ namespace DbLib
         public DbSet<Role> Roles { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Worker> Workers { get; set; } = null!;
+        public DbSet<Counterparty> Counterparties { get; set; } = null!;
 
         public PokupochkaContext()
         {

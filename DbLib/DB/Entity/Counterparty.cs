@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace DbLib
 {
-    public class Worker
+    public class Counterparty
     {
         public int Id { get; set; }
+        public string Company { get; set; } = null!;
+        public string Address { get; set; } = null!;
         public string SecondName { get; set; } = null!;
         public string FirstName { get; set; } = null!;
         public string? Patronymic { get; set; }
@@ -18,13 +19,13 @@ namespace DbLib
         public string Email { get; set; } = null!;
         public int UserId { get; set; }
         public User? User { get; set; }
+        public List<Contract> Contracts { get; set; } = new();
 
-        public Worker()
+        public Counterparty()
         {
             User = new();
         }
 
-        // Дополнительные поля
         [NotMapped]
         public string FIO
         {
@@ -35,9 +36,10 @@ namespace DbLib
             set { }
         }
 
-        // Методы
-        public void SetData(string secondName, string firstName, string patronymic, string phone, string email)
+        public void SetData(string company, string address, string secondName, string firstName, string patronymic, string phone, string email)
         {
+            Company = company;
+            Address = address;
             SecondName = secondName;
             FirstName = firstName;
             Patronymic = patronymic;
@@ -47,7 +49,7 @@ namespace DbLib
 
         public void AddOrChange()
         {
-            if (Id == 0) DbConnect.Db.Workers.Add(this);
+            if (Id == 0) DbConnect.Db.Counterparties.Add(this);
             DbConnect.Db.SaveChanges();
         }
     }

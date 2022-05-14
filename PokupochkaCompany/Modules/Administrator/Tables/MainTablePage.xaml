@@ -20,10 +20,10 @@
                     Name="BtnRoles" Click="BtnRoles_Click"/>
             <Button Content="Работники"
                     Name="BtnUsers" Click="BtnUsers_Click"/>
-            <Button Content="Клиенты" Name="BtnClients"
-                    Click="BtnClients_Click"/>
             <Button Content="Поставщики" Name="BtnSuppliers"
                     Click="BtnSuppliers_Click"/>
+            <Button Content="Клиенты" Name="BtnClients"
+                    Click="BtnClients_Click"/>
         </StackPanel>
 
         <Rectangle Grid.Column="1" Fill="Black"/>

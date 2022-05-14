@@ -8,7 +8,7 @@
         public int? RoleId { get; set; }
         public Role? Role { get; set; }
         public Worker? Worker { get; set; }
-        public Client? Client { get; set; }
+        public Counterparty? Counterparty { get; set; }
 
         public void SetData(string login, string passsword)
         {
