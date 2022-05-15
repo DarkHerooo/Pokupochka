@@ -2,6 +2,7 @@
 using PokupochkaCompany.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,15 +63,10 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 }
             }
 
-            TbCompany.Text = _counterparty.Company;
-            TbAddress.Text = _counterparty.Address;
-            TbSecondName.Text = _counterparty!.SecondName;
-            TbFirstName.Text = _counterparty.FirstName;
-            TbPatronymic.Text = _counterparty.Patronymic;
-            TbPhone.Text = _counterparty.Phone;
-            TbEmail.Text = _counterparty.Email;
-            TbLogin.Text = _counterparty.User!.Login;
-            TbPassword.Text = _counterparty.User!.Password;
+            if (_counterparty.Image == null)
+                _counterparty.Image = ImageReader.GetBytes(AppPath.Path + "Images/Roles/unk.png");
+
+            DataContext = _counterparty;
         }
 
         private bool CheckData()
@@ -119,14 +115,23 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         {
             if (CheckData())
             {
-                _counterparty.User!.SetData(TbLogin.Text, TbPassword.Text);
                 _counterparty.User!.AddOrChange();
-
-                _counterparty.SetData(TbCompany.Text, TbAddress.Text, TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, TbPhone.Text, TbEmail.Text);
                 _counterparty.AddOrChange();
 
                 DialogResult = true;
                 Close();
+            }
+        }
+
+        private void BtnSelectImg_Click(object sender, RoutedEventArgs e)
+        {
+            ImageDialog dialog = new();
+            
+            if (dialog.Open())
+            {
+                _counterparty.Image = dialog.ImageBytes!;
+                DataContext = null;
+                DataContext = _counterparty;
             }
         }
     }

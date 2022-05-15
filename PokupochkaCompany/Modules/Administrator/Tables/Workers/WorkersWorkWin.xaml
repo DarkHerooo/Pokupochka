@@ -55,7 +55,7 @@
             </TextBlock>
 
             <TextBox Grid.Column="1" Style="{StaticResource TbData}"
-                     Name="TbSecondName"/>
+                     Name="TbSecondName" Text="{Binding SecondName}"/>
         </Grid>
 
         <Grid Grid.Column="0" Grid.Row="1">
@@ -70,7 +70,7 @@
             </TextBlock>
 
             <TextBox Grid.Column="1" Style="{StaticResource TbData}"
-                     Name="TbFirstName"/>
+                     Name="TbFirstName" Text="{Binding FirstName}"/>
         </Grid>
 
         <Grid Grid.Column="0" Grid.Row="2">
@@ -83,7 +83,7 @@
                        Text="Отчество:"/>
 
             <TextBox Grid.Column="1" Style="{StaticResource TbData}"
-                     Name="TbPatronymic"/>
+                     Name="TbPatronymic" Text="{Binding Patronymic}"/>
         </Grid>
 
         <Grid Grid.Column="0" Grid.Row="3">
@@ -98,7 +98,8 @@
             </TextBlock>
 
             <toolkit:MaskedTextBox Grid.Column="1" Style="{StaticResource MTbData}"
-                     MaxLength="11" Name="TbPhone" Mask="+0 (000) 000 00 00"/>
+                     MaxLength="11" Name="TbPhone" Mask="+0 (000) 000 00 00"
+                     Text="{Binding Phone}"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="0">
@@ -113,7 +114,7 @@
             </TextBlock>
 
             <TextBox Grid.Column="1" Style="{StaticResource TbData}"
-                     Name="TbEmail"/>
+                     Name="TbEmail" Text="{Binding Email}"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="1">
@@ -128,7 +129,7 @@
             </TextBlock>
 
             <TextBox Grid.Column="1" Style="{StaticResource TbData}"
-                     Name="TbLogin"/>
+                     Name="TbLogin" Text="{Binding User.Login}"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="2">
@@ -143,7 +144,7 @@
             </TextBlock>
 
             <TextBox Grid.Column="1" Style="{StaticResource TbData}"
-                     Name="TbPassword"/>
+                     Name="TbPassword" Text="{Binding User.Password}"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="3">
@@ -155,10 +156,8 @@
             <TextBlock Grid.Column="0" Style="{StaticResource TblData}"
                        Text="Роль:"/>
 
-            <ComboBox Grid.Column="1" Style="{StaticResource CbRoleStyle}"
-                      Name="CbRole"/>
-
-
+            <ComboBox Grid.Column="1" Style="{StaticResource CbRoleStyle}" IsSynchronizedWithCurrentItem="True"
+                      Name="CbRole" SelectedItem="{Binding User.Role}"/>
         </Grid>
 
         <Button Grid.Column="1" Grid.Row="4" Margin="5" Background="GreenYellow"

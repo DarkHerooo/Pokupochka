@@ -4,6 +4,7 @@ using DbLib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbLib.Migrations
 {
     [DbContext(typeof(PokupochkaContext))]
-    partial class PokupochkaContextModelSnapshot : ModelSnapshot
+    [Migration("20220514173651_pain-gaming")]
+    partial class paingaming
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,6 +69,9 @@ namespace DbLib.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DbImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -74,9 +79,6 @@ namespace DbLib.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Patronymic")
                         .HasColumnType("nvarchar(max)");
@@ -94,10 +96,29 @@ namespace DbLib.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DbImageId");
+
                     b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("Counterparties");
+                });
+
+            modelBuilder.Entity("DbLib.DbImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DbImages");
                 });
 
             modelBuilder.Entity("DbLib.Role", b =>
@@ -114,14 +135,13 @@ namespace DbLib.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DbImageId");
 
                     b.ToTable("Roles");
                 });
@@ -207,13 +227,28 @@ namespace DbLib.Migrations
 
             modelBuilder.Entity("DbLib.Counterparty", b =>
                 {
+                    b.HasOne("DbLib.DbImage", "DbImage")
+                        .WithMany("Counterparties")
+                        .HasForeignKey("DbImageId");
+
                     b.HasOne("DbLib.User", "User")
                         .WithOne("Counterparty")
                         .HasForeignKey("DbLib.Counterparty", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("DbImage");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DbLib.Role", b =>
+                {
+                    b.HasOne("DbLib.DbImage", "DbImage")
+                        .WithMany("Roles")
+                        .HasForeignKey("DbImageId");
+
+                    b.Navigation("DbImage");
                 });
 
             modelBuilder.Entity("DbLib.User", b =>
@@ -239,6 +274,13 @@ namespace DbLib.Migrations
             modelBuilder.Entity("DbLib.Counterparty", b =>
                 {
                     b.Navigation("Contracts");
+                });
+
+            modelBuilder.Entity("DbLib.DbImage", b =>
+                {
+                    b.Navigation("Counterparties");
+
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("DbLib.Role", b =>

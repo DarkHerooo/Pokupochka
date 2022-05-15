@@ -74,7 +74,12 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         /// </summary>
         private void GenerateFilterList()
         {
-            foreach (var role in DbConnect.Db.Roles)
+            List<Role> roles = DbConnect.Db.Roles.Where
+                (r => r.Id == (int)RoleKey.Administratior ||
+                r.Id == (int)RoleKey.Storekeeper ||
+                r.Id == (int)RoleKey.Agent).ToList();
+
+            foreach (var role in roles)
                 CbFilter.Items.Add(role);
 
             CbFilter.SelectedIndex = 0;
@@ -98,6 +103,8 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
             if (win.DialogResult == true)
                 DgUsers.ItemsSource = ShowWorkers();
+
+            Page_Loaded(null!, null!);
         }
 
         private void BtnChange_Click(object sender, RoutedEventArgs e)
@@ -110,6 +117,8 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
                 if (win.DialogResult == true)
                     DgUsers.ItemsSource = ShowWorkers();
+
+                Page_Loaded(null!, null!);
             }
         }
 
@@ -123,6 +132,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 {
                     worker.User!.Delete();
                     DgUsers.ItemsSource = ShowWorkers();
+                    Page_Loaded(null!, null!);
                 }
             }
         }
@@ -143,6 +153,11 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         private void DgUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BtnChange.IsEnabled = DgUsers.SelectedItem != null ? true : false;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            DbConnect.Db.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
         }
     }
 }

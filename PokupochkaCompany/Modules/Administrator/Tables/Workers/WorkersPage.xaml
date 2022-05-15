@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:PokupochkaCompany.Modules.Administrator.Tables"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="UsersPage">
+      Title="UsersPage" Loaded="Page_Loaded">
     <Page.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="15"/>

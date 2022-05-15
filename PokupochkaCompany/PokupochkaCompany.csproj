@@ -32,7 +32,9 @@
     <Resource Include="Images\Roles\admin.png" />
     <Resource Include="Images\Roles\agent.png" />
     <Resource Include="Images\Roles\storekeeper.png" />
-    <Resource Include="Images\Roles\unk.png" />
+    <Resource Include="Images\Roles\unk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

@@ -17,6 +17,7 @@ namespace DbLib
         public string? Patronymic { get; set; }
         public string Phone { get; set; } = null!;
         public string Email { get; set; } = null!;
+        public byte[]? Image { get; set; }
         public int UserId { get; set; }
         public User? User { get; set; }
         public List<Contract> Contracts { get; set; } = new();
@@ -36,20 +37,15 @@ namespace DbLib
             set { }
         }
 
-        public void SetData(string company, string address, string secondName, string firstName, string patronymic, string phone, string email)
-        {
-            Company = company;
-            Address = address;
-            SecondName = secondName;
-            FirstName = firstName;
-            Patronymic = patronymic;
-            Phone = phone;
-            Email = email;
-        }
-
         public void AddOrChange()
         {
             if (Id == 0) DbConnect.Db.Counterparties.Add(this);
+            DbConnect.Db.SaveChanges();
+        }
+
+        public void Delete()
+        {
+            DbConnect.Db.Counterparties.Remove(this);
             DbConnect.Db.SaveChanges();
         }
     }

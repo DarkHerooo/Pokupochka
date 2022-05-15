@@ -1,5 +1,6 @@
 ﻿using DbLib;
 using PokupochkaCompany.Classes;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,14 +24,19 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
         private void SetData()
         {
-            CbRole.ItemsSource = DbConnect.Db.Roles.ToList();
+            CbRole.ItemsSource = DbConnect.Db.Roles.Where
+                (r => r.Id == (int)RoleKey.Administratior ||
+                r.Id == (int)RoleKey.Storekeeper ||
+                r.Id == (int)RoleKey.Agent).ToList();
+
+            DataContext = _worker;
 
             if (_worker.Id == 0)
             {
                 Title = "Добавить пользователя";
                 BtnAddOrChange.Content = "Добавить пользователя";
 
-                CbRole.SelectedIndex = 0;
+                CbRole.SelectedItem = _worker.User!.Role;
             }
             else
             {
@@ -39,14 +45,6 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
                 CbRole.SelectedItem = _worker.User!.Role;
             }
-
-            TbSecondName.Text = _worker!.SecondName;
-            TbFirstName.Text = _worker.FirstName;
-            TbPatronymic.Text = _worker.Patronymic;
-            TbPhone.Text = _worker.Phone;
-            TbEmail.Text = _worker.Email;
-            TbLogin.Text = _worker.User!.Login;
-            TbPassword.Text = _worker.User!.Password;
         }
 
         private bool CheckData()
@@ -70,7 +68,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
             else
             {
                 User? user = DbConnect.Db.Users.FirstOrDefault(u => u.Login == TbLogin.Text);
-                if (user!.Id != _worker.User!.Id)
+                if (user != null && user != _worker.User)
                     errorMessage += "Пользователь с таким логином уже существует\n";
             } 
 
@@ -90,11 +88,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         {
             if (CheckData())
             {
-                _worker.User!.SetData(TbLogin.Text, TbPassword.Text);
-                _worker.User!.Role = CbRole.SelectedItem as Role;
                 _worker.User!.AddOrChange();
-
-                _worker.SetData(TbSecondName.Text, TbFirstName.Text, TbPatronymic.Text, TbPhone.Text, TbEmail.Text);
                 _worker.AddOrChange();
 
                 DialogResult = true;

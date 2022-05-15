@@ -21,7 +21,7 @@ namespace PokupochkaCompany.Classes
 
                 if (countSlashes == 4)
                 {
-                    path = path.Remove(i);
+                    path = path.Remove(i + 1);
                     break;
                 }
             }
