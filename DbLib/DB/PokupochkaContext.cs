@@ -14,6 +14,8 @@ namespace DbLib
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Worker> Workers { get; set; } = null!;
         public DbSet<Counterparty> Counterparties { get; set; } = null!;
+        public DbSet<Contract> Contracts { get; set; } = null!;
+        public DbSet<Contract> Products { get; set; } = null!;
 
         public PokupochkaContext()
         {

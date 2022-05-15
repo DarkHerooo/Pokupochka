@@ -134,5 +134,10 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         {
             BtnChange.IsEnabled = DgCounterparties.SelectedItem != null ? true : false;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            DbConnect.Db.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+        }
     }
 }

@@ -8,25 +8,7 @@
         Title="Добавление или изменение контрагента" Height="500" Width="1000"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
-        <Style x:Key="TbData" TargetType="TextBox" BasedOn="{StaticResource TbData}">
-            <Setter Property="Margin" Value="5"/>
-        </Style>
-
-        <Style x:Key="PbData" TargetType="PasswordBox" BasedOn="{StaticResource PbData}">
-            <Setter Property="Margin" Value="5"/>
-        </Style>
-
-        <Style x:Key="CbData" TargetType="ComboBox" BasedOn="{StaticResource CbData}">
-            <Setter Property="Margin" Value="5"/>
-        </Style>
-
-        <Style x:Key="CbRoleStyle" TargetType="ComboBox" BasedOn="{StaticResource CbRoleStyle}">
-            <Setter Property="Margin" Value="5"/>
-        </Style>
-
-        <Style x:Key="MTbData" TargetType="toolkit:MaskedTextBox" BasedOn="{StaticResource MTbData}">
-            <Setter Property="Margin" Value="5"/>
-        </Style>
+        <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
     </Window.Resources>
 
     <Grid>
@@ -51,7 +33,8 @@
 
             <StackPanel Grid.Column="0" Orientation="Vertical" Width="128" Margin="5">
                 <Image Height="128" Width="128" Name="ImgCompany" Source="{Binding Image}"/>
-                <Button Content="Выбрать фотографию" Margin="0, 5, 0, 0"
+                <Button Content="Выбрать фотографию" Margin="0, 5, 0, 0" Style="{StaticResource YellowButton}"
+                        FontSize="10"
                         Height="30" Name="BtnSelectImg" Click="BtnSelectImg_Click"/>
             </StackPanel>
 
@@ -80,7 +63,7 @@
                     <Run Text="Компания:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbCompany" Text="{Binding Company}"/>
                 </Grid>
 
@@ -95,7 +78,7 @@
                 <Run Text="Адрес:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbAddress" Text="{Binding Address}"/>
                 </Grid>
 
@@ -110,7 +93,7 @@
                 <Run Text="Фамилия:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbSecondName" Text="{Binding SecondName}"/>
                 </Grid>
 
@@ -125,7 +108,7 @@
                 <Run Text="Имя:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbFirstName" Text="{Binding FirstName}"/>
                 </Grid>
 
@@ -138,7 +121,7 @@
                     <TextBlock Grid.Column="0" Style="{StaticResource TblData}"
                        Text="Отчество:"/>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbPatronymic" Text="{Binding Patronymic}"/>
                 </Grid>
 
@@ -153,7 +136,7 @@
                 <Run Text="Телефон:"/>
                     </TextBlock>
 
-                    <toolkit:MaskedTextBox Grid.Column="1" Style="{StaticResource MTbData}"
+                    <toolkit:MaskedTextBox Grid.Column="1" Style="{StaticResource MTbData}" Margin="5"
                      MaxLength="11" Name="TbPhone" Mask="+0 (000) 000 00 00" Text="{Binding Phone}"/>
                 </Grid>
 
@@ -168,7 +151,7 @@
                 <Run Text="Почта:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbEmail" Text="{Binding Email}"/>
                 </Grid>
 
@@ -183,7 +166,7 @@
                 <Run Text="Логин:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbLogin"  Text="{Binding User.Login}"/>
                 </Grid>
 
@@ -198,18 +181,52 @@
                 <Run Text="Пароль:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}"
+                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
                      Name="TbPassword"  Text="{Binding User.Password}"/>
                 </Grid>
 
-                <Button Grid.Column="1" Grid.Row="9" Margin="5" Background="GreenYellow"
-                FontWeight="Bold" Content="Сохранить или изменить"
+                <Button Grid.Column="1" Grid.Row="9" Margin="5" Style="{StaticResource GreenButton}" Content="Сохранить или изменить"
                 Name="BtnAddOrChange" Click="BtnAddOrChange_Click"/>
             </Grid>
         </Grid>
 
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Договоры" FontSize="25" FontWeight="Bold" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <DataGrid Grid.Column="1" Grid.Row="1" Margin="5" Name="DgContracts"/>
+        <DataGrid Grid.Column="1" Grid.Row="1" Margin="5" Name="DgContracts">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
+                                <TextBlock FontSize="20">
+                                    <Run Text="Договор№" FontWeight="Bold"/>
+                                    <Run Text="{Binding Number}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="15">
+                                    <Run Text="Дата начала:" FontWeight="Bold"/>
+                                    <Run Text="{Binding DateStart}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="15">
+                                    <Run Text="Дата окончания:" FontWeight="Bold"/>
+                                    <Run Text="{Binding DateOver}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="15">
+                                    <Run Text="Количество товаров:" FontWeight="Bold"/>
+                                    <Run Text="{Binding Products.Count, Mode=OneWay}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="15">
+                                    <Run Text="Статус:" FontWeight="Bold"/>
+                                    <Run Text="{Binding Status.Title}" Foreground="{Binding Status.Color}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

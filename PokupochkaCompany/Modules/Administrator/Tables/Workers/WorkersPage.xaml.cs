@@ -115,9 +115,9 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 WorkersWorkWin win = new WorkersWorkWin(worker);
                 win.ShowDialog();
 
-                if (win.DialogResult == true)
-                    DgUsers.ItemsSource = ShowWorkers();
+                //if (win.DialogResult == true)
 
+                DgUsers.ItemsSource = ShowWorkers();
                 Page_Loaded(null!, null!);
             }
         }

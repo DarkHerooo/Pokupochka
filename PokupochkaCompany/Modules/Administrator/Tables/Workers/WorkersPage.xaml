@@ -8,10 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UsersPage" Loaded="Page_Loaded">
     <Page.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
+        <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
     </Page.Resources>
 
     <Grid>
@@ -45,7 +42,7 @@
 
             <TextBlock Grid.Column="3" Grid.Row="0" Margin="2.5, 0, 0, 0" Text="Сброс:"/>
             <Button Grid.Column="3" Grid.Row="1" Margin="2.5, 0, 0, 0" ToolTip="Сбросить все фильтры" Content="X"
-                    Background="IndianRed"
+                    Style="{StaticResource RedButton}"
                     Name="BtnClear" Click="BtnClear_Click"/>
         </Grid>
 
@@ -107,11 +104,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="0, 0, 2.5, 0" Background="GreenYellow" Content="Добавить"
+            <Button Grid.Column="0" Margin="0, 0, 2.5, 0" Style="{StaticResource GreenButton}" Content="Добавить"
                     Name="BtnAdd" Click="BtnAdd_Click"/>
-            <Button Grid.Column="1" Margin="2.5, 0, 2.5, 0" Background="Yellow" Content="Изменить"
+            <Button Grid.Column="1" Margin="2.5, 0, 2.5, 0" Style="{StaticResource YellowButton}" Content="Изменить"
                     IsEnabled="False" Name="BtnChange" Click="BtnChange_Click"/>
-            <Button Grid.Column="2" Margin="2.5, 0, 0, 0" Background="IndianRed" Content="Удалить"
+            <Button Grid.Column="2" Margin="2.5, 0, 0, 0" Style="{StaticResource RedButton}" Content="Удалить"
                     Name="BtnDelete" Click="BtnDelete_Click"/>
         </Grid>
     </Grid>

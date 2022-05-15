@@ -1,7 +1,7 @@
 ﻿using DbLib;
-using PokupochkaCompany.Agent;
 using PokupochkaCompany.Classes;
 using PokupochkaCompany.Modules.Administrator;
+using PokupochkaCompany.Modules.Agent;
 using PokupochkaCompany.Storekeeper;
 using System;
 using System.Linq;
@@ -63,6 +63,13 @@ namespace PokupochkaCompany.Windows
             UserStyles.WindowBackground = resource["WindowBackground"] as Style;
             UserStyles.DefaultButtonStyle = resource["DefaultButtonStyle"] as Style;
             UserStyles.SelectButtonStyle = resource["SelectButtonStyle"] as Style;
+        }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+            AutorizWin win = new();
+            win.Show();
+            Close();
         }
     }
 }

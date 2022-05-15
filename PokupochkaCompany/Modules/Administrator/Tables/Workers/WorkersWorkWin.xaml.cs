@@ -24,27 +24,25 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
         private void SetData()
         {
-            CbRole.ItemsSource = DbConnect.Db.Roles.Where
+            List<Role> roles = DbConnect.Db.Roles.Where
                 (r => r.Id == (int)RoleKey.Administratior ||
                 r.Id == (int)RoleKey.Storekeeper ||
                 r.Id == (int)RoleKey.Agent).ToList();
-
-            DataContext = _worker;
+            CbRole.ItemsSource = roles;
 
             if (_worker.Id == 0)
             {
                 Title = "Добавить пользователя";
                 BtnAddOrChange.Content = "Добавить пользователя";
-
-                CbRole.SelectedItem = _worker.User!.Role;
+                _worker.User!.Role = roles.First();
             }
             else
             {
                 Title = "Изменить пользователя";
                 BtnAddOrChange.Content = "Изменить пользователя";
-
-                CbRole.SelectedItem = _worker.User!.Role;
             }
+
+            DataContext = _worker;
         }
 
         private bool CheckData()

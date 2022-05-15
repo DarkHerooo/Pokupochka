@@ -34,7 +34,7 @@ namespace PokupochkaCompany.Modules.Administrator
                 }
 
                 _btnSel = new(buttons.ToArray(), UserStyles.DefaultButtonStyle, UserStyles.SelectButtonStyle);
-                BtnTables_Click(BtnTables, new RoutedEventArgs());
+                BtnTables_Click(null!, null!);
             }
         }
 

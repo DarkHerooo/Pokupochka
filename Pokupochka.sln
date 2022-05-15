@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLib", "DbLib\DbLib.csproj", "{105C70B6-082C-43DF-A08C-379450AD78C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLib", "DbLib\DbLib.csproj", "{105C70B6-082C-43DF-A08C-379450AD78C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokupochkaCompany", "PokupochkaCompany\PokupochkaCompany.csproj", "{79A5E552-FCC7-40D5-B299-0229BABB1382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCompany", "PokupochkaCompany\PokupochkaCompany.csproj", "{79A5E552-FCC7-40D5-B299-0229BABB1382}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
