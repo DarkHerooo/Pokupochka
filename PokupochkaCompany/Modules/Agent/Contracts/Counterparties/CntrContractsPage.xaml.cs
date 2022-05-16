@@ -43,7 +43,7 @@ namespace PokupochkaCompany.Modules.Agent.Contracts.Counterparties
         {
             List<Contract> contracts = DbConnect.Db.Contracts.Include(c => c.Counterparty).Include(c => c.Status).Include(c => c.Products).ToList();
             contracts = DbConnect.Db.Contracts.Where(c => c.Counterparty!.User!.Role! == _role &&
-                c.DateStart > DateTime.Today.AddDays(-1)).ToList();
+                c.DateStart!.Value.Date == DateTime.Today.Date && c.Status!.Id != (int)StatusKey.New).ToList();
 
             return contracts.ToArray();
         }
@@ -69,19 +69,8 @@ namespace PokupochkaCompany.Modules.Agent.Contracts.Counterparties
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
             DgNewContracts.ItemsSource = GetNewContracts();
             DgTodayContracts.ItemsSource = GetTodayContracts();
-        }
-
-        private void DgNewContracts_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DgTodayContracts.SelectedCells.Clear();
-        }
-
-        private void DgTodayContracts_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DgNewContracts.SelectedCells.Clear();
         }
 
         private void Dg_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -91,6 +80,16 @@ namespace PokupochkaCompany.Modules.Agent.Contracts.Counterparties
 
             if (contract != null)
                 NavigationService.Navigate(new ShowContractPage(contract));
+        }
+
+        private void DgNewContracts_GotFocus(object sender, RoutedEventArgs e)
+        {
+            DgTodayContracts.UnselectAll();
+        }
+
+        private void DgTodayContracts_GotFocus(object sender, RoutedEventArgs e)
+        {
+            DgNewContracts.UnselectAll();
         }
     }
 }

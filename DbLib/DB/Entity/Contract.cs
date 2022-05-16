@@ -22,7 +22,7 @@ namespace DbLib
         public Status? Status { get; set; }
         public List<Product> Products { get; set; } = new();
 
-
+        
         public void AddOrChange()
         {
             if (Id == 0) DbConnect.Db.Contracts.Add(this);

@@ -25,8 +25,8 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Column="0" Margin="5" Name="DgNewContracts" SelectionChanged="DgNewContracts_SelectionChanged"
-                  MouseDoubleClick="Dg_MouseDoubleClick">
+        <DataGrid Grid.Column="0" Margin="5" Name="DgNewContracts"
+                  MouseDoubleClick="Dg_MouseDoubleClick" GotFocus="DgNewContracts_GotFocus">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*" Header="Новые договоры">
                     <DataGridTemplateColumn.CellTemplate>
@@ -71,8 +71,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid Grid.Column="1" Margin="5" Name="DgTodayContracts" SelectionChanged="DgTodayContracts_SelectionChanged"
-                  MouseDoubleClick="Dg_MouseDoubleClick">
+        <DataGrid Grid.Column="1" Margin="5" Name="DgTodayContracts"
+                  MouseDoubleClick="Dg_MouseDoubleClick" GotFocus="DgTodayContracts_GotFocus">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*" Header="Рассмотренные договоры (сегодня)">
                     <DataGridTemplateColumn.CellTemplate>

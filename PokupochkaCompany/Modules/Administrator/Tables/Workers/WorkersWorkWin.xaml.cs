@@ -84,6 +84,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
         private void BtnAddOrChange_Click(object sender, RoutedEventArgs e)
         {
+            int index = CbRole.SelectedIndex;
             if (CheckData())
             {
                 _worker.User!.AddOrChange();

@@ -42,6 +42,8 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
 
         private Counterparty[] ShowCounterparties()
         {
+            //Page_Loaded(null!, null!);
+
             List<Counterparty> counterparties = DbConnect.Db.Counterparties.Include(c => c.User).Where(c => c.User!.Role == _role).ToList();
 
             if (!string.IsNullOrEmpty(TbFinder.Text) && !string.IsNullOrWhiteSpace(TbFinder.Text))
@@ -87,8 +89,10 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
             CntrpartiesWorkWin win = new CntrpartiesWorkWin(counterparty);
             win.ShowDialog();
 
-            if (win.DialogResult == true)
-                DgCounterparties.ItemsSource = ShowCounterparties();
+            DgCounterparties.ItemsSource = ShowCounterparties();
+
+            if (win.DialogResult == false)
+                Page_Loaded(null!, null!);
         }
 
         private void BtnChange_Click(object sender, RoutedEventArgs e)
@@ -99,8 +103,10 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
                 CntrpartiesWorkWin win = new CntrpartiesWorkWin(counterparty);
                 win.ShowDialog();
 
-                if (win.DialogResult == true)
-                    DgCounterparties.ItemsSource = ShowCounterparties();
+                DgCounterparties.ItemsSource = ShowCounterparties();
+
+                if (win.DialogResult == false)
+                    Page_Loaded(null!, null!);
             }
         }
 
@@ -121,7 +127,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             TbFinder.Text = "";
-            DgCounterparties.SelectedItem = null;
+            DgCounterparties.UnselectAll();
             DgCounterparties.ItemsSource = ShowCounterparties();
         }
 

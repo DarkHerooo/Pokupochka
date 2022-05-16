@@ -141,7 +141,7 @@ namespace PokupochkaCompany.Modules.Administrator.Tables
         {
             TbFinder.Text = "";
             CbFilter.SelectedIndex = 0;
-            DgUsers.SelectedItem = null;
+            DgUsers.UnselectAll();
             DgUsers.ItemsSource = ShowWorkers();
         }
 

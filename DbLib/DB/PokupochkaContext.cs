@@ -19,7 +19,8 @@ namespace DbLib
 
         public PokupochkaContext()
         {
-            //Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)

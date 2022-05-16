@@ -20,7 +20,7 @@ namespace DbLib
         [NotMapped]
         public string? CorrectImage
         {
-            get { return Image != null ? "/Images/Roles/" + Image : "/Images/Roles/Unk.png"; }
+            get { return Image != null ? "/Images/Roles/" + Image : "/Images/Roles/unk.png"; }
             set { }
         }
 
