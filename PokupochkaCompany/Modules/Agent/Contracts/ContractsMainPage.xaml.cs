@@ -1,5 +1,5 @@
 ﻿using DbLib;
-using PokupochkaCompany.Classes;
+using GeneralLib;
 using PokupochkaCompany.Modules.Agent.Contracts.Counterparties;
 using System;
 using System.Collections.Generic;

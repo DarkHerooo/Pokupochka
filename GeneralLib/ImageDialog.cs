@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace PokupochkaCompany.Classes
+namespace GeneralLib
 {
     public class ImageDialog
     {

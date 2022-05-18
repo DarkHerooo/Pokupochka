@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\Logo\box.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Logo\box.ico" />
+    <None Remove="Images\Logo\box.png" />
+    <None Remove="Images\Message\error.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Logo\box.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DbLib\DbLib.csproj" />
+    <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Logo\box.png" />
+    <Resource Include="Images\Message\error.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="App.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Styles\ButtonStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Styles\ClientStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\SupplierStyle.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Windows\AutorizWin.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Windows\PokupCntrWin.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+</Project>

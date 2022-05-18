@@ -1,4 +1,4 @@
-﻿using PokupochkaCompany.Classes;
+﻿using GeneralLib;
 using PokupochkaCompany.Modules.Agent.Contracts;
 using PokupochkaCompany.Modules.Agent.Requests;
 using System.Collections.Generic;

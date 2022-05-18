@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PokupochkaCompany.Classes
+namespace GeneralLib
 {
     public class ButtonSelector
     {

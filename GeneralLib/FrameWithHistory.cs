@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace PokupochkaCompany.Classes
+namespace GeneralLib
 {
     public class FrameWithHistory
     {

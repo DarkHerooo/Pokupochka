@@ -1,5 +1,5 @@
 ﻿using DbLib;
-using PokupochkaCompany.Classes;
+using GeneralLib;
 using PokupochkaCompany.Modules.Administrator.Tables;
 using System.Collections.Generic;
 using System.Linq;

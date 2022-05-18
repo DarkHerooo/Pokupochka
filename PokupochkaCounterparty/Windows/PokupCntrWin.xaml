@@ -1,0 +1,42 @@
+﻿<Window x:Class="PokupochkaCompany.Windows.PokupCntrWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PokupochkaCompany.Windows"
+        mc:Ignorable="d"
+        Title="Покупочка (Роль)" MinHeight="600" MinWidth="1000"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="0" NavigationUIVisibility="Hidden" Name="FrmMain"/>
+
+        <Rectangle Grid.Row="1" Fill="Black"/>
+
+        <Grid Grid.Row="2" Background="White">
+            <TextBlock Margin="10, 0, 0, 0" FontSize="20">
+                <Run Text="Пользователь:" FontWeight="Bold"/>
+                <Run Text="ФИО" Name="TblFIO"/>
+                <Run Text="(Роль)" Name="TblRole"/>
+            </TextBlock>
+
+            <Button HorizontalAlignment="Right" Width="100" Margin="2.5" Content="Выход" Style="{StaticResource RedButton}"
+                    Name="BtnExit" Click="BtnExit_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Window>

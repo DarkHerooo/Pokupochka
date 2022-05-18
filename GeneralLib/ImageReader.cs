@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace PokupochkaCompany.Classes
+namespace GeneralLib
 {
     public class ImageReader
     {

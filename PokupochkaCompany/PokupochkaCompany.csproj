@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
+    <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

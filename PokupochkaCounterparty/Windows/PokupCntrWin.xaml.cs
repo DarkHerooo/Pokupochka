@@ -1,17 +1,15 @@
 ﻿using DbLib;
-using GeneralLib;
-using PokupochkaCompany.Modules.Administrator;
-using PokupochkaCompany.Modules.Agent;
-using PokupochkaCompany.Storekeeper;
+using PokupochkaCompany.Classes;
+using PokupochkaCounterparty.Modules.Counterparty;
 using System;
 using System.Linq;
 using System.Windows;
 
 namespace PokupochkaCompany.Windows
 {
-    public partial class PokupCompWin : Window
+    public partial class PokupCntrWin : Window
     {
-        public PokupCompWin(User user)
+        public PokupCntrWin(User user)
         {
             InitializeComponent();
 
@@ -34,21 +32,16 @@ namespace PokupochkaCompany.Windows
 
             switch (user.Role!.Id)
             {
-                case (int)RoleKey.Administratior:
+                case (int)RoleKey.Supplier:
                     SetUserStyles("/Styles/AdminStyle.xaml");
-                    FrmMain.NavigationService.Navigate(new AdminMainPage());
                     break;
-                case (int)RoleKey.Storekeeper:
+                case (int)RoleKey.Client:
                     SetUserStyles("/Styles/StorekepStyle.xaml");
-                    FrmMain.NavigationService.Navigate(new StorekepMainPage());
-                    break;
-                case (int)RoleKey.Agent:
-                    SetUserStyles("/Styles/AgentStyle.xaml");
-                    FrmMain.NavigationService.Navigate(new AgentMainPage());
                     break;
             }
 
             Style = UserStyles.WindowBackground;
+            FrmMain.NavigationService.Navigate(new CntrMainPage());
         }
 
         /// <summary>
