@@ -4,6 +4,7 @@ using DbLib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbLib.Migrations
 {
     [DbContext(typeof(PokupochkaContext))]
-    partial class PokupochkaContextModelSnapshot : ModelSnapshot
+    [Migration("20220519214145_database-ending")]
+    partial class databaseending
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +76,7 @@ namespace DbLib.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Contracts");
+                    b.ToTable("Contract");
                 });
 
             modelBuilder.Entity("DbLib.Counterparty", b =>
@@ -146,7 +148,7 @@ namespace DbLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("DbLib.Request", b =>
@@ -172,7 +174,7 @@ namespace DbLib.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.ToTable("Requests");
+                    b.ToTable("Request");
                 });
 
             modelBuilder.Entity("DbLib.Role", b =>
@@ -244,25 +246,6 @@ namespace DbLib.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DbLib.Warehouse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Warehouses");
-                });
-
             modelBuilder.Entity("DbLib.Worker", b =>
                 {
                     b.Property<int>("Id")
@@ -314,21 +297,6 @@ namespace DbLib.Migrations
                     b.HasIndex("RequestsId");
 
                     b.ToTable("ProductRequest");
-                });
-
-            modelBuilder.Entity("ProductWarehouse", b =>
-                {
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WarehousesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductsId", "WarehousesId");
-
-                    b.HasIndex("WarehousesId");
-
-                    b.ToTable("ProductWarehouse");
                 });
 
             modelBuilder.Entity("ContractProduct", b =>
@@ -428,21 +396,6 @@ namespace DbLib.Migrations
                     b.HasOne("DbLib.Request", null)
                         .WithMany()
                         .HasForeignKey("RequestsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ProductWarehouse", b =>
-                {
-                    b.HasOne("DbLib.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DbLib.Warehouse", null)
-                        .WithMany()
-                        .HasForeignKey("WarehousesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

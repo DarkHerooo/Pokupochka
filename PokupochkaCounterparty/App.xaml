@@ -4,9 +4,8 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:PokupochkaCounterparty"
              StartupUri="Windows/AutorizWin.xaml">
-    
+
     <Application.Resources>
-        <ResourceDictionary/>
         <Style x:Key="TblData" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Center"/>

@@ -21,8 +21,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Мои договоры" Name="BtnTables" Click="BtnTables_Click"/>
-            <Button Grid.Column="1" Content="Мои заявки" Name="BtnDocs" Click="BtnDocs_Click"/>
+            <Button Grid.Column="0" Content="Мои договоры" Name="BtnTables"/>
+            <Button Grid.Column="1" Content="Мои заявки" Name="BtnDocs"/>
         </Grid>
 
         <Rectangle Grid.Row="1" Fill="Black"/>

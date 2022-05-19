@@ -13,5 +13,7 @@ namespace DbLib
         public double Price { get; set; }
         public byte[]? Image { get; set; }
         public List<Contract> Contracts { get; set; } = new();
+        public List<Request> Requests { get; set; } = new();
+        public List<Warehouse> Warehouses { get; set; } = new();
     }
 }
