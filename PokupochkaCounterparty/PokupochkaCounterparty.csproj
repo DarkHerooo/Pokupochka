@@ -11,7 +11,8 @@
   <ItemGroup>
     <None Remove="Images\Logo\box.ico" />
     <None Remove="Images\Logo\box.png" />
-    <None Remove="Images\Message\error.png" />
+    <None Remove="Images\Messages\error.png" />
+    <None Remove="Images\Messages\loading.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +30,8 @@
 
   <ItemGroup>
     <Resource Include="Images\Logo\box.png" />
-    <Resource Include="Images\Message\error.png" />
+    <Resource Include="Images\Messages\error.png" />
+    <Resource Include="Images\Messages\loading.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,13 +40,12 @@
     </Page>
     <Page Update="Styles\ButtonStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Styles\ClientStyles.xaml">
+    <Page Update="Styles\MainStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\SupplierStyle.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="Windows\AutorizWin.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

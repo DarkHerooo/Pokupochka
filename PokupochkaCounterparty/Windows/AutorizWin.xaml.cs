@@ -1,14 +1,12 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
+using GeneralLib.CustomMessages;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace PokupochkaCompany.Windows
 {
@@ -17,6 +15,7 @@ namespace PokupochkaCompany.Windows
         public AutorizWin()
         {
             InitializeComponent();
+            DbConnect.Db.Users.LoadAsync();
         }
 
         /// <summary>
@@ -30,55 +29,37 @@ namespace PokupochkaCompany.Windows
             Close();
         }
 
-        /// <summary>
-        /// Показывает ошибку, если пользователь не найден
-        /// </summary>
-        private void ShowError()
+        private async void BtnEnter_ClickAsync(object sender, RoutedEventArgs e)
         {
-            if (SpError.Children.Count > 0)
-                SpError.Children.Clear();
+            BtnEnter.Dispatcher.Invoke(() => BtnEnter.IsEnabled = false);
 
-            Image img = new();
-            img.Source = new BitmapImage(new Uri("/Images/Message/error.png", UriKind.Relative));
-            img.Width = 20;
-            img.Height = 20;
-            SpError.Children.Add(img);
+            CustomMessage message = new();
+            await message.ShowMessage(SpMessage, MessageType.Loading, "Подождите...");
 
-            TextBlock tbl = new TextBlock();
-            tbl.VerticalAlignment = VerticalAlignment.Center;
-            tbl.Margin = new Thickness(5, 0, 0, 0);
-            tbl.Foreground = Brushes.Red;
-            tbl.FontWeight = FontWeights.Bold;
-            tbl.FontSize = 15;
-            tbl.Text = "Неправильный логин или пароль";
-            SpError.Children.Add(tbl);
-        }
-
-        private void BtnEnter_Click(object sender, RoutedEventArgs e)
-        {
             List<User> users = DbConnect.Db.Users.Include(u => u.Role).Include(u => u.Worker).ToList();
 
             User? findUser = users.FirstOrDefault(user => 
                 user.Login == TbLogin.Text &&
                 user.Password == PbPassword.Password &&
-                (user.RoleId == (int)RoleKey.Administratior || 
-                    user.RoleId == (int)RoleKey.Storekeeper ||
-                    user.RoleId == (int)RoleKey.Agent));
+                (user.RoleId == (int)RoleKey.Supplier || 
+                    user.RoleId == (int)RoleKey.Client));
 
             if (findUser != null) LoginToTheApp(findUser);
-            else ShowError();
+            else await message.ShowMessage(SpMessage, MessageType.Error, "Неправильный логин или пароль!");
+
+            BtnEnter.Dispatcher.Invoke(() => BtnEnter.IsEnabled = true);
         }
 
         private void TbLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (SpError.Children.Count > 0)
-                SpError.Children.Clear();
+            if (SpMessage.Children.Count > 0)
+                SpMessage.Children.Clear();
         }
 
         private void PbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (SpError.Children.Count > 0)
-                SpError.Children.Clear();
+            if (SpMessage.Children.Count > 0)
+                SpMessage.Children.Clear();
         }
     }
 }

@@ -11,7 +11,8 @@
   <ItemGroup>
     <None Remove="Images\Logo\box.png" />
     <None Remove="Images\Logo\cat.jpg" />
-    <None Remove="Images\Message\error.png" />
+    <None Remove="Images\Messages\error.png" />
+    <None Remove="Images\Messages\loading.gif" />
     <None Remove="Images\Roles\admin.png" />
     <None Remove="Images\Roles\agent.png" />
     <None Remove="Images\Roles\storekeeper.png" />
@@ -36,7 +37,8 @@
 
   <ItemGroup>
     <Resource Include="Images\Logo\box.png" />
-    <Resource Include="Images\Message\error.png" />
+    <Resource Include="Images\Messages\error.png" />
+    <Resource Include="Images\Messages\loading.gif" />
     <Resource Include="Images\Roles\admin.png" />
     <Resource Include="Images\Roles\agent.png" />
     <Resource Include="Images\Roles\storekeeper.png" />
