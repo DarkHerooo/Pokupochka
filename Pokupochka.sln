@@ -5,11 +5,17 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLib", "DbLib\DbLib.csproj", "{105C70B6-082C-43DF-A08C-379450AD78C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCompany", "PokupochkaCompany\PokupochkaCompany.csproj", "{79A5E552-FCC7-40D5-B299-0229BABB1382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFPokupochkaCompany", "PokupochkaCompany\WPFPokupochkaCompany.csproj", "{79A5E552-FCC7-40D5-B299-0229BABB1382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokupochkaCounterparty", "PokupochkaCounterparty\PokupochkaCounterparty.csproj", "{A6693591-464E-4FE1-97E0-E9BCE979EF45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCounterparty", "PokupochkaCounterparty\PokupochkaCounterparty.csproj", "{A6693591-464E-4FE1-97E0-E9BCE979EF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralLib", "GeneralLib\GeneralLib.csproj", "{17AC18DD-FAAB-40B9-835A-C44AD0DC6E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralLib", "GeneralLib\GeneralLib.csproj", "{17AC18DD-FAAB-40B9-835A-C44AD0DC6E91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFAdministratorLib", "AdministratorWPF\WPFAdministratorLib.csproj", "{A5F4DA49-E0A1-4C55-96C0-0342DE21B362}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFAgentLib", "WPFAgentLib\WPFAgentLib.csproj", "{17459AE2-9673-40F7-B2E9-FD18579968DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFStorekeeperLib", "WPFStorekeeperLib\WPFStorekeeperLib.csproj", "{4002F1FE-AF0D-430C-86F3-297C0E373C80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{17AC18DD-FAAB-40B9-835A-C44AD0DC6E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17AC18DD-FAAB-40B9-835A-C44AD0DC6E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17AC18DD-FAAB-40B9-835A-C44AD0DC6E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5F4DA49-E0A1-4C55-96C0-0342DE21B362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5F4DA49-E0A1-4C55-96C0-0342DE21B362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5F4DA49-E0A1-4C55-96C0-0342DE21B362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5F4DA49-E0A1-4C55-96C0-0342DE21B362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17459AE2-9673-40F7-B2E9-FD18579968DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17459AE2-9673-40F7-B2E9-FD18579968DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17459AE2-9673-40F7-B2E9-FD18579968DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17459AE2-9673-40F7-B2E9-FD18579968DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

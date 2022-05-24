@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbLib
+namespace DbLib.DB
 {
     public static class AdditionalFields
     {
@@ -13,14 +13,14 @@ namespace DbLib
             string corSecondName = "";
             for (int i = 0; i < secondName.Length; i++)
             {
-                corSecondName += i == 0 ? Char.ToUpper(secondName[i]) : Char.ToLower(secondName[i]);
+                corSecondName += i == 0 ? char.ToUpper(secondName[i]) : char.ToLower(secondName[i]);
             }
             corSecondName = secondName.Trim();
 
             string corFirstName = "";
             for (int i = 0; i < firstName.Length; i++)
             {
-                corFirstName += i == 0 ? Char.ToUpper(firstName[i]) : Char.ToLower(firstName[i]);
+                corFirstName += i == 0 ? char.ToUpper(firstName[i]) : char.ToLower(firstName[i]);
             }
             corFirstName = firstName.Trim();
 
@@ -29,7 +29,7 @@ namespace DbLib
             {
                 for (int i = 0; i < patronymic.Length; i++)
                 {
-                    corPatronymicName += i == 0 ? Char.ToUpper(patronymic[i]) : Char.ToLower(patronymic[i]);
+                    corPatronymicName += i == 0 ? char.ToUpper(patronymic[i]) : char.ToLower(patronymic[i]);
                 }
                 corPatronymicName = patronymic.Trim();
             }
@@ -40,7 +40,7 @@ namespace DbLib
         public static string GetClearPhone(string phone)
         {
             string clearPhone = "";
-            foreach(var letter in phone)
+            foreach (var letter in phone)
             {
                 if (char.IsDigit(letter))
                     clearPhone += letter;

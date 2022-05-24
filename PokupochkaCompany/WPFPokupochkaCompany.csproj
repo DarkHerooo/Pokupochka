@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\Logo\box.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Logo\box.png" />
+    <None Remove="Images\Logo\cat.jpg" />
+    <None Remove="Images\Message\error.png" />
+    <None Remove="Images\Roles\admin.png" />
+    <None Remove="Images\Roles\agent.png" />
+    <None Remove="Images\Roles\storekeeper.png" />
+    <None Remove="Images\Roles\unk.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Logo\box.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdministratorWPF\WPFAdministratorLib.csproj" />
+    <ProjectReference Include="..\DbLib\DbLib.csproj" />
+    <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
+    <ProjectReference Include="..\WPFAgentLib\WPFAgentLib.csproj" />
+    <ProjectReference Include="..\WPFStorekeeperLib\WPFStorekeeperLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Logo\box.png" />
+    <Resource Include="Images\Message\error.png" />
+    <Resource Include="Images\Roles\admin.png" />
+    <Resource Include="Images\Roles\agent.png" />
+    <Resource Include="Images\Roles\storekeeper.png" />
+    <Resource Include="Images\Roles\unk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\MainStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserStyles\AdminStyle.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\ButtonStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

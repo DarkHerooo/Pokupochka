@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbLib
+namespace DbLib.DB.Enums
 {
     public enum RoleKey
     {

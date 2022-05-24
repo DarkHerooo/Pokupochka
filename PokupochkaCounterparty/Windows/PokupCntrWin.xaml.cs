@@ -1,4 +1,5 @@
-﻿using DbLib;
+﻿using DbLib.DB.Entity;
+using DbLib.DB.Enums;
 using GeneralLib;
 using PokupochkaCounterparty.Modules.Counterparty;
 using System;
@@ -40,7 +41,7 @@ namespace PokupochkaCompany.Windows
                     break;
             }
 
-            Style = UserStyles.WindowBackground;
+            Style = UserStyles.WindowSyle;
             FrmMain.NavigationService.Navigate(new CntrMainPage());
         }
 
@@ -53,7 +54,7 @@ namespace PokupochkaCompany.Windows
             ResourceDictionary resource = new();
             resource.Source = new Uri(resourceUri, UriKind.Relative);
 
-            UserStyles.WindowBackground = resource["WindowBackground"] as Style;
+            UserStyles.WindowSyle = resource["WindowBackground"] as Style;
             UserStyles.DefaultButtonStyle = resource["DefaultButtonStyle"] as Style;
             UserStyles.SelectButtonStyle = resource["SelectButtonStyle"] as Style;
         }

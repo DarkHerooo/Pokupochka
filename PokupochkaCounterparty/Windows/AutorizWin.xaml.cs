@@ -1,4 +1,6 @@
-﻿using DbLib;
+﻿using DbLib.DB;
+using DbLib.DB.Entity;
+using DbLib.DB.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

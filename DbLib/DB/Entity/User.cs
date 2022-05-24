@@ -1,4 +1,6 @@
-﻿namespace DbLib
+﻿using DbLib.DB;
+
+namespace DbLib.DB.Entity
 {
     public class User
     {

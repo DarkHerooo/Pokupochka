@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbLib
+namespace DbLib.DB.Entity
 {
     public partial class Role
     {

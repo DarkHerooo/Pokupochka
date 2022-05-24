@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DbLib.DB.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbLib
+namespace DbLib.DB
 {
     public class PokupochkaContext : DbContext
     {
@@ -18,7 +19,7 @@ namespace DbLib
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Request> Requests { get; set; } = null!;
         public DbSet<Warehouse> Warehouses { get; set; } = null!;
-        
+
 
         public PokupochkaContext()
         {

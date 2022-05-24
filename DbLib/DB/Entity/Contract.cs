@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DbLib.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbLib
+namespace DbLib.DB.Entity
 {
     public class Contract
     {
@@ -22,7 +23,7 @@ namespace DbLib
         public Status? Status { get; set; }
         public List<Product> Products { get; set; } = new();
 
-        
+
         public void AddOrChange()
         {
             if (Id == 0) DbConnect.Db.Contracts.Add(this);

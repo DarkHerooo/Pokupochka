@@ -1,10 +1,9 @@
-﻿using DbLib;
+﻿using AdministratorWPF.View;
+using WPFAgentLib.View;
+using WPFStorekeeperLib.View;
+using DbLib.DB.Entity;
+using DbLib.DB.Enums;
 using GeneralLib;
-using PokupochkaCompany.Modules.Administrator;
-using PokupochkaCompany.Modules.Agent;
-using PokupochkaCompany.Storekeeper;
-using System;
-using System.Linq;
 using System.Windows;
 
 namespace PokupochkaCompany.Windows
@@ -15,14 +14,14 @@ namespace PokupochkaCompany.Windows
         {
             InitializeComponent();
 
-            SetUserFunctions(user);
+            SetSettings(user);
         }
 
         /// <summary>
-        /// Устанавливает функции в зависимости от пользователя
+        /// Устанавливает настройки в зависимости от роли пользователя
         /// </summary>
         /// <param name="user"></param>
-        private void SetUserFunctions(User user)
+        private void SetSettings(User user)
         {
             TblFIO.Text = user.Worker!.FIO;
 
@@ -32,37 +31,24 @@ namespace PokupochkaCompany.Windows
                 Title = "Покупочка (" + user.Role?.Title + ")";
             }
 
+            string startUri = "/UserStyles/";
             switch (user.Role!.Id)
             {
                 case (int)RoleKey.Administratior:
-                    SetUserStyles("/Styles/AdminStyle.xaml");
+                    UserStyles.SetUserStyles(startUri + "AdminStyle.xaml");
                     FrmMain.NavigationService.Navigate(new AdminMainPage());
                     break;
                 case (int)RoleKey.Storekeeper:
-                    SetUserStyles("/Styles/StorekepStyle.xaml");
+                    UserStyles.SetUserStyles(startUri + "StorekepStyle.xaml");
                     FrmMain.NavigationService.Navigate(new StorekepMainPage());
                     break;
                 case (int)RoleKey.Agent:
-                    SetUserStyles("/Styles/AgentStyle.xaml");
+                    UserStyles.SetUserStyles(startUri + "AgentStyle.xaml");
                     FrmMain.NavigationService.Navigate(new AgentMainPage());
                     break;
             }
 
-            Style = UserStyles.WindowBackground;
-        }
-
-        /// <summary>
-        /// Устанавливает стили из указанного файла стилей
-        /// </summary>
-        /// <param name="resourceUri"></param>
-        private void SetUserStyles(string resourceUri)
-        {
-            ResourceDictionary resource = new();
-            resource.Source = new Uri(resourceUri, UriKind.Relative);
-
-            UserStyles.WindowBackground = resource["WindowBackground"] as Style;
-            UserStyles.DefaultButtonStyle = resource["DefaultButtonStyle"] as Style;
-            UserStyles.SelectButtonStyle = resource["SelectButtonStyle"] as Style;
+            Style = UserStyles.WindowSyle;
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)

@@ -21,28 +21,5 @@ namespace GeneralLib
                 return bytes;
             }
         }
-
-        /*public static Size GetSize(byte[] bytes)
-        {
-            Image image = new();
-            using (var stream = new MemoryStream(bytes))
-            {
-                BitmapImage bitmap = new();
-                
-                stream.Position = 0;
-                bitmap.BeginInit();
-                bitmap.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.UriSource = null;
-                bitmap.StreamSource = stream;
-                bitmap.EndInit();
-                image.Source = bitmap;
-            }
-
-            Size size = new();
-            size.Width = image.Width;
-            size.Height = image.Height;
-            return size;
-        }*/
     }
 }

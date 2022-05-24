@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using DbLib.DB;
 
-namespace DbLib
+namespace DbLib.DB.Entity
 {
     public class Worker
     {
