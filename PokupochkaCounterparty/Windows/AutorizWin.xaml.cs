@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PokupochkaCompany.Windows
+namespace PokupochkaCounterparty.Windows
 {
     public partial class AutorizWin : Window
     {
@@ -31,12 +31,12 @@ namespace PokupochkaCompany.Windows
 
         private async void BtnEnter_ClickAsync(object sender, RoutedEventArgs e)
         {
-            BtnEnter.Dispatcher.Invoke(() => BtnEnter.IsEnabled = false);
+            BtnEnter.IsEnabled = false;
 
             CustomMessage message = new();
             await message.ShowMessage(SpMessage, MessageType.Loading, "Подождите...");
 
-            List<User> users = DbConnect.Db.Users.Include(u => u.Role).Include(u => u.Worker).ToList();
+            List<User> users = DbConnect.Db.Users.Include(u => u.Role).Include(u => u.Counterparty).ToList();
 
             User? findUser = users.FirstOrDefault(user => 
                 user.Login == TbLogin.Text &&
@@ -47,7 +47,7 @@ namespace PokupochkaCompany.Windows
             if (findUser != null) LoginToTheApp(findUser);
             else await message.ShowMessage(SpMessage, MessageType.Error, "Неправильный логин или пароль!");
 
-            BtnEnter.Dispatcher.Invoke(() => BtnEnter.IsEnabled = true);
+            BtnEnter.IsEnabled = true;
         }
 
         private void TbLogin_TextChanged(object sender, TextChangedEventArgs e)

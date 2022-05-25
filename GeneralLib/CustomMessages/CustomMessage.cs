@@ -41,7 +41,6 @@ namespace GeneralLib.CustomMessages
 
             Image img = new();
             ImageBehavior.SetAnimatedSource(img, bitmap);
-            //img.Source = new BitmapImage(new Uri(imgUri, UriKind.Relative));
             img.Width = 20;
             img.Height = 20;
             sp.Dispatcher.Invoke(() => sp.Children.Add(img));

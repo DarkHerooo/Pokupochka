@@ -62,12 +62,12 @@
                 </Grid.RowDefinitions>
 
 
-                <Button Grid.Column="0" Grid.Row="0" Margin="5" Content="Принять" Background="GreenYellow"
+                <Button Grid.Column="0" Grid.Row="0" Margin="5" Content="Принять" Style="{StaticResource GreenButton}"
                         Name="BtnAccept" Click="BtnAccept_Click"/>
-                <Button Grid.Column="1" Grid.Row="0" Margin="5" Content="Отклонить" Background="IndianRed"
+                <Button Grid.Column="1" Grid.Row="0" Margin="5" Content="Отклонить" Style="{StaticResource RedButton}"
                         Name="BtnCancel" Click="BtnCancel_Click"/>
 
-                <Button Grid.ColumnSpan="2" Grid.Row="1" Margin="5" Content="Назад" Background="LightYellow"
+                <Button Grid.ColumnSpan="2" Grid.Row="1" Margin="5" Content="Назад" Style="{StaticResource YellowButton}"
                         Name="BtnBack" Click="BtnBack_Click"/>
             </Grid>
         </Grid>

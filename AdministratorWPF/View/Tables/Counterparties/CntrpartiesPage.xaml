@@ -6,10 +6,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CntrpartiesPage" Loaded="Page_Loaded">
-    <Page.Resources>
-        <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
-    </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>

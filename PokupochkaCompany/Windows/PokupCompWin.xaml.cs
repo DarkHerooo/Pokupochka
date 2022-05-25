@@ -14,6 +14,7 @@ namespace PokupochkaCompany.Windows
         {
             InitializeComponent();
 
+            CurrentUser.User = user;
             SetSettings(user);
         }
 

@@ -6,12 +6,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CntrContractsPage" Loaded="Page_Loaded">
-    <Page.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -121,9 +115,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-
         <Button Grid.ColumnSpan="2" Grid.Row="1" Margin="5"
-                Content="Открыть договор" Background="GreenYellow"
+                Content="Открыть договор" Style="{StaticResource GreenButton}"
                 Name="BtnOpenContract" Click="BtnOpenContract_Click"/>
     </Grid>
 </Page>

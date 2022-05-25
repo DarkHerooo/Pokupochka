@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
+    <ProjectReference Include="..\WPFCounterpartyLib\WPFCounterpartyLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -23,6 +23,29 @@ namespace DbLib.DB.Entity
         public Status? Status { get; set; }
         public List<Product> Products { get; set; } = new();
 
+        public string ShortDateStart
+        {
+            get
+            {
+                if (DateStart != null)
+                    return DateStart!.Value.ToShortDateString();
+                else return "Неизвестно";
+            }
+
+            set { }
+        }
+
+        public string ShortDateOver
+        {
+            get
+            {
+                if (DateOver != null)
+                    return DateStart!.Value.ToShortDateString();
+                else return "Неизвестно";
+            }
+
+            set { }
+        }
 
         public void AddOrChange()
         {

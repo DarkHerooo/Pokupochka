@@ -35,7 +35,7 @@ namespace PokupochkaCompany.Windows
 
         private async void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
-            BtnEnter.Dispatcher.Invoke(() => BtnEnter.IsEnabled = false);
+            BtnEnter.IsEnabled = false;
 
             CustomMessage message = new();
             await message.ShowMessage(SpMessage, MessageType.Loading, "Подождите...");
@@ -52,7 +52,7 @@ namespace PokupochkaCompany.Windows
             if (findUser != null) LoginToTheApp(findUser);
             else await message.ShowMessage(SpMessage, MessageType.Error, "Неправильный логин или пароль!");
 
-            BtnEnter.Dispatcher.Invoke(() => BtnEnter.IsEnabled = true);
+            BtnEnter.IsEnabled = true;
         }
 
         private void TbLogin_TextChanged(object sender, TextChangedEventArgs e)
