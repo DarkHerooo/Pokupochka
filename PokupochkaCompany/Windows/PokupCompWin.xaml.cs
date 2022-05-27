@@ -5,6 +5,7 @@ using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib;
 using System.Windows;
+using StylesLib;
 
 namespace PokupochkaCompany.Windows
 {
@@ -31,23 +32,22 @@ namespace PokupochkaCompany.Windows
                 TblRole.Text = "(" + user.Role?.Title + ")";
                 Title = "Покупочка (" + user.Role?.Title + ")";
             }
-
-            string startUri = "/UserStyles/";
             switch (user.Role!.Id)
             {
                 case (int)RoleKey.Administratior:
-                    UserStyles.SetUserStyles(startUri + "AdminStyle.xaml");
+                    UserStyles.SetUserStyles("AdminStyle.xaml");
                     FrmMain.NavigationService.Navigate(new AdminMainPage());
                     break;
                 case (int)RoleKey.Storekeeper:
-                    UserStyles.SetUserStyles(startUri + "StorekepStyle.xaml");
+                    UserStyles.SetUserStyles("StorekepStyle.xaml");
                     FrmMain.NavigationService.Navigate(new StorekepMainPage());
                     break;
                 case (int)RoleKey.Agent:
-                    UserStyles.SetUserStyles(startUri + "AgentStyle.xaml");
+                    UserStyles.SetUserStyles("AgentStyle.xaml");
                     FrmMain.NavigationService.Navigate(new AgentMainPage());
                     break;
             }
+            StyleWorker.SetAllStyles();
 
             Style = UserStyles.WindowSyle;
         }

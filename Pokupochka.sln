@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFStorekeeperLib", "WPFSto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFCounterpartyLib", "WPFCounterpartyLib\WPFCounterpartyLib.csproj", "{FB826A9C-2C69-48D2-84CB-D25031D36B6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFSupplierLib", "WPFSupplierLib\WPFSupplierLib.csproj", "{6B37C936-042C-45A2-8B64-30D6465D952C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFSupplierLib", "WPFSupplierLib\WPFSupplierLib.csproj", "{6B37C936-042C-45A2-8B64-30D6465D952C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StylesLib", "StylesLib\StylesLib.csproj", "{174228B2-718A-421D-9C47-22A34F21D8EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{6B37C936-042C-45A2-8B64-30D6465D952C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B37C936-042C-45A2-8B64-30D6465D952C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B37C936-042C-45A2-8B64-30D6465D952C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{174228B2-718A-421D-9C47-22A34F21D8EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{174228B2-718A-421D-9C47-22A34F21D8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{174228B2-718A-421D-9C47-22A34F21D8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{174228B2-718A-421D-9C47-22A34F21D8EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

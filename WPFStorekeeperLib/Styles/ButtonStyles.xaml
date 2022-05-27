@@ -17,4 +17,8 @@
     <Style x:Key="GreenButton" TargetType="Button" BasedOn="{StaticResource ButtonTemplate}">
         <Setter Property="Background" Value="GreenYellow"/>
     </Style>
+
+    <Style x:Key="BlueButton" TargetType="Button" BasedOn="{StaticResource ButtonTemplate}">
+        <Setter Property="Background" Value="SkyBlue"/>
+    </Style>
 </ResourceDictionary>

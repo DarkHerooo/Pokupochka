@@ -23,6 +23,7 @@ namespace DbLib.DB.Entity
         public Status? Status { get; set; }
         public List<Product> Products { get; set; } = new();
 
+        [NotMapped]
         public string ShortDateStart
         {
             get
@@ -35,6 +36,7 @@ namespace DbLib.DB.Entity
             set { }
         }
 
+        [NotMapped]
         public string ShortDateOver
         {
             get

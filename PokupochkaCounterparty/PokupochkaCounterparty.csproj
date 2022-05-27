@@ -13,6 +13,7 @@
     <None Remove="Images\Logo\box.png" />
     <None Remove="Images\Messages\error.png" />
     <None Remove="Images\Messages\loading.gif" />
+    <None Remove="Images\not_found.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
+    <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
     <ProjectReference Include="..\WPFCounterpartyLib\WPFCounterpartyLib.csproj" />
   </ItemGroup>
 
@@ -33,6 +35,7 @@
     <Resource Include="Images\Logo\box.png" />
     <Resource Include="Images\Messages\error.png" />
     <Resource Include="Images\Messages\loading.gif" />
+    <Resource Include="Images\not_found.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,9 +45,21 @@
     <Page Update="Styles\ButtonStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\OtherStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Styles\MainStyles.xaml">
+    <Page Update="Styles\TargetStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ToolkitStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

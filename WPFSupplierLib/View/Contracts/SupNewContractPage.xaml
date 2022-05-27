@@ -8,7 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SupNewContractPage">
     <Page.Resources>
-        <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/DataStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
 
     <Grid>
@@ -25,11 +30,10 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" FontSize="30" FontWeight="Bold" VerticalAlignment="Center">
-                <Run Text="Компания:"/>
                 <Run Text="{Binding Company}"/>
             </TextBlock>
 
-            <Border Grid.Column="1" CornerRadius="5" BorderBrush="Black" BorderThickness="2"
+            <Border Grid.Column="1" Style="{StaticResource BrdImage}"
                         Width="64" Height="64">
                 <Border.Background>
                     <ImageBrush ImageSource="{Binding Image}"/>

@@ -1,6 +1,7 @@
 ﻿using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib;
+using StylesLib;
 using System;
 using System.Linq;
 using System.Windows;
@@ -32,16 +33,16 @@ namespace PokupochkaCounterparty.Windows
                 Title = "Покупочка (" + user.Role?.Title + ")";
             }
 
-            string startUri = "/UserStyles/";
             switch (user.Role!.Id)
             {
                 case (int)RoleKey.Supplier:
-                    UserStyles.SetUserStyles(startUri + "SupplierStyle.xaml");
+                    UserStyles.SetUserStyles("SupplierStyle.xaml");
                     break;
                 case (int)RoleKey.Client:
-                    UserStyles.SetUserStyles(startUri + "ClientStyle.xaml");
+                    UserStyles.SetUserStyles("ClientStyle.xaml");
                     break;
             }
+            StyleWorker.SetAllStyles();
 
             Style = UserStyles.WindowSyle;
             FrmMain.NavigationService.Navigate(new CntrMainPage());

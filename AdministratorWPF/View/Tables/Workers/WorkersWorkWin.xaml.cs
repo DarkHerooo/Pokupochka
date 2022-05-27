@@ -1,7 +1,7 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
-using GeneralLib;
+using StylesLib;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;

@@ -10,8 +10,11 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/TargetStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
-                <ResourceDictionary Source="/Styles/MainStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/DataStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/OtherStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ToolkitStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -143,7 +146,7 @@
             <TextBlock Grid.Column="0" Style="{StaticResource TblData}"
                        Text="Роль:"/>
 
-            <ComboBox Grid.Column="1" Style="{StaticResource CbRoleStyle}" IsSynchronizedWithCurrentItem="True"
+            <ComboBox Grid.Column="1" Style="{StaticResource CbRoles}" IsSynchronizedWithCurrentItem="True"
                       Margin="5" Name="CbRole" SelectedItem="{Binding User.Role}"/>
         </Grid>
 

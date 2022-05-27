@@ -1,4 +1,5 @@
 ﻿using GeneralLib;
+using StylesLib;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,7 +31,6 @@ namespace WPFStorekeeperLib.View
                 {
                     if (item is Button)
                         buttons.Add((Button)item);
-
                 }
 
                 btnSel = new(buttons.ToArray(), UserStyles.DefaultButtonStyle, UserStyles.SelectButtonStyle);

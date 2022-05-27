@@ -13,6 +13,7 @@
     <None Remove="Images\Logo\cat.jpg" />
     <None Remove="Images\Messages\error.png" />
     <None Remove="Images\Messages\loading.gif" />
+    <None Remove="Images\not_found.png" />
     <None Remove="Images\Roles\admin.png" />
     <None Remove="Images\Roles\agent.png" />
     <None Remove="Images\Roles\storekeeper.png" />
@@ -31,6 +32,7 @@
     <ProjectReference Include="..\AdministratorWPF\WPFAdministratorLib.csproj" />
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
+    <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
     <ProjectReference Include="..\WPFAgentLib\WPFAgentLib.csproj" />
     <ProjectReference Include="..\WPFStorekeeperLib\WPFStorekeeperLib.csproj" />
   </ItemGroup>
@@ -39,6 +41,7 @@
     <Resource Include="Images\Logo\box.png" />
     <Resource Include="Images\Messages\error.png" />
     <Resource Include="Images\Messages\loading.gif" />
+    <Resource Include="Images\not_found.png" />
     <Resource Include="Images\Roles\admin.png" />
     <Resource Include="Images\Roles\agent.png" />
     <Resource Include="Images\Roles\storekeeper.png" />
@@ -48,7 +51,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Styles\MainStyles.xaml">
+    <Page Update="Styles\ButtonStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\DataStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\OtherStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\TargetStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ToolkitStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -56,10 +76,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Styles\ButtonStyles.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
 

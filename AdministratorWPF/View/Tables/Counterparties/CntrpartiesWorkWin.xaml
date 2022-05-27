@@ -8,7 +8,15 @@
         Title="Добавление или изменение контрагента" Height="500" Width="1000"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/TargetStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/DataStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/OtherStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ToolkitStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
@@ -32,8 +40,12 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Vertical" Width="128" Margin="5">
-                <Image Height="128" Width="128" Name="ImgCompany" Source="{Binding Image}"/>
-                <Button Content="Выбрать фотографию" Margin="0, 5, 0, 0" Style="{StaticResource YellowButton}"
+                <Border Style="{StaticResource BrdImage}" Height="128" Width="128">
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Image}"/>
+                    </Border.Background>
+                </Border>
+                <Button Content="Изменить фотографию" Margin="0, 5, 0, 0" Style="{StaticResource YellowButton}"
                         FontSize="10"
                         Height="30" Name="BtnSelectImg" Click="BtnSelectImg_Click"/>
             </StackPanel>

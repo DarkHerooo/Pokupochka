@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace GeneralLib
 {
@@ -20,6 +13,13 @@ namespace GeneralLib
                 fs.Read(bytes, 0, bytes.Length);
                 return bytes;
             }
+        }
+
+        public static byte[] GetDefaultBytes()
+        {
+            byte[] bytes = GetBytes(AppPath.Path + "/Images/not_found.png");
+
+            return bytes;
         }
     }
 }

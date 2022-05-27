@@ -1,6 +1,6 @@
 ﻿using AdministratorWPF.View.Tables;
 using GeneralLib;
-using System;
+using StylesLib;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;

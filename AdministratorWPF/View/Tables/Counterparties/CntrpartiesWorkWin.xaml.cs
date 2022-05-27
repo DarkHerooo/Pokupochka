@@ -2,6 +2,7 @@
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib;
+using StylesLib;
 using System.Linq;
 using System.Windows;
 
@@ -51,10 +52,10 @@ namespace AdministratorWPF.View.Tables
             }
 
             if (_counterparty.Image == null)
-                _counterparty.Image = ImageReader.GetBytes(AppPath.Path + "Images/Roles/unk.png");
+                _counterparty.Image = ImageReader.GetDefaultBytes();
 
             DataContext = _counterparty;
-        }
+        } 
 
         private bool CheckData()
         {

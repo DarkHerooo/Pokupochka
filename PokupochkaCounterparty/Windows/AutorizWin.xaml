@@ -8,17 +8,23 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Resources>
-        <Style x:Key="TbData" TargetType="TextBox" BasedOn="{StaticResource TbData}">
-            <Setter Property="Margin" Value="5, 0, 0, 0"/>
-            <Setter Property="Height" Value="30"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/DataStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        <Style x:Key="PbData" TargetType="PasswordBox" BasedOn="{StaticResource PbData}">
-            <Setter Property="Margin" Value="5, 0, 0, 0"/>
-            <Setter Property="Height" Value="30"/>
-        </Style>
+            <Style x:Key="TbData" TargetType="TextBox" BasedOn="{StaticResource TbData}">
+                <Setter Property="Margin" Value="5, 0, 0, 0"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
 
+            <Style x:Key="PbData" TargetType="PasswordBox" BasedOn="{StaticResource PbData}">
+                <Setter Property="Margin" Value="5, 0, 0, 0"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+        </ResourceDictionary>
     </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
