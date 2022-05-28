@@ -5,61 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CntrContractsPage">
+      Title="CntrContractsPage" Loaded="Page_Loaded">
     <Page.Resources>
-        <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/TargetStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        
-        <DataGrid Grid.Row="0" Margin="5" Name="DgContracts"
-                  MouseDoubleClick="DgContracts_MouseDoubleClick">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Width="*" Header="Информация о договоре">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical" Margin="5" >
-                                <TextBlock FontSize="20" FontWeight="Bold">
-                                    <Run Text="Договор №"/><Run Text="{Binding Number}"/>
-                                </TextBlock>
-
-                                <TextBlock FontSize="15">
-                                    <Run Text="Дата начала:" FontWeight="Bold"/>
-                                    <Run Text="{Binding ShortDateStart}"/>
-                                </TextBlock>
-
-                                <TextBlock FontSize="15">
-                                    <Run Text="Дата окончания:" FontWeight="Bold"/>
-                                    <Run Text="{Binding ShortDateOver}"/>
-                                </TextBlock>
-
-                                <TextBlock FontSize="15">
-                                    <Run Text="Количество товаров:" FontWeight="Bold"/>
-                                    <Run Text="{Binding Products.Count, Mode=OneWay}"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0" Margin="5"
-                Content="Новый договор" Style="{StaticResource BlueButton}"
-                Name="BtnNewContract" Click="BtnNewContract_Click"/>
-
-            <Button Grid.Column="1" Margin="5"
-                Content="Открыть договор" Style="{StaticResource GreenButton}"
-                Name="BtnOpenContract" Click="BtnOpenContract_Click"/>
-        </Grid>
+        <ScrollViewer Grid.Row="0">
+            <StackPanel Orientation="Vertical" Name="SpContracts"/>
+        </ScrollViewer>
     </Grid>
 </Page>

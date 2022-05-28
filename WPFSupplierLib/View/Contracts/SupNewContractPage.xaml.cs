@@ -1,4 +1,6 @@
-﻿using DbLib.DB.Entity;
+﻿using DbLib.DB;
+using DbLib.DB.Entity;
+using DbLib.DB.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,80 +24,43 @@ namespace WPFSupplierLib.View.Contracts
     public partial class SupNewContractPage : Page
     {
         private Counterparty _counterparty = null!;
+        private List<ProductTemplate> productTemplates = new();
         public SupNewContractPage(Counterparty counterparty)
         {
             InitializeComponent();
 
             _counterparty = counterparty;
             DataContext = _counterparty;
-
-            SpProducts.Children.Add(CreateProductTemplate());
-            SpProducts.Children.Add(CreateProductTemplate());
-            SpProducts.Children.Add(CreateProductTemplate());
+            BtnAddNewProduct_Click(null!, null!);
         }
 
-        private Border CreateProductTemplate()
+        private void BtnAddNewProduct_Click(object sender, RoutedEventArgs e)
         {
-            Border borderProductTemplate = new();
-            borderProductTemplate.BorderBrush = Brushes.Black;
-            borderProductTemplate.BorderThickness = new Thickness(2);
-            borderProductTemplate.Margin = new Thickness(5);
-            borderProductTemplate.Height = 150;
+            ProductTemplate newProduct = new();
+            newProduct.BtnDelete.Click += BtnDelete_Click;
+            productTemplates.Add(newProduct);
+            SpProducts.Children.Add(newProduct.BrdProduct);
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnDelete = (Button)sender;
+            ProductTemplate? findProduct = null;
+
+            foreach(var template in productTemplates)
             {
-                Grid grProductTemplate = new();
-                grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(150) });
-                grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition());
-                grProductTemplate.Margin = new Thickness(5);
-
-                // Image
-
-                Grid grData = new();
-                grData.RowDefinitions.Add(new RowDefinition());
-                grData.RowDefinitions.Add(new RowDefinition());
-                Grid.SetColumn(grData, 1);
+                if (template.BtnDelete == btnDelete)
                 {
-                    Grid grProductName = new();
-                    grProductName.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(20) });
-                    grProductName.RowDefinitions.Add(new RowDefinition());
-                    Grid.SetRow(grProductName, 0);
-                    {
-                        TextBlock tblProductName = new();
-                        tblProductName.Margin = new Thickness(5, 0, 0, 0);
-                        tblProductName.Text = "Название продукции";
-                        Grid.SetRow(tblProductName, 0);
-                        grProductName.Children.Add(tblProductName);
-
-                        TextBox tbProductName = new();
-                        tbProductName.Margin = new Thickness(5);
-                        Grid.SetRow(tbProductName, 1);
-                        grProductName.Children.Add(tbProductName);
-                    }
-                    grData.Children.Add(grProductName);
-
-                    Grid grProductPrice = new();
-                    grProductPrice.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(20) });
-                    grProductPrice.RowDefinitions.Add(new RowDefinition());
-                    Grid.SetRow(grProductPrice, 1);
-                    {
-                        TextBlock tblProductPrice = new();
-                        tblProductPrice.Margin = new Thickness(5, 0, 0, 0);
-                        tblProductPrice.Text = "Цена";
-                        Grid.SetRow(tblProductPrice, 0);
-                        grProductPrice.Children.Add(tblProductPrice);
-
-                        TextBox tbProductPrice = new();
-                        tbProductPrice.Margin = new Thickness(5);
-                        Grid.SetRow(tbProductPrice, 1);
-                        grProductPrice.Children.Add(tbProductPrice);
-                    }
-                    grData.Children.Add(grProductPrice);
+                    findProduct = template;
+                    break;
                 }
-                grProductTemplate.Children.Add(grData);
-
-                borderProductTemplate.Child = grProductTemplate;
             }
 
-            return borderProductTemplate;
+            if (findProduct != null)
+            {
+                SpProducts.Children.Remove(findProduct.BrdProduct);
+                productTemplates.Remove(findProduct);
+            }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -106,7 +71,57 @@ namespace WPFSupplierLib.View.Contracts
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
+            string errorMessage = "Введены некорректные данные:\n";
+            bool allTrueData = true;
 
+            if (productTemplates.Count == 0)
+            {
+                errorMessage = "В договоре должен быть как минимум 1 товар";
+                allTrueData = false;
+            }    
+
+            for (int i = 0; i < productTemplates.Count; i++)
+            {
+                if (!productTemplates[i].CheckData())
+                {
+                    allTrueData = false;
+                    errorMessage += "Продукт #" + i + "\n";
+                }
+            }
+
+            if (!int.TryParse(TbCountYears.Text, out _))
+            {
+                allTrueData = false;
+                errorMessage += "Количество лет\n";
+            }
+
+            if (allTrueData)
+            {
+                Contract contract = new();
+                contract.Counterparty = _counterparty;
+                contract.StatusId = (int)StatusKey.Сonsidered;
+                contract.CountYears = int.Parse(TbCountYears.Text);
+
+                int contractNumber = DbConnect.Db.Contracts.Max(c => c.Number);
+                contract.Number = contractNumber != 0 ? contractNumber + 1 : 100000;
+
+                foreach (var productTemplate in productTemplates)
+                {
+                    Product product = new();
+                    product.Title = productTemplate.TbName.Text;
+                    product.Price = double.Parse(productTemplate.TbPrice.Text);
+                    product.Image = productTemplate.ImageBytes;
+                    DbConnect.Db.Products.Add(product);
+                    contract.Products.Add(product);
+                }
+
+                DbConnect.Db.Contracts.Add(contract);
+                DbConnect.Db.SaveChanges();
+
+                BtnCancel_Click(null!, null!);
+            }
+            else
+                MessageBox.Show(errorMessage, "Внимание", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

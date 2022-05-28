@@ -25,6 +25,7 @@
     </Page>
     <Page Update="UserStyles\ClientStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="UserStyles\StorekepStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
@@ -32,6 +33,7 @@
     </Page>
     <Page Update="UserStyles\SupplierStyle.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
 

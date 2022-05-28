@@ -29,7 +29,7 @@ namespace WPFAgentLib.View.Contracts
         {
             List<Contract> contracts = DbConnect.Db.Contracts.Include(c => c.Counterparty).Include(c => c.Products).ToList();
             contracts = DbConnect.Db.Contracts.Where(c => c.Counterparty!.User!.Role! == _role &&
-                c.Status!.Id == (int)StatusKey.New).ToList();
+                c.Status!.Id == (int)StatusKey.Сonsidered).ToList();
 
             return contracts.ToArray();
         }
@@ -38,7 +38,7 @@ namespace WPFAgentLib.View.Contracts
         {
             List<Contract> contracts = DbConnect.Db.Contracts.Include(c => c.Counterparty).Include(c => c.Status).Include(c => c.Products).ToList();
             contracts = DbConnect.Db.Contracts.Where(c => c.Counterparty!.User!.Role! == _role &&
-                c.DateStart!.Value.Date == DateTime.Today.Date && c.Status!.Id != (int)StatusKey.New).ToList();
+                c.DateStart!.Value.Date == DateTime.Today.Date && c.Status!.Id != (int)StatusKey.Сonsidered).ToList();
 
             return contracts.ToArray();
         }

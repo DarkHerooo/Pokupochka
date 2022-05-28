@@ -25,13 +25,10 @@ namespace PokupochkaCounterparty.Windows
         /// <param name="user"></param>
         private void SetSettings(User user)
         {
-            TblFIO.Text = user.Counterparty!.FIO;
+            DataContext = user.Counterparty;
 
             if (user.Role != null)
-            {
-                TblRole.Text = "(" + user.Role?.Title + ")";
                 Title = "Покупочка (" + user.Role?.Title + ")";
-            }
 
             switch (user.Role!.Id)
             {

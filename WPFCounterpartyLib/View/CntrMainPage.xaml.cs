@@ -1,4 +1,5 @@
 ﻿using GeneralLib;
+using StylesLib;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,8 +22,6 @@ namespace WPFCounterpartyLib.View
         {
             if (_fwhMain == null)
             {
-                Style = UserStyles.WindowSyle;
-
                 List<Button> buttons = new();
                 foreach (var item in GrButtons.Children)
                     if (item is Button) buttons.Add((Button)item);

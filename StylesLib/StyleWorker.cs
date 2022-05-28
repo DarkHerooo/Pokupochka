@@ -11,6 +11,7 @@ namespace StylesLib
         public static void SetAllStyles()
         {
             DataStyles.SetStyles();
+            ButtonStyles.SetStyles();
         }
     }
 }

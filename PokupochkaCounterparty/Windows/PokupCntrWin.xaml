@@ -7,13 +7,19 @@
         Title="Покупочка (Роль)" MinHeight="600" MinWidth="1000"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/DataStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="1"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <Frame Grid.Row="0" NavigationUIVisibility="Hidden" Name="FrmMain"/>
@@ -21,13 +27,31 @@
         <Rectangle Grid.Row="1" Fill="Black"/>
 
         <Grid Grid.Row="2" Background="White">
-            <TextBlock Margin="10, 0, 0, 0" FontSize="20">
-                <Run Text="Пользователь:" FontWeight="Bold"/>
-                <Run Text="ФИО" Name="TblFIO"/>
-                <Run Text="(Роль)" Name="TblRole"/>
-            </TextBlock>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
 
-            <Button HorizontalAlignment="Right" Width="100" Margin="2.5" Content="Выход" Style="{StaticResource RedButton}"
+            <Border Grid.Column="0" Margin="5" Style="{StaticResource BrdImage}">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding Image}"/>
+                </Border.Background>
+            </Border>
+
+            <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Company}"/>
+                <TextBlock FontSize="20">
+                    <Run Text="Пользователь:" FontWeight="Bold"/>
+                    <Run Text="{Binding FIO}"/>
+                    <Run Text="{Binding Role.Title}"/>
+                </TextBlock>
+            </StackPanel>
+
+            
+            
+
+            <Button Grid.Column="2" Height="50" VerticalAlignment="Bottom" Margin="2.5" Content="Выход" Style="{StaticResource RedButton}"
                     Name="BtnExit" Click="BtnExit_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
