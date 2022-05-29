@@ -137,7 +137,7 @@
                      Name="TbPassword" Text="{Binding User.Password}"/>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="3">
+        <Grid Grid.Column="1" Grid.Row="3" Name="GrRoles">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition/>

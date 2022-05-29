@@ -15,12 +15,11 @@ namespace AdministratorWPF.View.Tables
         {
             InitializeComponent();
 
-            Style = UserStyles.WindowSyle;
             _counterparty = counterparty;
-            SetData();
+            SetWinSettings();
         }
 
-        private void SetData()
+        private void SetWinSettings()
         {
             if (_counterparty.User!.Role!.Id == (int)RoleKey.Client)
             {
@@ -54,6 +53,7 @@ namespace AdministratorWPF.View.Tables
             if (_counterparty.Image == null)
                 _counterparty.Image = ImageReader.GetDefaultBytes();
 
+            Style = UserStyles.WindowSyle;
             DataContext = _counterparty;
         } 
 
@@ -111,10 +111,10 @@ namespace AdministratorWPF.View.Tables
             }
         }
 
-        private void BtnSelectImg_Click(object sender, RoutedEventArgs e)
+        private void BrdImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ImageDialog dialog = new();
-            
+
             if (dialog.Open())
             {
                 _counterparty.Image = dialog.ImageBytes!;

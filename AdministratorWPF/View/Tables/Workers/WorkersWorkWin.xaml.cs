@@ -1,6 +1,7 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
+using GeneralLib;
 using StylesLib;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,17 +26,22 @@ namespace AdministratorWPF.View.Tables
         /// </summary>
         private void SetWinSettings()
         {
-            List<Role> roles = DbConnect.Db.Roles.Where
-                (r => r.Id == (int)RoleKey.Administratior ||
-                r.Id == (int)RoleKey.Storekeeper ||
-                r.Id == (int)RoleKey.Agent).ToList();
-            CbRole.ItemsSource = roles;
+            if (CurrentUser.User!.RoleId == (int)RoleKey.Administratior && CurrentUser.User != _worker.User!)
+            {
+                List<Role> roles = DbConnect.Db.Roles.Where
+                    (r => r.Id == (int)RoleKey.Administratior ||
+                    r.Id == (int)RoleKey.Storekeeper ||
+                    r.Id == (int)RoleKey.Agent).ToList();
+                CbRole.ItemsSource = roles;
+
+                if (_worker.Id == 0) _worker.User!.Role = roles.First();
+            }
+            else GrRoles.Visibility = Visibility.Hidden;
 
             if (_worker.Id == 0)
             {
                 Title = "Добавить пользователя";
                 BtnAddOrChange.Content = "Добавить пользователя";
-                _worker.User!.Role = roles.First();
             }
             else
             {

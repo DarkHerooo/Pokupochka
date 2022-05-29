@@ -6,6 +6,7 @@ using DbLib.DB.Enums;
 using GeneralLib;
 using System.Windows;
 using StylesLib;
+using AdministratorWPF.View.Tables;
 
 namespace PokupochkaCompany.Windows
 {
@@ -16,23 +17,21 @@ namespace PokupochkaCompany.Windows
             InitializeComponent();
 
             CurrentUser.User = user;
-            SetSettings(user);
+            SetWinSettings();
         }
 
         /// <summary>
         /// Устанавливает настройки в зависимости от роли пользователя
         /// </summary>
         /// <param name="user"></param>
-        private void SetSettings(User user)
+        private void SetWinSettings()
         {
-            TblFIO.Text = user.Worker!.FIO;
+            DataContext = CurrentUser.User.Worker!;
 
-            if (user.Role != null)
-            {
-                TblRole.Text = "(" + user.Role?.Title + ")";
-                Title = "Покупочка (" + user.Role?.Title + ")";
-            }
-            switch (user.Role!.Id)
+            if (CurrentUser.User.Role != null)
+                Title = "Покупочка (" + CurrentUser.User.Role?.Title + ")";
+
+            switch (CurrentUser.User.Role!.Id)
             {
                 case (int)RoleKey.Administratior:
                     UserStyles.SetUserStyles("AdminStyle.xaml");
@@ -57,6 +56,18 @@ namespace PokupochkaCompany.Windows
             AutorizWin win = new();
             win.Show();
             Close();
+        }
+
+        private void BtnChange_Click(object sender, RoutedEventArgs e)
+        {
+            WorkersWorkWin win = new(CurrentUser.User.Worker!);
+            win.ShowDialog();
+
+            if (win.DialogResult == true)
+            {
+                DataContext = null;
+                DataContext = CurrentUser.User.Worker!;
+            }
         }
     }
 }

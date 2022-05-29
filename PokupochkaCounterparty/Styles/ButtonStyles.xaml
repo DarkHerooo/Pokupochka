@@ -21,4 +21,10 @@
     <Style x:Key="BlueButton" TargetType="Button" BasedOn="{StaticResource ButtonTemplate}">
         <Setter Property="Background" Value="SkyBlue"/>
     </Style>
+
+    <Style x:Key="BackButton" TargetType="Button" BasedOn="{StaticResource RedButton}">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Content" Value="&lt;"/>
+        <Setter Property="FontFamily" Value="Cascadia Code"/>
+    </Style>
 </ResourceDictionary>

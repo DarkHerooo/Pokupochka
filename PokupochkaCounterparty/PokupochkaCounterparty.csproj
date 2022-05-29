@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AdministratorWPF\WPFAdministratorLib.csproj" />
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
     <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
@@ -45,6 +46,7 @@
     <Page Update="Styles\ButtonStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Styles\DataStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

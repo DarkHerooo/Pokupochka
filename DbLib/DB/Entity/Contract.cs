@@ -42,7 +42,7 @@ namespace DbLib.DB.Entity
             get
             {
                 if (DateOver != null)
-                    return DateStart!.Value.ToShortDateString();
+                    return DateOver!.Value.ToShortDateString();
                 else return "Неизвестно";
             }
 

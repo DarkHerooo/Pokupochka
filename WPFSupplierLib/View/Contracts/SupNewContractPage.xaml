@@ -49,7 +49,7 @@
             <TextBlock Grid.Column="0" Text="Количество лет:" Style="{StaticResource TblData}"/>
             
             <TextBox Grid.Column="1" Margin="5, 0, 0, 0" Width="40" Style="{StaticResource TbData}"
-                     Name="TbCountYears"/>
+                     MaxLength="1" Name="TbCountYears"/>
         </Grid>
 
         <Grid Grid.Row="3">

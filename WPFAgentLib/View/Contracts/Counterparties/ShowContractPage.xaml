@@ -15,104 +15,100 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
-        <Grid Grid.Column="0" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="100"/>
-            </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock FontSize="20" FontWeight="Bold">
+                    <Run Text="Договор №"/><Run Text="{Binding Counterparty.Company}"/>
+                </TextBlock>
+                <TextBlock FontSize="15">
+                    <Run Text="Компания:" FontWeight="Bold"/>
+                    <Run Text="{Binding Counterparty.Company}"/>
+                </TextBlock>
+                <TextBlock FontSize="15">
+                    <Run Text="Дата начала:" FontWeight="Bold"/>
+                    <Run Text="{Binding ShortDateStart}"/>
+                </TextBlock>
+                <TextBlock FontSize="15">
+                    <Run Text="Дата окончания:" FontWeight="Bold"/>
+                    <Run Text="{Binding ShortDateOver}"/>
+                </TextBlock>
+            </StackPanel>
 
-                <StackPanel Orientation="Vertical">
-                    <TextBlock FontSize="15">
-                        <Run Text="Компания:" FontWeight="Bold"/>
-                        <Run Text="{Binding Counterparty.Company}"/>
-                    </TextBlock>
-                    <TextBlock FontSize="15">
-                        <Run Text="Дата начала:" FontWeight="Bold"/>
-                        <Run Name="TbDateStart"/>
-                    </TextBlock>
-                    <TextBlock FontSize="15">
-                        <Run Text="Дата окончания:" FontWeight="Bold"/>
-                        <Run Name="TbDateOver"/>
-                    </TextBlock>
-                </StackPanel>
-
-                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5">
-                    <Border Style="{StaticResource BrdImage}" Width="64" Height="64">
-                        <Border.Background>
-                            <ImageBrush ImageSource="{Binding Counterparty.Image}"/>
-                        </Border.Background>
-                    </Border>
-                </StackPanel>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-
-                <Button Grid.Column="0" Grid.Row="0" Margin="5" Content="Принять" Style="{StaticResource GreenButton}"
-                        Name="BtnAccept" Click="BtnAccept_Click"/>
-                <Button Grid.Column="1" Grid.Row="0" Margin="5" Content="Отклонить" Style="{StaticResource RedButton}"
-                        Name="BtnCancel" Click="BtnCancel_Click"/>
-
-                <Button Grid.ColumnSpan="2" Grid.Row="1" Margin="5" Content="Назад" Style="{StaticResource YellowButton}"
-                        Name="BtnBack" Click="BtnBack_Click"/>
-            </Grid>
+            <Border Grid.Column="1" Style="{StaticResource BrdImage}" Width="64" Height="64">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding Counterparty.Image}"/>
+                </Border.Background>
+            </Border>
         </Grid>
 
-        <DataGrid Grid.Column="1" Margin="10" Name="DgProducts">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Width="*" Header="Данные о товаре">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical" Margin="5" >
-                                <TextBlock FontSize="20">
+        <Grid Grid.Row="1">
+            <DataGrid Grid.Column="1" Margin="5" Name="DgProducts">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="*" Header="Данные о товаре">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" Margin="5" >
+                                    <TextBlock FontSize="20">
                                     <Run Text="Название:" FontWeight="Bold"/>
                                     <Run Text="{Binding Title}"/>
-                                </TextBlock>
+                                    </TextBlock>
 
-                                <TextBlock FontSize="15">
+                                    <TextBlock FontSize="15">
                                     <Run Text="Цена за ед.:" FontWeight="Bold"/>
                                     <Run Text="{Binding Price}"/>
                                     <Run Text="руб."/>
-                                </TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="100" Header="Логотип">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Border CornerRadius="5" BorderBrush="Black" BorderThickness="2"
+                    <DataGridTemplateColumn Width="100" Header="Изображение">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="5" BorderBrush="Black" BorderThickness="2"
                                         Width="64" Height="64">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding Image}"/>
-                                </Border.Background>
-                            </Border>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding Image}"/>
+                                    </Border.Background>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Margin="5" Content="&lt;" Style="{StaticResource BackButton}"
+                    Name="BtnBack" Click="BtnBack_Click"/>
+
+            <Button Grid.Column="1" Grid.Row="0" Margin="5" Content="Отклонить" Style="{StaticResource RedButton}"
+                        Name="BtnCancel" Click="BtnCancel_Click"/>
+
+            <Button Grid.Column="2" Grid.Row="0" Margin="5" Content="Принять" Style="{StaticResource GreenButton}"
+                        Name="BtnAccept" Click="BtnAccept_Click"/>
+        </Grid>
     </Grid>
 </Page>

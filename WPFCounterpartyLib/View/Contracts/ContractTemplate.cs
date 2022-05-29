@@ -28,11 +28,11 @@ namespace WPFCounterpartyLib.View.Contracts
             _brdContract = new();
             _brdContract.Style = DataStyles.BrdImage;
             _brdContract.Background = Brushes.White;
-            _brdContract.Width = 130;
-            _brdContract.Height = 200;
+            _brdContract.Width = 200;
+            _brdContract.Height = 220;
             {
                 Grid grid = new();
-                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(130) });
+                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(150) });
                 grid.RowDefinitions.Add(new RowDefinition());
                 grid.RowDefinitions.Add(new RowDefinition());
                 _brdContract.Child = grid;
@@ -43,6 +43,8 @@ namespace WPFCounterpartyLib.View.Contracts
                     string imgUri = _contract.Id != 0 ? "/Images/contract_template.png" : "/Images/new.png";
                     BitmapImage bitmap = new BitmapImage(new Uri(AppPath.Path + imgUri));
                     brdImage.Background = new ImageBrush(bitmap);
+                    brdImage.Width = 128;
+                    brdImage.Height = 128;
                     brdImage.Margin = new Thickness(5);
                     Grid.SetRow(brdImage, 0);
                     grid.Children.Add(brdImage);

@@ -11,7 +11,8 @@ namespace DbLib.DB.Enums
         Сonsidered = 1,
         Active = 2,
         Cancel = 3,
-        Ended = 4
+        Ended = 4,
+        Stop = 5
     }
 
     // <Название статуса> = <Код статуса> (из БД)

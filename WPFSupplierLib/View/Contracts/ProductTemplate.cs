@@ -49,7 +49,7 @@ namespace WPFSupplierLib.View.Contracts
                 Grid grProductTemplate = new();
                 grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(150) });
                 grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition());
-                grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
+                grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
                 grProductTemplate.Margin = new Thickness(5);
                 _brdProduct.Child = grProductTemplate;
                 {
@@ -80,6 +80,7 @@ namespace WPFSupplierLib.View.Contracts
                     _btnDetete.Margin = new Thickness(5);
                     _btnDetete.Style = ButtonStyles.RedButton;
                     _btnDetete.Content = "X";
+                    _btnDetete.FontSize = 40;
                     Grid.SetColumn(_btnDetete, 2);
                     grProductTemplate.Children.Add(_btnDetete);
                 }
@@ -147,7 +148,7 @@ namespace WPFSupplierLib.View.Contracts
 
             if (!double.TryParse(TbPrice.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out _))
                 trueData = false;
-            else if (double.Parse(TbPrice.Text) < 0)
+            else if (double.Parse(TbPrice.Text, NumberStyles.Any, CultureInfo.InvariantCulture) < 0)
                 trueData = false;
 
             return trueData;

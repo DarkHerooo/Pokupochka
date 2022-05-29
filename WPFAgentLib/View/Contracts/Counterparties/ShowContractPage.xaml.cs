@@ -18,20 +18,35 @@ namespace WPFAgentLib.View.Contracts
             InitializeComponent();
 
             _contract = contract;
-            SetData();
+            SetPageSettings();
         }
 
-        public void SetData()
+        public void SetPageSettings()
         {
-            int countYears = _contract.CountYears;
-            DateTime dateStart = DateTime.Now;
-            DateTime dateOver = dateStart.AddYears(countYears);
-            TbDateStart.Text = dateStart.ToShortDateString();
-            TbDateOver.Text = dateOver.ToShortDateString();
-            DgProducts.ItemsSource = _contract.Products;
+            if (_contract.StatusId == (int)StatusKey.Сonsidered)
+            {
+                BtnAccept.Visibility = Visibility.Visible;
+                BtnCancel.Visibility = Visibility.Visible;
+            }
+            else if (_contract.StatusId == (int)StatusKey.Active)
+            {
+                BtnAccept.Visibility = Visibility.Hidden;
+                Grid.SetColumn(BtnCancel, 1);
+                Grid.SetColumnSpan(BtnCancel, 2);
+            }
+            else if (_contract.StatusId == (int)StatusKey.Cancel)
+            {
+                BtnCancel.Visibility = Visibility.Hidden;
+                Grid.SetColumn(BtnAccept, 1);
+                Grid.SetColumnSpan(BtnAccept, 2);
+            }
+            else
+            {
+                BtnAccept.Visibility = Visibility.Hidden;
+                BtnCancel.Visibility = Visibility.Hidden;
+            }
 
-            _contract.DateStart = dateStart;
-            _contract.DateOver = dateOver;
+            DgProducts.ItemsSource = _contract.Products;
             DataContext = _contract;
         }
 

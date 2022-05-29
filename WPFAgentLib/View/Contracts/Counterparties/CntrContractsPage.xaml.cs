@@ -23,24 +23,53 @@ namespace WPFAgentLib.View.Contracts
             InitializeComponent();
 
             _role = role;
+            CreateFilterList();
         }
 
-        public Contract[] GetNewContracts()
+        private List<Contract> GetContracts()
         {
             List<Contract> contracts = DbConnect.Db.Contracts.Include(c => c.Counterparty).Include(c => c.Products).ToList();
-            contracts = DbConnect.Db.Contracts.Where(c => c.Counterparty!.User!.Role! == _role &&
-                c.Status!.Id == (int)StatusKey.Сonsidered).ToList();
 
-            return contracts.ToArray();
+            if (!string.IsNullOrEmpty(TbFinder.Text) && !string.IsNullOrWhiteSpace(TbFinder.Text))
+                contracts = FindContracts(contracts);
+
+            contracts = FilterContracts(contracts);
+
+            return contracts;
+        }
+        
+        private List<Contract> FindContracts(List<Contract> contracts)
+        {
+            contracts = contracts.Where(c =>
+                c.Number.ToString().ToLower().Contains(TbFinder.Text.ToLower()) ||
+                c.Counterparty!.Company.ToLower().Contains(TbFinder.Text.ToLower())).ToList();
+
+            return contracts;
         }
 
-        public Contract[] GetTodayContracts()
+        private List<Contract> FilterContracts(List<Contract> contracts)
         {
-            List<Contract> contracts = DbConnect.Db.Contracts.Include(c => c.Counterparty).Include(c => c.Status).Include(c => c.Products).ToList();
-            contracts = DbConnect.Db.Contracts.Where(c => c.Counterparty!.User!.Role! == _role &&
-                c.DateStart!.Value.Date == DateTime.Today.Date && c.Status!.Id != (int)StatusKey.Сonsidered).ToList();
+            switch (CbFilter.SelectedIndex)
+            {
+                case 0:
+                    contracts = contracts.Where(c =>
+                    c.StatusId == (int)StatusKey.Сonsidered &&
+                    c.Counterparty!.User!.Role! == _role).ToList(); break;
+                case 1: contracts = contracts.Where(c => 
+                    (c.StatusId == (int)StatusKey.Active ||
+                    c.StatusId == (int)StatusKey.Cancel) &&
+                    c.Counterparty!.User!.Role! == _role).ToList(); break;
+            }
 
-            return contracts.ToArray();
+            return contracts;
+        }
+
+        private void CreateFilterList()
+        {
+            CbFilter.Items.Add("Новые");
+            CbFilter.Items.Add("Активные/Отклонённые");
+
+            CbFilter.SelectedIndex = 0;
         }
 
         private void BtnOpenContract_Click(object sender, RoutedEventArgs e)
@@ -52,39 +81,34 @@ namespace WPFAgentLib.View.Contracts
                 NavigationService.Navigate(new ShowContractPage(contract));
                 return;
             }
-
-            contract = DgTodayContracts.SelectedItem as Contract;
-
-            if (contract != null)
-            {
-                NavigationService.Navigate(new ShowContractPage(contract));
-                return;
-            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DgNewContracts.ItemsSource = GetNewContracts();
-            DgTodayContracts.ItemsSource = GetTodayContracts();
+            DgNewContracts.ItemsSource = GetContracts();
         }
 
         private void Dg_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataGrid dg = (DataGrid)sender;
-            Contract? contract = dg.SelectedItem as Contract;
-
-            if (contract != null)
-                NavigationService.Navigate(new ShowContractPage(contract));
+            BtnOpenContract_Click(null!, null!);
         }
 
-        private void DgNewContracts_GotFocus(object sender, RoutedEventArgs e)
+        private void TbFinder_KeyDown(object sender, KeyEventArgs e)
         {
-            DgTodayContracts.UnselectAll();
+            if (e.Key == Key.Enter)
+                DgNewContracts.ItemsSource = GetContracts();
         }
 
-        private void DgTodayContracts_GotFocus(object sender, RoutedEventArgs e)
+        private void CbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DgNewContracts.UnselectAll();
+            DgNewContracts.ItemsSource = GetContracts();
+        }
+
+        private void BtnClear_Click(object sender, RoutedEventArgs e)
+        {
+            TbFinder.Text = "";
+            CbFilter.SelectedIndex = 0;
+            DgNewContracts.ItemsSource = GetContracts();
         }
     }
 }

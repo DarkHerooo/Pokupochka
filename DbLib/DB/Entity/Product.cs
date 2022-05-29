@@ -15,5 +15,11 @@ namespace DbLib.DB.Entity
         public List<Contract> Contracts { get; set; } = new();
         public List<Request> Requests { get; set; } = new();
         public List<Warehouse> Warehouses { get; set; } = new();
+
+        public void AddOrChange()
+        {
+            if (Id == 0) DbConnect.Db.Products.Add(this);
+            DbConnect.Db.SaveChanges();
+        }
     }
 }

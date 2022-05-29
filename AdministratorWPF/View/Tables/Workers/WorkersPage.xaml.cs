@@ -16,7 +16,7 @@ namespace AdministratorWPF.View.Tables
         {
             InitializeComponent();
 
-            GenerateFilterList();
+            CreateFilterList();
             DgUsers.ItemsSource = GetWorkers();
         }
 
@@ -70,7 +70,7 @@ namespace AdministratorWPF.View.Tables
         /// <summary>
         /// Генерирует список фильтрации
         /// </summary>
-        private void GenerateFilterList()
+        private void CreateFilterList()
         {
             List<Role> roles = DbConnect.Db.Roles.Where
                 (r => r.Id == (int)RoleKey.Administratior ||

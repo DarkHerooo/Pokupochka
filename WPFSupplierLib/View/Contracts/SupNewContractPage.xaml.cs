@@ -3,6 +3,7 @@ using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,7 +77,7 @@ namespace WPFSupplierLib.View.Contracts
 
             if (productTemplates.Count == 0)
             {
-                errorMessage = "В договоре должен быть как минимум 1 товар";
+                errorMessage += "В договоре должен быть как минимум 1 товар\n";
                 allTrueData = false;
             }    
 
@@ -101,6 +102,8 @@ namespace WPFSupplierLib.View.Contracts
                 contract.Counterparty = _counterparty;
                 contract.StatusId = (int)StatusKey.Сonsidered;
                 contract.CountYears = int.Parse(TbCountYears.Text);
+                contract.DateStart = DateTime.Now;
+                contract.DateOver = DateTime.Now.AddYears(contract.CountYears);
 
                 int contractNumber = DbConnect.Db.Contracts.Max(c => c.Number);
                 contract.Number = contractNumber != 0 ? contractNumber + 1 : 100000;
@@ -109,15 +112,14 @@ namespace WPFSupplierLib.View.Contracts
                 {
                     Product product = new();
                     product.Title = productTemplate.TbName.Text;
-                    product.Price = double.Parse(productTemplate.TbPrice.Text);
+                    product.Price = double.Parse(productTemplate.TbPrice.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
                     product.Image = productTemplate.ImageBytes;
-                    DbConnect.Db.Products.Add(product);
+                    product.AddOrChange();
+
                     contract.Products.Add(product);
                 }
 
-                DbConnect.Db.Contracts.Add(contract);
-                DbConnect.Db.SaveChanges();
-
+                contract.AddOrChange();
                 BtnCancel_Click(null!, null!);
             }
             else

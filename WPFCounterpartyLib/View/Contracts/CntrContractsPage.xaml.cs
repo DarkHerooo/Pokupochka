@@ -41,7 +41,7 @@ namespace WPFCounterpartyLib.View.Contracts
 
             List<Contract> contracts = GetContracts();
 
-            int countInRow = 10;
+            int countInRow = 9;
             for (int i = 0; i <= contracts.Count / countInRow; i++)
             {
                 StackPanel spRow = new();
@@ -73,7 +73,7 @@ namespace WPFCounterpartyLib.View.Contracts
         private List<Contract> GetContracts()
         {
             List<Contract> contracts = DbConnect.Db.Contracts.Where(c => c.CounterpartyId == CurrentUser.User.Counterparty!.Id)
-                .Include(c => c.Status).ToList();
+                .Include(c => c.Status).Include(c => c.Products).ToList();
 
             return contracts;
         }
@@ -93,7 +93,8 @@ namespace WPFCounterpartyLib.View.Contracts
 
             if (findTemplate != null)
             {
-
+                if (CurrentUser.User.RoleId == (int)RoleKey.Supplier)
+                    NavigationService.Navigate(new CntrShowContract(findTemplate.Contract));
             }
         }
 

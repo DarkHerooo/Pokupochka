@@ -1,4 +1,5 @@
-﻿using DbLib.DB.Entity;
+﻿using AdministratorWPF.View.Tables;
+using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib;
 using StylesLib;
@@ -44,12 +45,24 @@ namespace PokupochkaCounterparty.Windows
             Style = UserStyles.WindowSyle;
             FrmMain.NavigationService.Navigate(new CntrMainPage());
         }
+
+        private void BtnChange_Click(object sender, RoutedEventArgs e)
+        {
+            CntrpartiesWorkWin win = new(CurrentUser.User.Counterparty!);
+            win.ShowDialog();
+
+            if (win.DialogResult == true)
+            {
+                DataContext = null;
+                DataContext = CurrentUser.User.Counterparty!;
+            }
+        }
+
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             AutorizWin win = new();
             win.Show();
             Close();
         }
-
     }
 }

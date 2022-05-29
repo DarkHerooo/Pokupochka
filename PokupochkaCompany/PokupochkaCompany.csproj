@@ -54,6 +54,7 @@
     <Page Update="Styles\ButtonStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Styles\DataStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
