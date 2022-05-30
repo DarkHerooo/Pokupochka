@@ -28,7 +28,7 @@ namespace WPFAgentLib.View.Contracts
 
         private List<Contract> GetContracts()
         {
-            List<Contract> contracts = DbConnect.Db.Contracts.Include(c => c.Counterparty).Include(c => c.Products).ToList();
+            List<Contract> contracts = DbConnect.Db.Contracts.Include(c => c.Counterparty).Include(c => c.Products).Include(c => c.Status).ToList();
 
             if (!string.IsNullOrEmpty(TbFinder.Text) && !string.IsNullOrWhiteSpace(TbFinder.Text))
                 contracts = FindContracts(contracts);
