@@ -13,7 +13,10 @@
     <None Remove="Images\Logo\box.png" />
     <None Remove="Images\Messages\error.png" />
     <None Remove="Images\Messages\loading.gif" />
+    <None Remove="Images\new_contract_template.png" />
     <None Remove="Images\not_found.png" />
+    <None Remove="Images\Roles\client.png" />
+    <None Remove="Images\Roles\supplier.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,7 +39,10 @@
     <Resource Include="Images\Logo\box.png" />
     <Resource Include="Images\Messages\error.png" />
     <Resource Include="Images\Messages\loading.gif" />
+    <Resource Include="Images\new_contract_template.png" />
     <Resource Include="Images\not_found.png" />
+    <Resource Include="Images\Roles\client.png" />
+    <Resource Include="Images\Roles\supplier.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +68,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ToolkitStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserStyles\ClientStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserStyles\CounterpartyStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserStyles\SupplierStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

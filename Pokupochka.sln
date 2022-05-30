@@ -5,8 +5,6 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLib", "DbLib\DbLib.csproj", "{105C70B6-082C-43DF-A08C-379450AD78C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCompany", "PokupochkaCompany\PokupochkaCompany.csproj", "{79A5E552-FCC7-40D5-B299-0229BABB1382}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCounterparty", "PokupochkaCounterparty\PokupochkaCounterparty.csproj", "{A6693591-464E-4FE1-97E0-E9BCE979EF45}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralLib", "GeneralLib\GeneralLib.csproj", "{17AC18DD-FAAB-40B9-835A-C44AD0DC6E91}"
@@ -23,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFSupplierLib", "WPFSuppli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StylesLib", "StylesLib\StylesLib.csproj", "{174228B2-718A-421D-9C47-22A34F21D8EA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCompany", "PokupochkaCompany\PokupochkaCompany.csproj", "{461DFA73-5847-4805-A2B4-DE6595AD3C25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{105C70B6-082C-43DF-A08C-379450AD78C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{105C70B6-082C-43DF-A08C-379450AD78C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{105C70B6-082C-43DF-A08C-379450AD78C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79A5E552-FCC7-40D5-B299-0229BABB1382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79A5E552-FCC7-40D5-B299-0229BABB1382}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79A5E552-FCC7-40D5-B299-0229BABB1382}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79A5E552-FCC7-40D5-B299-0229BABB1382}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6693591-464E-4FE1-97E0-E9BCE979EF45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6693591-464E-4FE1-97E0-E9BCE979EF45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6693591-464E-4FE1-97E0-E9BCE979EF45}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{174228B2-718A-421D-9C47-22A34F21D8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{174228B2-718A-421D-9C47-22A34F21D8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{174228B2-718A-421D-9C47-22A34F21D8EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{461DFA73-5847-4805-A2B4-DE6595AD3C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{461DFA73-5847-4805-A2B4-DE6595AD3C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{461DFA73-5847-4805-A2B4-DE6595AD3C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{461DFA73-5847-4805-A2B4-DE6595AD3C25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

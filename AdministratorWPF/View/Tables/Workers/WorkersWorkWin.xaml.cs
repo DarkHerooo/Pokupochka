@@ -1,7 +1,7 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
-using GeneralLib;
+using GeneralLib.Usr;
 using StylesLib;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,8 @@ namespace AdministratorWPF.View.Tables
         /// </summary>
         private void SetWinSettings()
         {
-            if (CurrentUser.User!.RoleId == (int)RoleKey.Administratior && CurrentUser.User != _worker.User!)
+            User user = CurrentUser.User!;
+            if (user.RoleId == (int)RoleKey.Administratior && user != _worker.User!)
             {
                 List<Role> roles = DbConnect.Db.Roles.Where
                     (r => r.Id == (int)RoleKey.Administratior ||

@@ -40,7 +40,7 @@ namespace WPFCounterpartyLib.View.Contracts
                     Border brdImage = new();
                     brdImage.Style = DataStyles.BrdImage;
                     brdImage.BorderThickness = new Thickness(0);
-                    string imgUri = _contract.Id != 0 ? "/Images/contract_template.png" : "/Images/new.png";
+                    string imgUri = _contract.Id != 0 ? "/Images/contract_template.png" : "/Images/new_contract_template.png";
                     BitmapImage bitmap = new BitmapImage(new Uri(AppPath.Path + imgUri));
                     brdImage.Background = new ImageBrush(bitmap);
                     brdImage.Width = 128;

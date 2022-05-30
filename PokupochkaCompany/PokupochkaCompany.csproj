@@ -16,7 +16,9 @@
     <None Remove="Images\not_found.png" />
     <None Remove="Images\Roles\admin.png" />
     <None Remove="Images\Roles\agent.png" />
+    <None Remove="Images\Roles\client.png" />
     <None Remove="Images\Roles\storekeeper.png" />
+    <None Remove="Images\Roles\supplier.png" />
     <None Remove="Images\Roles\unk.png" />
   </ItemGroup>
 
@@ -44,7 +46,9 @@
     <Resource Include="Images\not_found.png" />
     <Resource Include="Images\Roles\admin.png" />
     <Resource Include="Images\Roles\agent.png" />
+    <Resource Include="Images\Roles\client.png" />
     <Resource Include="Images\Roles\storekeeper.png" />
+    <Resource Include="Images\Roles\supplier.png" />
     <Resource Include="Images\Roles\unk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -73,10 +77,17 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserStyles\AdminStyle.xaml">
+    <Page Update="UserStyles\AdminStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UserStyles\AgentStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UserStyles\CompanyStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UserStyles\StorekepStyles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
 

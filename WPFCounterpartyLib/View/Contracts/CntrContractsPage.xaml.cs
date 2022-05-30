@@ -1,22 +1,14 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
-using GeneralLib;
+using GeneralLib.Usr;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPFSupplierLib.View.Contracts;
 
 namespace WPFCounterpartyLib.View.Contracts
@@ -46,25 +38,27 @@ namespace WPFCounterpartyLib.View.Contracts
             {
                 StackPanel spRow = new();
                 spRow.Orientation = Orientation.Horizontal;
+
+                if (i == 0)
+                {
+                    ContractTemplate newContract = new(new Contract());
+                    newContract.BrdContract.Margin = new Thickness(5);
+                    newContract.BrdContract.MouseLeftButtonDown += NewBrdContract_MouseLeftButtonDown;
+                    spRow.Children.Add(newContract.BrdContract);
+                    _contractTemplates.Add(newContract);
+                    countInRow = 8;
+                }
+                else countInRow = 9;
+
                 for (int j = i * countInRow; j < i * countInRow + countInRow; j++)
                 {
-                    ContractTemplate contractTemplate = null!;
-                    if (j == contracts.Count)
-                    {
-                        contractTemplate = new(new Contract());
-                        contractTemplate.BrdContract.MouseLeftButtonDown += NewBrdContract_MouseLeftButtonDown;
-                    }
-                    else
-                    {
-                        contractTemplate = new(contracts[j]);
-                        contractTemplate.BrdContract.MouseLeftButtonDown += BrdContract_MouseLeftButtonDown;
-                    }
+                    if (j == contracts.Count) break;
 
+                    ContractTemplate contractTemplate = new(contracts[j]);
                     contractTemplate.BrdContract.Margin = new Thickness(5);
+                    contractTemplate.BrdContract.MouseLeftButtonDown += BrdContract_MouseLeftButtonDown;
                     spRow.Children.Add(contractTemplate.BrdContract);
                     _contractTemplates.Add(contractTemplate);
-
-                    if (j == contracts.Count) break;
                 }
                 SpContracts.Children.Add(spRow);
             }
@@ -72,7 +66,8 @@ namespace WPFCounterpartyLib.View.Contracts
 
         private List<Contract> GetContracts()
         {
-            List<Contract> contracts = DbConnect.Db.Contracts.Where(c => c.CounterpartyId == CurrentUser.User.Counterparty!.Id)
+            User user = CurrentUser.User!;
+            List<Contract> contracts = DbConnect.Db.Contracts.Where(c => c.CounterpartyId == user.Counterparty!.Id)
                 .Include(c => c.Status).Include(c => c.Products).ToList();
 
             return contracts;
@@ -93,15 +88,17 @@ namespace WPFCounterpartyLib.View.Contracts
 
             if (findTemplate != null)
             {
-                if (CurrentUser.User.RoleId == (int)RoleKey.Supplier)
+                User user = CurrentUser.User!;
+                if (user.RoleId == (int)RoleKey.Supplier)
                     NavigationService.Navigate(new CntrShowContract(findTemplate.Contract));
             }
         }
 
         private void NewBrdContract_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (CurrentUser.User.RoleId == (int)RoleKey.Supplier)
-                NavigationService.Navigate(new SupNewContractPage(CurrentUser.User.Counterparty!));
+            User user = CurrentUser.User!;
+            if (user.RoleId == (int)RoleKey.Supplier)
+                NavigationService.Navigate(new SupNewContractPage(user.Counterparty!));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

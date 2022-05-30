@@ -49,7 +49,7 @@ namespace WPFSupplierLib.View.Contracts
                 Grid grProductTemplate = new();
                 grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(150) });
                 grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition());
-                grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
+                grProductTemplate.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(60) });
                 grProductTemplate.Margin = new Thickness(5);
                 _brdProduct.Child = grProductTemplate;
                 {

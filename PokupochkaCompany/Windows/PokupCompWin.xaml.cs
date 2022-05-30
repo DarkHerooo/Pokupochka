@@ -3,7 +3,7 @@ using WPFAgentLib.View;
 using WPFStorekeeperLib.View;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
-using GeneralLib;
+using GeneralLib.Usr;
 using System.Windows;
 using StylesLib;
 using AdministratorWPF.View.Tables;
@@ -12,11 +12,10 @@ namespace PokupochkaCompany.Windows
 {
     public partial class PokupCompWin : Window
     {
-        public PokupCompWin(User user)
+        public PokupCompWin()
         {
             InitializeComponent();
 
-            CurrentUser.User = user;
             SetWinSettings();
         }
 
@@ -26,23 +25,24 @@ namespace PokupochkaCompany.Windows
         /// <param name="user"></param>
         private void SetWinSettings()
         {
-            DataContext = CurrentUser.User.Worker!;
+            User user = CurrentUser.User;
+            DataContext = user.Worker!;
 
-            if (CurrentUser.User.Role != null)
-                Title = "Покупочка (" + CurrentUser.User.Role?.Title + ")";
+            if (user.Role != null)
+                Title = "Покупочка (" + user.Role?.Title + ")";
 
-            switch (CurrentUser.User.Role!.Id)
+            switch (user.RoleId)
             {
                 case (int)RoleKey.Administratior:
-                    UserStyles.SetUserStyles("AdminStyle.xaml");
+                    UserStyles.SetUserStyles("AdminStyles.xaml");
                     FrmMain.NavigationService.Navigate(new AdminMainPage());
                     break;
                 case (int)RoleKey.Storekeeper:
-                    UserStyles.SetUserStyles("StorekepStyle.xaml");
+                    UserStyles.SetUserStyles("StorekepStyles.xaml");
                     FrmMain.NavigationService.Navigate(new StorekepMainPage());
                     break;
                 case (int)RoleKey.Agent:
-                    UserStyles.SetUserStyles("AgentStyle.xaml");
+                    UserStyles.SetUserStyles("AgentStyles.xaml");
                     FrmMain.NavigationService.Navigate(new AgentMainPage());
                     break;
             }
@@ -60,13 +60,14 @@ namespace PokupochkaCompany.Windows
 
         private void BtnChange_Click(object sender, RoutedEventArgs e)
         {
-            WorkersWorkWin win = new(CurrentUser.User.Worker!);
+            User user = CurrentUser.User;
+            WorkersWorkWin win = new(user.Worker!);
             win.ShowDialog();
 
             if (win.DialogResult == true)
             {
                 DataContext = null;
-                DataContext = CurrentUser.User.Worker!;
+                DataContext = user.Worker!;
             }
         }
     }

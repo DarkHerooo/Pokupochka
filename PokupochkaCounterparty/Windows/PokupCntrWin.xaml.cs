@@ -2,6 +2,7 @@
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib;
+using GeneralLib.Usr;
 using StylesLib;
 using System;
 using System.Linq;
@@ -12,20 +13,20 @@ namespace PokupochkaCounterparty.Windows
 {
     public partial class PokupCntrWin : Window
     {
-        public PokupCntrWin(User user)
+        public PokupCntrWin()
         {
             InitializeComponent();
 
-            CurrentUser.User = user;
-            SetSettings(user);
+            SetSettings();
         }
 
         /// <summary>
         /// Устанавливает настройки в зависимости от роли пользователя
         /// </summary>
         /// <param name="user"></param>
-        private void SetSettings(User user)
+        private void SetSettings()
         {
+            User user = CurrentUser.User!;
             DataContext = user.Counterparty;
 
             if (user.Role != null)
@@ -34,10 +35,10 @@ namespace PokupochkaCounterparty.Windows
             switch (user.Role!.Id)
             {
                 case (int)RoleKey.Supplier:
-                    UserStyles.SetUserStyles("SupplierStyle.xaml");
+                    UserStyles.SetUserStyles("SupplierStyles.xaml");
                     break;
                 case (int)RoleKey.Client:
-                    UserStyles.SetUserStyles("ClientStyle.xaml");
+                    UserStyles.SetUserStyles("ClientStyles.xaml");
                     break;
             }
             StyleWorker.SetAllStyles();
@@ -48,13 +49,14 @@ namespace PokupochkaCounterparty.Windows
 
         private void BtnChange_Click(object sender, RoutedEventArgs e)
         {
-            CntrpartiesWorkWin win = new(CurrentUser.User.Counterparty!);
+            User user = CurrentUser.User!;
+            CntrpartiesWorkWin win = new(user.Counterparty!);
             win.ShowDialog();
 
             if (win.DialogResult == true)
             {
                 DataContext = null;
-                DataContext = CurrentUser.User.Counterparty!;
+                DataContext = user.Counterparty!;
             }
         }
 

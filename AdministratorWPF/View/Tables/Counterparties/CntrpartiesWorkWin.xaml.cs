@@ -21,7 +21,7 @@ namespace AdministratorWPF.View.Tables
 
         private void SetWinSettings()
         {
-            if (_counterparty.User!.Role!.Id == (int)RoleKey.Client)
+            if (_counterparty.User!.RoleId == (int)RoleKey.Client)
             {
                 TbContragentData.Text = "Данные о клиенте";
                 if (_counterparty.Id == 0)
@@ -35,7 +35,7 @@ namespace AdministratorWPF.View.Tables
                     BtnAddOrChange.Content = "Изменить клиента";
                 }
             }
-            else if (_counterparty.User!.Role!.Id == (int)RoleKey.Supplier)
+            else if (_counterparty.User!.RoleId == (int)RoleKey.Supplier)
             {
                 TbContragentData.Text = "Данные о поставщике";
                 if (_counterparty.Id == 0)

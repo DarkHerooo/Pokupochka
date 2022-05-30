@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Авторизация" Height="260" Width="500"
+        Title="Авторизация" Height="320" Width="500"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/DataStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TbData2" TargetType="TextBox" BasedOn="{StaticResource TbData}">
@@ -26,13 +27,6 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="White"/>
-                <GradientStop Color="#FF73E6DE" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="1.5*"/>
@@ -86,9 +80,16 @@
                                  Name="PbPassword" PasswordChanged="PbPassword_PasswordChanged"/>
                 </Grid>
 
+                <CheckBox Content="Запомнить меня" HorizontalAlignment="Center"
+                          Margin="10, 10, 10, 0" Name="ChbMemory"/>
+
                 <Button Margin="10, 10, 10, 0" Height="30" Content="Войти"
-                        FontSize="15" FontWeight="Bold" Background="White"
+                        Style="{StaticResource GreenButton}"
                         Name="BtnEnter" Click="BtnEnter_ClickAsync"/>
+
+                <Button Margin="10, 10, 10, 0" Height="30" Content="Регистрация"
+                        Style="{StaticResource BlueButton}"
+                        Name="BtnRegistration" Click="BtnRegistration_Click"/>
 
                 <StackPanel Name="SpMessage" Orientation="Horizontal" HorizontalAlignment="Center"
                             Margin="0, 10, 0, 0"/>
