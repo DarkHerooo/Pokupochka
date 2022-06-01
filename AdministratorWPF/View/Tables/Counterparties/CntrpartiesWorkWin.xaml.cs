@@ -75,6 +75,8 @@ namespace AdministratorWPF.View.Tables
             string clearPhone = AdditionalFields.GetClearPhone(TbPhone.Text);
             if (string.IsNullOrEmpty(clearPhone) || string.IsNullOrWhiteSpace(clearPhone))
                 errorMessage += "Не введен телефон\n";
+            else if (clearPhone.Length < 11)
+                errorMessage += "Введите телефон полностью\n";
 
             if (string.IsNullOrEmpty(TbEmail.Text) || string.IsNullOrWhiteSpace(TbEmail.Text))
                 errorMessage += "Не введена почта\n";
@@ -121,6 +123,11 @@ namespace AdministratorWPF.View.Tables
                 DataContext = null;
                 DataContext = _counterparty;
             }
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

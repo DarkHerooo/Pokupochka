@@ -189,8 +189,20 @@
                      Name="TbPassword"  Text="{Binding User.Password}"/>
                 </Grid>
 
-                <Button Grid.Column="1" Grid.Row="9" Margin="5" Style="{StaticResource GreenButton}" Content="Сохранить или изменить"
-                Name="BtnAddOrChange" Click="BtnAddOrChange_Click"/>
+                <Grid Grid.Column="1" Grid.Row="9">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Margin="5" Style="{StaticResource RedButton}" Content="Отмена"
+                        Name="BtnCancel" Click="BtnCancel_Click"/>
+
+                    <Button Grid.Column="1" Margin="5" Style="{StaticResource GreenButton}" Content="Сохранить или изменить"
+                        Name="BtnAddOrChange" Click="BtnAddOrChange_Click"/>
+                </Grid>
+
+
             </Grid>
         </Grid>
     </Grid>

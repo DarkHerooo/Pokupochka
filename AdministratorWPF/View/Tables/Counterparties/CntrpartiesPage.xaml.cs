@@ -93,8 +93,8 @@ namespace AdministratorWPF.View.Tables
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             Counterparty counterparty = new();
-            counterparty.User = new();
-            counterparty.User.Role = _role;
+            counterparty.User!.RoleId = _role.Id;
+            counterparty.User!.Role = _role;
 
             CntrpartiesWorkWin win = new CntrpartiesWorkWin(counterparty);
             win.ShowDialog();

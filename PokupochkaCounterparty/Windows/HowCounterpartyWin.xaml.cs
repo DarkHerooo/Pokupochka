@@ -1,6 +1,7 @@
 ﻿using AdministratorWPF.View.Tables;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
+using StylesLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,12 @@ namespace PokupochkaCounterparty.Windows
         public HowCounterpartyWin()
         {
             InitializeComponent();
+            SetWinSettings();
+        }
+
+        private void SetWinSettings()
+        {
+            Style = UserStyles.WindowSyle;
         }
 
         private void Gr_MouseEnter(object sender, MouseEventArgs e)

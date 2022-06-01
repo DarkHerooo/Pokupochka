@@ -75,22 +75,25 @@ namespace WPFCounterpartyLib.View.Contracts
 
         private void BrdContract_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Border border = (Border)sender;
-            ContractTemplate? findTemplate = null;
-            foreach(var contractTemplate in _contractTemplates)
+            if (e.ClickCount == 1)
             {
-                if (border == contractTemplate.BrdContract)
+                Border border = (Border)sender;
+                ContractTemplate? findTemplate = null;
+                foreach (var contractTemplate in _contractTemplates)
                 {
-                    findTemplate = contractTemplate;
-                    break;
+                    if (border == contractTemplate.BrdContract)
+                    {
+                        findTemplate = contractTemplate;
+                        break;
+                    }
                 }
-            }
 
-            if (findTemplate != null)
-            {
-                User user = CurrentUser.User!;
-                if (user.RoleId == (int)RoleKey.Supplier)
-                    NavigationService.Navigate(new CntrShowContract(findTemplate.Contract));
+                if (findTemplate != null)
+                {
+                    User user = CurrentUser.User!;
+                    if (user.RoleId == (int)RoleKey.Supplier)
+                        NavigationService.Navigate(new CntrShowContract(findTemplate.Contract));
+                }
             }
         }
 

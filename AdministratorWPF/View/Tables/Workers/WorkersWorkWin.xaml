@@ -150,6 +150,10 @@
                       Margin="5" Name="CbRole" SelectedItem="{Binding User.Role}"/>
         </Grid>
 
+        <Button Grid.Column="0" Grid.Row="4" Margin="5" Style="{StaticResource RedButton}" 
+                Content="Отмена"
+                Name="BtnCancel" Click="BtnCancel_Click"/>
+
         <Button Grid.Column="1" Grid.Row="4" Margin="5" Style="{StaticResource GreenButton}" 
                 Content="Сохранить или изменить"
                 Name="BtnAddOrChange" Click="BtnAddOrChange_Click">
