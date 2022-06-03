@@ -4,6 +4,7 @@ using DbLib.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbLib.Migrations
 {
     [DbContext(typeof(PokupochkaContext))]
-    partial class PokupochkaContextModelSnapshot : ModelSnapshot
+    [Migration("20220603123142_add-many-to-many-productWarehouse")]
+    partial class addmanytomanyproductWarehouse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,24 +154,6 @@ namespace DbLib.Migrations
                     b.HasIndex("WarehouseId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("DbLib.DB.Entity.ProductRequest", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequestId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "RequestId");
-
-                    b.HasIndex("RequestId");
-
-                    b.ToTable("ProductRequests");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.ProductWarehouse", b =>
@@ -342,6 +326,21 @@ namespace DbLib.Migrations
                     b.ToTable("Workers");
                 });
 
+            modelBuilder.Entity("ProductRequest", b =>
+                {
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequestsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "RequestsId");
+
+                    b.HasIndex("RequestsId");
+
+                    b.ToTable("ProductRequest");
+                });
+
             modelBuilder.Entity("ContractProduct", b =>
                 {
                     b.HasOne("DbLib.DB.Entity.Contract", null)
@@ -394,25 +393,6 @@ namespace DbLib.Migrations
                     b.HasOne("DbLib.DB.Entity.Warehouse", null)
                         .WithMany("Products")
                         .HasForeignKey("WarehouseId");
-                });
-
-            modelBuilder.Entity("DbLib.DB.Entity.ProductRequest", b =>
-                {
-                    b.HasOne("DbLib.DB.Entity.Product", "Product")
-                        .WithMany("ProductRequests")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DbLib.DB.Entity.Request", "Request")
-                        .WithMany("ProductRequests")
-                        .HasForeignKey("RequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Request");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.ProductWarehouse", b =>
@@ -473,6 +453,21 @@ namespace DbLib.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ProductRequest", b =>
+                {
+                    b.HasOne("DbLib.DB.Entity.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DbLib.DB.Entity.Request", null)
+                        .WithMany()
+                        .HasForeignKey("RequestsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DbLib.DB.Entity.Counterparty", b =>
                 {
                     b.Navigation("Contracts");
@@ -480,14 +475,7 @@ namespace DbLib.Migrations
 
             modelBuilder.Entity("DbLib.DB.Entity.Product", b =>
                 {
-                    b.Navigation("ProductRequests");
-
                     b.Navigation("ProductWarehouses");
-                });
-
-            modelBuilder.Entity("DbLib.DB.Entity.Request", b =>
-                {
-                    b.Navigation("ProductRequests");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Role", b =>

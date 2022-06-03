@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StylesLib", "StylesLib\Styl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCompany", "PokupochkaCompany\PokupochkaCompany.csproj", "{461DFA73-5847-4805-A2B4-DE6595AD3C25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{89046B1E-1CB2-4EE8-B43E-491D323180E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{461DFA73-5847-4805-A2B4-DE6595AD3C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{461DFA73-5847-4805-A2B4-DE6595AD3C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{461DFA73-5847-4805-A2B4-DE6595AD3C25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89046B1E-1CB2-4EE8-B43E-491D323180E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89046B1E-1CB2-4EE8-B43E-491D323180E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89046B1E-1CB2-4EE8-B43E-491D323180E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89046B1E-1CB2-4EE8-B43E-491D323180E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

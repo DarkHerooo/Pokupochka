@@ -12,5 +12,6 @@ namespace DbLib.DB.Entity
         public string? Note { get; set; }
         public int Size { get; set; }
         public List<Product> Products { get; set; } = new();
+        public List<ProductWarehouse> ProductWarehouses { get; set; } = new();
     }
 }

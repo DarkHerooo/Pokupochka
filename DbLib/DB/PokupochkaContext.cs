@@ -19,7 +19,8 @@ namespace DbLib.DB
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Request> Requests { get; set; } = null!;
         public DbSet<Warehouse> Warehouses { get; set; } = null!;
-
+        public DbSet<ProductWarehouse> ProductWarehouses { get; set; } = null!;
+        public DbSet<ProductRequest> ProductRequests { get; set; } = null!;
 
         public PokupochkaContext()
         {
@@ -30,6 +31,31 @@ namespace DbLib.DB
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=PokupochkaDB;Trusted_Connection=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ProductWarehouse>().HasKey(pw => new { pw.ProductId, pw.WarehouseId });
+            modelBuilder.Entity<ProductWarehouse>().
+                HasOne(pw => pw.Product).
+                WithMany(pw => pw.ProductWarehouses).
+                HasForeignKey(pw => pw.ProductId);
+            modelBuilder.Entity<ProductWarehouse>().
+                HasOne(pw => pw.Warehouse).
+                WithMany(pw => pw.ProductWarehouses).
+                HasForeignKey(pw => pw.WarehouseId);
+
+            modelBuilder.Entity<ProductRequest>().HasKey(pr => new { pr.ProductId, pr.RequestId });
+            modelBuilder.Entity<ProductRequest>().
+                HasOne(pr => pr.Product).
+                WithMany(pr => pr.ProductRequests).
+                HasForeignKey(pr => pr.ProductId);
+            modelBuilder.Entity<ProductRequest>().
+                HasOne(pr => pr.Request).
+                WithMany(pr => pr.ProductRequests).
+                HasForeignKey(pr => pr.RequestId);
         }
     }
 }

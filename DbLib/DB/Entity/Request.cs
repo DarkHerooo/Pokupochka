@@ -14,6 +14,6 @@ namespace DbLib.DB.Entity
         public Counterparty? Counterparty { get; set; }
         public int StatusId { get; set; }
         public Status? Status { get; set; }
-        public List<Product> Products { get; set; } = new();
+        public List<ProductRequest> ProductRequests { get; set; } = new();
     }
 }
