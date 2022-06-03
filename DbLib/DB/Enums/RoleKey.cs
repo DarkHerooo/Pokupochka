@@ -9,10 +9,9 @@ namespace DbLib.DB.Enums
     public enum RoleKey
     {
         Administratior = 1,
-        Storekeeper = 2,
-        Agent = 3,
-        Supplier = 4,
-        Client = 5
+        Agent = 2,
+        Supplier = 3,
+        Client = 4
     }
 
     // <Название роли> = <Код роли> (из БД)

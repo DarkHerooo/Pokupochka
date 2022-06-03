@@ -105,8 +105,10 @@ namespace WPFSupplierLib.View.Contracts
                 contract.DateStart = DateTime.Now;
                 contract.DateOver = DateTime.Now.AddYears(contract.CountYears);
 
-                int contractNumber = DbConnect.Db.Contracts.Max(c => c.Number);
-                contract.Number = contractNumber != 0 ? contractNumber + 1 : 100000;
+                int contractNumber = 100000;
+                if (DbConnect.Db.Contracts.Count() > 0)
+                    contractNumber = DbConnect.Db.Contracts.Max(c => c.Number) + 1;
+                contract.Number = contractNumber;
 
                 foreach (var productTemplate in productTemplates)
                 {

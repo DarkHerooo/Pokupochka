@@ -18,8 +18,6 @@ namespace DbLib.DB
         public DbSet<Contract> Contracts { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Request> Requests { get; set; } = null!;
-        public DbSet<Warehouse> Warehouses { get; set; } = null!;
-        public DbSet<ProductWarehouse> ProductWarehouses { get; set; } = null!;
         public DbSet<ProductRequest> ProductRequests { get; set; } = null!;
 
         public PokupochkaContext()
@@ -36,16 +34,6 @@ namespace DbLib.DB
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<ProductWarehouse>().HasKey(pw => new { pw.ProductId, pw.WarehouseId });
-            modelBuilder.Entity<ProductWarehouse>().
-                HasOne(pw => pw.Product).
-                WithMany(pw => pw.ProductWarehouses).
-                HasForeignKey(pw => pw.ProductId);
-            modelBuilder.Entity<ProductWarehouse>().
-                HasOne(pw => pw.Warehouse).
-                WithMany(pw => pw.ProductWarehouses).
-                HasForeignKey(pw => pw.WarehouseId);
 
             modelBuilder.Entity<ProductRequest>().HasKey(pr => new { pr.ProductId, pr.RequestId });
             modelBuilder.Entity<ProductRequest>().

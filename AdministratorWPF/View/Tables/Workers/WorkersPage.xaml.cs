@@ -74,7 +74,6 @@ namespace AdministratorWPF.View.Tables
         {
             List<Role> roles = DbConnect.Db.Roles.Where
                 (r => r.Id == (int)RoleKey.Administratior ||
-                r.Id == (int)RoleKey.Storekeeper ||
                 r.Id == (int)RoleKey.Agent).ToList();
 
             foreach (var role in roles)

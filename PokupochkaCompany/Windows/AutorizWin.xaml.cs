@@ -68,7 +68,6 @@ namespace PokupochkaCompany.Windows
                 user.Login == TbLogin.Text &&
                 user.Password == PbPassword.Password &&
                 (user.RoleId == (int)RoleKey.Administratior ||
-                    user.RoleId == (int)RoleKey.Storekeeper ||
                     user.RoleId == (int)RoleKey.Agent));
 
             if (findUser != null) LoginToTheApp(findUser);

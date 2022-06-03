@@ -1,6 +1,5 @@
 ﻿using AdministratorWPF.View;
 using WPFAgentLib.View;
-using WPFStorekeeperLib.View;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib.Usr;
@@ -36,10 +35,6 @@ namespace PokupochkaCompany.Windows
                 case (int)RoleKey.Administratior:
                     UserStyles.SetUserStyles("AdminStyles.xaml");
                     FrmMain.NavigationService.Navigate(new AdminMainPage());
-                    break;
-                case (int)RoleKey.Storekeeper:
-                    UserStyles.SetUserStyles("StorekepStyles.xaml");
-                    FrmMain.NavigationService.Navigate(new StorekepMainPage());
                     break;
                 case (int)RoleKey.Agent:
                     UserStyles.SetUserStyles("AgentStyles.xaml");

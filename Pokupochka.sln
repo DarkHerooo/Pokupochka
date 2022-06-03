@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFAdministratorLib", "Admi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFAgentLib", "WPFAgentLib\WPFAgentLib.csproj", "{17459AE2-9673-40F7-B2E9-FD18579968DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFStorekeeperLib", "WPFStorekeeperLib\WPFStorekeeperLib.csproj", "{4002F1FE-AF0D-430C-86F3-297C0E373C80}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFCounterpartyLib", "WPFCounterpartyLib\WPFCounterpartyLib.csproj", "{FB826A9C-2C69-48D2-84CB-D25031D36B6A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFSupplierLib", "WPFSupplierLib\WPFSupplierLib.csproj", "{6B37C936-042C-45A2-8B64-30D6465D952C}"
@@ -23,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StylesLib", "StylesLib\Styl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokupochkaCompany", "PokupochkaCompany\PokupochkaCompany.csproj", "{461DFA73-5847-4805-A2B4-DE6595AD3C25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{89046B1E-1CB2-4EE8-B43E-491D323180E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{89046B1E-1CB2-4EE8-B43E-491D323180E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +49,6 @@ Global
 		{17459AE2-9673-40F7-B2E9-FD18579968DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17459AE2-9673-40F7-B2E9-FD18579968DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17459AE2-9673-40F7-B2E9-FD18579968DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4002F1FE-AF0D-430C-86F3-297C0E373C80}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB826A9C-2C69-48D2-84CB-D25031D36B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB826A9C-2C69-48D2-84CB-D25031D36B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB826A9C-2C69-48D2-84CB-D25031D36B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -36,7 +36,6 @@
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
     <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
     <ProjectReference Include="..\WPFAgentLib\WPFAgentLib.csproj" />
-    <ProjectReference Include="..\WPFStorekeeperLib\WPFStorekeeperLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -84,9 +83,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UserStyles\CompanyStyles.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="UserStyles\StorekepStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
