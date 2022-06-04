@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
+    <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
   </ItemGroup>
 
 </Project>

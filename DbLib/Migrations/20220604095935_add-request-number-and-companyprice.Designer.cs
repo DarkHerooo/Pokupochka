@@ -4,6 +4,7 @@ using DbLib.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbLib.Migrations
 {
     [DbContext(typeof(PokupochkaContext))]
-    partial class PokupochkaContextModelSnapshot : ModelSnapshot
+    [Migration("20220604095935_add-request-number-and-companyprice")]
+    partial class addrequestnumberandcompanyprice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,9 +136,9 @@ namespace DbLib.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal>("CompanyPrice")
+                    b.Property<double>("CompanyPrice")
                         .HasPrecision(15, 2)
-                        .HasColumnType("decimal(15,2)");
+                        .HasColumnType("float(15)");
 
                     b.Property<int>("CountInStock")
                         .HasColumnType("int");
@@ -144,9 +146,9 @@ namespace DbLib.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<double>("Price")
                         .HasPrecision(15, 2)
-                        .HasColumnType("decimal(15,2)");
+                        .HasColumnType("float(15)");
 
                     b.Property<string>("Title")
                         .IsRequired()

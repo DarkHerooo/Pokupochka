@@ -9,12 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\contract_template.png" />
     <None Remove="Images\Logo\box.ico" />
     <None Remove="Images\Logo\box.png" />
     <None Remove="Images\Messages\error.png" />
     <None Remove="Images\Messages\loading.gif" />
-    <None Remove="Images\new_contract_template.png" />
+    <None Remove="Images\new_template.png" />
     <None Remove="Images\not_found.png" />
+    <None Remove="Images\request_template.png" />
     <None Remove="Images\Roles\client.png" />
     <None Remove="Images\Roles\supplier.png" />
   </ItemGroup>
@@ -36,11 +38,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\contract_template.png" />
     <Resource Include="Images\Logo\box.png" />
     <Resource Include="Images\Messages\error.png" />
     <Resource Include="Images\Messages\loading.gif" />
-    <Resource Include="Images\new_contract_template.png" />
+    <Resource Include="Images\new_template.png" />
     <Resource Include="Images\not_found.png" />
+    <Resource Include="Images\request_template.png" />
     <Resource Include="Images\Roles\client.png" />
     <Resource Include="Images\Roles\supplier.png" />
   </ItemGroup>

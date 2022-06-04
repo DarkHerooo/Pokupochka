@@ -16,7 +16,7 @@
     </Page.Resources>
 
     <Grid>
-        <ScrollViewer Grid.Row="0">
+        <ScrollViewer>
             <StackPanel Orientation="Vertical" Name="SpContracts"/>
         </ScrollViewer>
     </Grid>

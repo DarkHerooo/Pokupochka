@@ -9,6 +9,7 @@ namespace DbLib.DB.Entity
     public class Request
     {
         public int Id { get; set; }
+        public int Number { get; set; }
         public DateTime Date { get; set; }
         public int CounterpartyId { get; set; }
         public Counterparty? Counterparty { get; set; }

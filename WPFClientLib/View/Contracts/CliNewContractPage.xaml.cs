@@ -25,18 +25,18 @@ namespace WPFClientLib.View.Contracts
     public partial class CliNewContractPage : Page
     {
         private Counterparty _counterparty = null!;
-        private List<Product> _cntrActiveProducts = new();
+        private List<Product> _cntrProducts = new();
         private List<Product> _selectProducts = new();
         public CliNewContractPage(Counterparty counterparty)
         {
             _counterparty = counterparty;
             InitializeComponent();
 
-            SetCntrActiveProducts();
+            SetCntrProducts();
             ShowProducts();
         }
 
-        private void SetCntrActiveProducts()
+        private void SetCntrProducts()
         {
             List<Contract> contracts = 
                 DbConnect.Db.Contracts.Where(c => 
@@ -48,7 +48,7 @@ namespace WPFClientLib.View.Contracts
             foreach (var contract in contracts)
             {
                 foreach (var product in contract.Products)
-                    _cntrActiveProducts.Add(product);
+                    _cntrProducts.Add(product);
             }
         }
 
@@ -65,13 +65,13 @@ namespace WPFClientLib.View.Contracts
         {
             List<Product> products = DbConnect.Db.Products.Where(p => p.CountInStock > 0).ToList();
 
-            foreach(var product in _cntrActiveProducts)
-                products.Remove(product);
+            foreach(var cntrProduct in _cntrProducts)
+                products.Remove(cntrProduct);
 
             foreach (var selectProduct in _selectProducts)
                 products.Remove(selectProduct);
 
-            if (String.IsNullOrEmpty(TbFindProducts.Text) || String.IsNullOrWhiteSpace(TbFindProducts.Text))
+            if (!String.IsNullOrEmpty(TbFindProducts.Text) && !String.IsNullOrWhiteSpace(TbFindProducts.Text))
                 products = products.Where(p => p.Title.ToLower().Contains(TbFindProducts.Text.ToLower())).ToList();
 
             return products;

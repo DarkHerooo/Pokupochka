@@ -114,7 +114,8 @@ namespace WPFSupplierLib.View.Contracts
                 {
                     Product product = new();
                     product.Title = productTemplate.TbName.Text;
-                    product.Price = double.Parse(productTemplate.TbPrice.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+                    product.Price = decimal.Parse(productTemplate.TbPrice.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+                    product.CompanyPrice = product.Price + (product.Price / 100 * 30);
                     product.Image = productTemplate.ImageBytes;
                     product.AddOrChange();
 

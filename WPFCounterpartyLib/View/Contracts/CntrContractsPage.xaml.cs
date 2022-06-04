@@ -108,6 +108,7 @@ namespace WPFCounterpartyLib.View.Contracts
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            DbConnect.Db.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
             ShowContracts();
         }
     }

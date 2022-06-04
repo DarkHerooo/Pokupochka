@@ -44,6 +44,9 @@ namespace DbLib.DB
                 HasOne(pr => pr.Request).
                 WithMany(pr => pr.ProductRequests).
                 HasForeignKey(pr => pr.RequestId);
+
+            modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(15, 2);
+            modelBuilder.Entity<Product>().Property(p => p.CompanyPrice).HasPrecision(15, 2);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using WPFAgentLib.View.Contracts;
+using WPFAgentLib.View.Requests;
 
 namespace WPFAgentLib.View
 {
@@ -43,7 +44,7 @@ namespace WPFAgentLib.View
 
         private void BtnRequests_Click(object sender, RoutedEventArgs e)
         {
-
+            _fwhMain.Navigate(new RequestsMainPage());
         }
     }
 }
