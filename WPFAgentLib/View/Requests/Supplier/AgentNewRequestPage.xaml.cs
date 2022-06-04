@@ -80,6 +80,15 @@ namespace WPFAgentLib.View.Requests.Supplier
             return products;
         }
 
+        private void TbCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal fullPrice = 0;
+            foreach (var pit in _productItemTemplates)
+                fullPrice += pit.Price;
+
+            TblFullPrice.Text = fullPrice.ToString();
+        }
+
         private void BtnGetProduct_Click(object sender, RoutedEventArgs e)
         {
             Product? product = LbAllProducts.SelectedItem as Product;
@@ -90,12 +99,8 @@ namespace WPFAgentLib.View.Requests.Supplier
                 productItemTemplate.TbCount.TextChanged += TbCount_TextChanged;
                 _productItemTemplates.Add(productItemTemplate);
                 ShowProducts();
+                TbCount_TextChanged(null!, null!);
             }
-        }
-
-        private void TbCount_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string 
         }
 
         private void LbAllProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -119,6 +124,7 @@ namespace WPFAgentLib.View.Requests.Supplier
                 {
                     _productItemTemplates.Remove(productItemTemplate);
                     ShowProducts();
+                    TbCount_TextChanged(null!, null!);
                 }
             }
         }

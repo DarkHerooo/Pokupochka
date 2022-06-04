@@ -131,7 +131,8 @@
 
         <TextBlock Grid.Row="2" HorizontalAlignment="Right" Margin="5" FontSize="30" FontWeight="Bold">
             <Run Text="Итог:"/>
-            <Run Name="TblFullPrice"/>
+            <Run Name="TblFullPrice" Text="0"/>
+            <Run Text="₽"/>
         </TextBlock>
 
         <Grid Grid.Row="3">

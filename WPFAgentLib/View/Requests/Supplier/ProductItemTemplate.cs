@@ -18,12 +18,13 @@ namespace WPFAgentLib.View.Requests.Supplier
         private Grid _gridProductItemTemplate = null!;
         private Product _product = null!;
         private TextBox _tbCount = null!;
+        private TextBlock _tblPrice = null!;
         private decimal _price;
 
         public Grid GridProductItemTemplate => _gridProductItemTemplate!;
         public Product Product => _product;
         public TextBox TbCount => _tbCount;
-        private decimal Price => _price;
+        public decimal Price => _price;
 
         public ProductItemTemplate(Product product)
         {
@@ -79,14 +80,14 @@ namespace WPFAgentLib.View.Requests.Supplier
             Grid.SetColumn(gridData, 2);
             _gridProductItemTemplate.Children.Add(gridData);
 
-            TextBlock tblPrice = new();
-            tblPrice.HorizontalAlignment = HorizontalAlignment.Center;
-            tblPrice.VerticalAlignment = VerticalAlignment.Center;
-            tblPrice.FontSize = 20;
-            tblPrice.FontWeight = FontWeights.Bold;
-            tblPrice.Text = _product.Price + "₽";
-            Grid.SetColumn(tblPrice, 3);
-            _gridProductItemTemplate.Children.Add(tblPrice);
+            _tblPrice = new();
+            _tblPrice.HorizontalAlignment = HorizontalAlignment.Center;
+            _tblPrice.VerticalAlignment = VerticalAlignment.Center;
+            _tblPrice.FontSize = 20;
+            _tblPrice.FontWeight = FontWeights.Bold;
+            _tbCount_TextChanged(null!, null!);
+            Grid.SetColumn(_tblPrice, 3);
+            _gridProductItemTemplate.Children.Add(_tblPrice);
         }
 
         private ImageBrush GetImageBrush()
@@ -115,9 +116,7 @@ namespace WPFAgentLib.View.Requests.Supplier
             else count = int.Parse(_tbCount.Text);
 
             _price = _product.Price * count;
-
-            TextBlock? tblPrice = sender as TextBlock;
-            tblPrice!.Text = _price + "₽";
+            _tblPrice.Text = _price + "₽";
         }
 
         private void _tbCount_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
