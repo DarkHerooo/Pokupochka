@@ -48,7 +48,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Количество лет:" Style="{StaticResource TblData}"/>
             
-            <TextBox Grid.Column="1" Margin="5, 0, 0, 0" Width="40" Style="{StaticResource TbData}"
+            <TextBox Grid.Column="1" Margin="5, 0, 0, 0" Width="40" HorizontalContentAlignment="Center" Style="{StaticResource TbData}"
                      MaxLength="1" Name="TbCountYears"/>
         </Grid>
 

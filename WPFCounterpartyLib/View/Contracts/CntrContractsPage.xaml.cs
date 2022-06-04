@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using WPFClientLib.View.Contracts;
 using WPFSupplierLib.View.Contracts;
 
 namespace WPFCounterpartyLib.View.Contracts
@@ -89,19 +90,20 @@ namespace WPFCounterpartyLib.View.Contracts
                 }
 
                 if (findTemplate != null)
-                {
-                    User user = CurrentUser.User!;
-                    if (user.RoleId == (int)RoleKey.Supplier)
-                        NavigationService.Navigate(new CntrShowContract(findTemplate.Contract));
-                }
+                    NavigationService.Navigate(new CntrShowContract(findTemplate.Contract));
             }
         }
 
         private void NewBrdContract_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             User user = CurrentUser.User!;
-            if (user.RoleId == (int)RoleKey.Supplier)
-                NavigationService.Navigate(new SupNewContractPage(user.Counterparty!));
+            switch(user.RoleId)
+            {
+                case (int)RoleKey.Supplier:
+                    NavigationService.Navigate(new SupNewContractPage(user.Counterparty!)); break;
+                case (int)RoleKey.Client:
+                    NavigationService.Navigate(new CliNewContractPage(user.Counterparty!)); break;
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

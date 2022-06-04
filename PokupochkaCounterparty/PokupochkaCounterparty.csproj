@@ -66,6 +66,7 @@
     <Page Update="Styles\TargetStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Styles\ToolkitStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

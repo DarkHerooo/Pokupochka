@@ -18,4 +18,16 @@
     <Style TargetType="DataGridCell">
         <Setter Property="Height" Value="128"/>
     </Style>
+
+    <Style TargetType="ListBox">
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+        </Style.Resources>
+    </Style>
 </ResourceDictionary>
