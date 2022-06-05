@@ -53,7 +53,7 @@ namespace WPFAgentLib.View.Contracts
             {
                 case 0:
                     contracts = contracts.Where(c =>
-                    c.StatusId == (int)StatusKey.Сonsidered &&
+                    c.StatusId == (int)StatusKey.Considered &&
                     c.Counterparty!.User!.Role! == _role).ToList(); break;
                 case 1: contracts = contracts.Where(c => 
                     (c.StatusId == (int)StatusKey.Active ||

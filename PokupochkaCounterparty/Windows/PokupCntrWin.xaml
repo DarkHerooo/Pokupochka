@@ -44,7 +44,6 @@
                 <TextBlock FontSize="20">
                     <Run Text="Пользователь:" FontWeight="Bold"/>
                     <Run Text="{Binding FIO}"/>
-                    <Run Text="{Binding Role.Title}"/>
                 </TextBlock>
             </StackPanel>
 

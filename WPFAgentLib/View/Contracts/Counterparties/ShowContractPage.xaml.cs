@@ -23,7 +23,7 @@ namespace WPFAgentLib.View.Contracts
 
         public void SetPageSettings()
         {
-            if (_contract.StatusId == (int)StatusKey.Сonsidered)
+            if (_contract.StatusId == (int)StatusKey.Considered)
             {
                 BtnAccept.Visibility = Visibility.Visible;
                 BtnCancel.Visibility = Visibility.Visible;

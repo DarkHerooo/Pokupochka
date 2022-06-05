@@ -43,6 +43,8 @@ namespace WPFSupplierLib.View.Requests
                     BtnCancel.Visibility = Visibility.Hidden;
                     Grid.SetColumn(BtnAccept, 1);
                     Grid.SetColumnSpan(BtnAccept, 2);
+                    BtnAccept.Content = "Доставлено";
+                    BtnAccept.Click -= BtnAccept_Click;
                     BtnAccept.Click += BtnDelivered_Click;
                 }
                 else
@@ -53,7 +55,7 @@ namespace WPFSupplierLib.View.Requests
             }
             else if (CurrentUser.User.RoleId == (int)RoleKey.Supplier)
             {
-                if (_request.StatusId != (int)StatusKey.Сonsidered)
+                if (_request.StatusId != (int)StatusKey.Considered)
                 {
                     BtnCancel.Visibility = Visibility.Hidden;
                     BtnAccept.Visibility = Visibility.Hidden;

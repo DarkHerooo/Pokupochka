@@ -1,9 +1,13 @@
-﻿using GeneralLib;
+﻿using DbLib.DB.Entity;
+using DbLib.DB.Enums;
+using GeneralLib;
+using GeneralLib.Usr;
 using StylesLib;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using WPFCounterpartyLib.View.Contracts;
+using WPFSupplierLib.View.Requests;
 
 namespace WPFCounterpartyLib.View
 {
@@ -39,7 +43,13 @@ namespace WPFCounterpartyLib.View
 
         private void BtnRequests_Click(object sender, RoutedEventArgs e)
         {
+            Role role = CurrentUser.User.Role!;
 
+            switch(role.Id)
+            {
+                case (int)RoleKey.Supplier: _fwhMain.Navigate(new SupRequestsPage()); break;
+                case (int)RoleKey.Client: break;
+            }
         }
     }
 }

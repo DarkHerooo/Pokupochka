@@ -8,7 +8,7 @@ namespace DbLib.DB.Enums
 {
     public enum StatusKey
     {
-        Сonsidered = 1,
+        Considered = 1,
         Active = 2,
         Cancel = 3,
         Ended = 4,

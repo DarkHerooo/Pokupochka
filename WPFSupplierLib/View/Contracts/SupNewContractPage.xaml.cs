@@ -100,7 +100,7 @@ namespace WPFSupplierLib.View.Contracts
             {
                 Contract contract = new();
                 contract.Counterparty = _counterparty;
-                contract.StatusId = (int)StatusKey.Сonsidered;
+                contract.StatusId = (int)StatusKey.Considered;
                 contract.CountYears = int.Parse(TbCountYears.Text);
                 contract.DateStart = DateTime.Now;
                 contract.DateOver = DateTime.Now.AddYears(contract.CountYears);

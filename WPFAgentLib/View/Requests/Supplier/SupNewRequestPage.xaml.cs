@@ -182,7 +182,7 @@ namespace WPFAgentLib.View.Requests.Supplier
                 Request request = new();
                 request.Counterparty = _counterparty;
                 request.Date = DateTime.Now.Date;
-                request.StatusId = (int)StatusKey.Сonsidered;
+                request.StatusId = (int)StatusKey.Considered;
 
                 int number = 100000;
                 if (DbConnect.Db.Requests.Count() > 0)

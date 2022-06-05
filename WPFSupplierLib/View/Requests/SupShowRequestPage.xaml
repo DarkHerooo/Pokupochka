@@ -41,7 +41,7 @@
                 </TextBlock>
                 <TextBlock FontSize="15">
                     <Run Text="Дата создания:" FontWeight="Bold"/>
-                    <Run Text="{Binding ShortDateStart}"/>
+                    <Run Text="{Binding ShortDate}"/>
                 </TextBlock>
             </StackPanel>
 
@@ -93,7 +93,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Стоимость" Width="200">
+                    <DataGridTemplateColumn Header="Общая сумма" Width="200">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
