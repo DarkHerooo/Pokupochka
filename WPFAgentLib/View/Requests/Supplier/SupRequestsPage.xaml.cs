@@ -16,16 +16,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFSupplierLib.View.Requests;
 
 namespace WPFAgentLib.View.Requests.Supplier
 {
     /// <summary>
     /// Логика взаимодействия для SuppRequestsPage.xaml
     /// </summary>
-    public partial class SuppRequestsPage : Page
+    public partial class SupRequestsPage : Page
     {
         private List<RequestTemplate> _requestTemplates = new();
-        public SuppRequestsPage()
+        public SupRequestsPage()
         {
             InitializeComponent();
             ShowRequests();
@@ -85,14 +86,14 @@ namespace WPFAgentLib.View.Requests.Supplier
                 }
 
                 if (findTemplate != null)
-                    NavigationService.Navigate(new ShowRequestPage(findTemplate.Request));
+                    NavigationService.Navigate(new SupShowRequestPage(findTemplate.Request));
             }
         }
 
         private void NewBrdRequest_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 1)
-                NavigationService.Navigate(new AgentNewRequestPage());
+                NavigationService.Navigate(new SupNewRequestPage());
         }
 
         private List<Request> GetRequests()

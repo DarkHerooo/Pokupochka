@@ -14,11 +14,11 @@ namespace WPFAgentLib.View.Requests.Supplier
     /// <summary>
     /// Логика взаимодействия для AgentNewRequestPage.xaml
     /// </summary>
-    public partial class AgentNewRequestPage : Page
+    public partial class SupNewRequestPage : Page
     {
         private List<ProductItemTemplate> _productItemTemplates = new();
         private Counterparty _counterparty = null!;
-        public AgentNewRequestPage()
+        public SupNewRequestPage()
         {
             InitializeComponent();
             ShowProducts();
@@ -76,6 +76,8 @@ namespace WPFAgentLib.View.Requests.Supplier
 
             if (!String.IsNullOrEmpty(TbFindProducts.Text) && !String.IsNullOrWhiteSpace(TbFindProducts.Text))
                 products = products.Where(p => p.Title.ToLower().Contains(TbFindProducts.Text.ToLower())).ToList();
+
+            products = products.OrderByDescending(p => p.CountInStock).ToList();
 
             return products;
         }
@@ -179,23 +181,29 @@ namespace WPFAgentLib.View.Requests.Supplier
             {
                 Request request = new();
                 request.Counterparty = _counterparty;
-                /*Contract contract = new();
-                contract.Counterparty = _counterparty;
-                contract.StatusId = (int)StatusKey.Сonsidered;
-                contract.CountYears = int.Parse(TbCountYears.Text);
-                contract.DateStart = DateTime.Now;
-                contract.DateOver = DateTime.Now.AddYears(contract.CountYears);
+                request.Date = DateTime.Now.Date;
+                request.StatusId = (int)StatusKey.Сonsidered;
 
-                int contractNumber = 100000;
-                if (DbConnect.Db.Contracts.Count() > 0)
-                    contractNumber = DbConnect.Db.Contracts.Max(c => c.Number) + 1;
-                contract.Number = contractNumber;
+                int number = 100000;
+                if (DbConnect.Db.Requests.Count() > 0)
+                    number = DbConnect.Db.Requests.Max(r => r.Number) + 1;
+                request.Number = number;
 
-                foreach (var product in _selectProducts)
-                    contract.Products.Add(product);
-
-                contract.AddOrChange();
-                BtnCancel_Click(null!, null!);*/
+                decimal fullPrice = 0;
+                foreach(var productItemTemplate in _productItemTemplates)
+                {
+                    if (productItemTemplate.CheckData())
+                    {
+                        ProductRequest pr = new();
+                        pr.Product = productItemTemplate.Product;
+                        pr.Count = int.Parse(productItemTemplate.TbCount.Text);
+                        fullPrice += productItemTemplate.Price;
+                        request.ProductRequests.Add(pr);
+                    }
+                }
+                request.Price = fullPrice;
+                request.AddOrChange();
+                BtnCancel_Click(null!, null!);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,21 @@ namespace DbLib.DB.Entity
         public byte[]? Image { get; set; }
         public List<Contract> Contracts { get; set; } = new();
         public List<ProductRequest> ProductRequests { get; set; } = new();
+
+        [NotMapped]
+        public string Color
+        {
+            get
+            {
+                if (CountInStock >= 500)
+                    return "Transparent";
+                else if (CountInStock >= 250)
+                    return "Yellow";
+                else 
+                    return "Red";
+            }
+            set { }
+        }
 
         public void AddOrChange()
         {

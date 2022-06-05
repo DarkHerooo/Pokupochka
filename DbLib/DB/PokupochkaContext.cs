@@ -47,6 +47,7 @@ namespace DbLib.DB
 
             modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(15, 2);
             modelBuilder.Entity<Product>().Property(p => p.CompanyPrice).HasPrecision(15, 2);
+            modelBuilder.Entity<Request>().Property(r => r.Price).HasPrecision(15, 2);
         }
     }
 }

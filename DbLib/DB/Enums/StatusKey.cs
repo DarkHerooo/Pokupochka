@@ -12,7 +12,9 @@ namespace DbLib.DB.Enums
         Active = 2,
         Cancel = 3,
         Ended = 4,
-        Stop = 5
+        Stop = 5,
+        InTheWay = 6,
+        Delivered = 7
     }
 
     // <Название статуса> = <Код статуса> (из БД)

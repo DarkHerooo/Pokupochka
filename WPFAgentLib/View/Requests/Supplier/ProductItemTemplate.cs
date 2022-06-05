@@ -108,6 +108,18 @@ namespace WPFAgentLib.View.Requests.Supplier
             return new ImageBrush(bitmap);
         }
 
+        public bool CheckData()
+        {
+            bool trueData = true;
+
+            if (!int.TryParse(_tbCount.Text, out _))
+                trueData = false;
+            else if (int.Parse(_tbCount.Text) <= 0)
+                trueData = false;
+
+            return trueData;
+        }
+
         private void _tbCount_TextChanged(object sender, TextChangedEventArgs e)
         {
             int count;

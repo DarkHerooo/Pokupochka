@@ -55,7 +55,7 @@ namespace WPFAgentLib.View.Requests
 
         private void BtnSuppliers_Click(object sender, RoutedEventArgs e)
         {
-            _fwhTables.Navigate(new SuppRequestsPage());
+            _fwhTables.Navigate(new SupRequestsPage());
         }
 
         private void BtnClients_Click(object sender, RoutedEventArgs e)

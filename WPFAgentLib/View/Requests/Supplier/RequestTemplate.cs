@@ -32,14 +32,14 @@ namespace WPFAgentLib.View.Requests.Supplier
             _brdRequest = new();
             _brdRequest.Style = DataStyles.BrdImage;
             _brdRequest.Background = Brushes.White;
-            _brdRequest.Width = 200;
-            _brdRequest.Height = 220;
+            _brdRequest.Width = 210;
+            _brdRequest.Height = 230;
             {
                 Grid grid = new();
                 grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(150) });
                 grid.RowDefinitions.Add(new RowDefinition());
                 grid.RowDefinitions.Add(new RowDefinition());
-                grid.RowDefinitions.Add(new RowDefinition());
+                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(30) });
                 _brdRequest.Child = grid;
                 {
                     Border brdImage = new();
@@ -61,6 +61,18 @@ namespace WPFAgentLib.View.Requests.Supplier
                     tblNumber.Text = _request.Id != 0 ? "#" + _request.Number : "Новый";
                     Grid.SetRow(tblNumber, 1);
                     grid.Children.Add(tblNumber);
+
+                    if (_request.Id != 0)
+                    {
+                        TextBlock tblPrice = new();
+                        tblPrice.HorizontalAlignment = HorizontalAlignment.Center;
+                        tblPrice.FontSize = 15;
+                        tblPrice.FontWeight = FontWeights.Bold;
+                        tblPrice.Foreground = Brushes.ForestGreen;
+                        tblPrice.Text = _request.Price + "₽";
+                        Grid.SetRow(tblPrice, 2);
+                        grid.Children.Add(tblPrice);
+                    }
 
                     if (_request.Id != 0)
                     {

@@ -10,6 +10,7 @@
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
     <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
+    <ProjectReference Include="..\WPFSupplierLib\WPFSupplierLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
