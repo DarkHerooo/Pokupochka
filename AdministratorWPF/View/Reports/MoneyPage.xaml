@@ -1,0 +1,31 @@
+﻿<Page x:Class="WPFAdministratorLib.View.Reports.MoneyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFAdministratorLib.View.Reports"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MoneyPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock FontSize="30" Foreground="Green">
+                <Run Text="Товаров продано:"/>
+                <Run Name="TblCountProductsSell" FontWeight="Bold"/>
+                <Run Text="->"/>
+                <Run Name="TblProductsSellPrice" FontWeight="Bold"/>
+            </TextBlock>
+            <TextBlock FontSize="30" Foreground="Red">
+                <Run Text="Товаров куплено:"/>
+                <Run Name="TblCountProductsBuy" FontWeight="Bold"/>
+                <Run Text="->"/>
+                <Run Name="TblProductsBuyPrice" FontWeight="Bold"/>
+            </TextBlock>
+            <TextBlock FontSize="50" Margin="0, 10, 0, 0" Name="TblSum">
+                <Run Text="Итог:"/>
+                <Run Name="TblSumMoney" FontWeight="Bold"/>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

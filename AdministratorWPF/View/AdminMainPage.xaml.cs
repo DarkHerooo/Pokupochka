@@ -1,4 +1,5 @@
-﻿using AdministratorWPF.View.Tables;
+﻿using AdministratorWPF.View.Reports;
+using AdministratorWPF.View.Tables;
 using GeneralLib;
 using StylesLib;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace AdministratorWPF.View
 
         private void BtnDocs_Click(object sender, RoutedEventArgs e)
         {
-            
+            _fwhMain.Navigate(new MainReportsPage());
         }
     }
 }
