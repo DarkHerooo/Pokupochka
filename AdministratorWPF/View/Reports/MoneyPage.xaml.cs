@@ -29,7 +29,7 @@ namespace WPFAdministratorLib.View.Reports
             InitializeComponent();
         }
 
-        private void Calculate()
+    /*    private void Calculate()
         {  
             List<Request> supRequests = DbConnect.Db.Requests
                 .Where(c => c.Counterparty!.User!.RoleId == (int)RoleKey.Supplier)
@@ -70,11 +70,11 @@ namespace WPFAdministratorLib.View.Reports
             decimal sum = cliFullPrice - supFullPrice;
             TblSumMoney.Text = sum.ToString();
             TblSum.Foreground = sum <= 0 ? Brushes.Red : Brushes.Green;
-        }
+        }*/
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Calculate();
+            //Calculate();
         }
     }
 }

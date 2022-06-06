@@ -17,7 +17,7 @@ namespace GeneralLib
 
         public static byte[] GetDefaultBytes()
         {
-            byte[] bytes = GetBytes(AppPath.Path + "/Images/not_found.png");
+            byte[] bytes = GetBytes("Images/not_found.png");
 
             return bytes;
         }

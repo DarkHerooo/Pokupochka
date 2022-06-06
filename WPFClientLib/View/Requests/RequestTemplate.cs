@@ -45,8 +45,8 @@ namespace WPFClientLib.View.Requests
                     Border brdImage = new();
                     brdImage.Style = DataStyles.BrdImage;
                     brdImage.BorderThickness = new Thickness(0);
-                    string imgUri = _request.Id != 0 ? "/Images/request_template.png" : "/Images/new_template.png";
-                    BitmapImage bitmap = new BitmapImage(new Uri(AppPath.Path + imgUri));
+                    string imgUri = _request.Id != 0 ? "Images/request_template.png" : "Images/new_template.png";
+                    BitmapImage bitmap = new BitmapImage(new Uri(imgUri, UriKind.Relative));
                     brdImage.Background = new ImageBrush(bitmap);
                     brdImage.Width = 128;
                     brdImage.Height = 128;

@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\Logo\box.ico" />
+    <Content Include="Images\Logo\box.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -45,22 +47,48 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Docs\ContractTemplate.docx" />
-    <Resource Include="Images\Logo\box.png" />
-    <Resource Include="Images\Messages\error.png" />
-    <Resource Include="Images\Messages\loading.gif" />
-    <Resource Include="Images\new_template.png" />
-    <Resource Include="Images\not_found.png" />
-    <Resource Include="Images\print.png" />
-    <Resource Include="Images\request_template.png" />
-    <Resource Include="Images\Roles\admin.png" />
-    <Resource Include="Images\Roles\agent.png" />
-    <Resource Include="Images\Roles\client.png" />
-    <Resource Include="Images\Roles\storekeeper.png" />
-    <Resource Include="Images\Roles\supplier.png" />
-    <Resource Include="Images\Roles\unk.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="Docs\ContractTemplate.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\box.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Messages\error.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Messages\loading.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\new_template.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\not_found.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\print.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\request_template.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Roles\admin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Roles\agent.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Roles\client.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Roles\storekeeper.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Roles\supplier.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Roles\unk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Scripts\clear_script.sql" />
     <Resource Include="Scripts\data_script.sql" />
   </ItemGroup>

@@ -26,9 +26,9 @@ namespace DbLib.DB.Entity
                 if (CountInStock >= 500)
                     return "Transparent";
                 else if (CountInStock >= 250)
-                    return "Yellow";
+                    return "#fcfbb1";
                 else 
-                    return "Red";
+                    return "#ff6666";
             }
             set { }
         }
