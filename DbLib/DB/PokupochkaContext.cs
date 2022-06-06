@@ -23,7 +23,15 @@ namespace DbLib.DB
         public PokupochkaContext()
         {
             //Database.EnsureDeleted();
-            Database.EnsureCreated();
+            if (Database.EnsureCreated())
+            {
+                /*string[] sqlLines = File.ReadAllLines("../../../Scripts/clear_script.sql");
+                string sqlScript = "";
+                foreach (var line in sqlLines)
+                    if (line != "GO" || line != "OFFSET") sqlScript += line;
+
+                this.Database.ExecuteSqlRaw(sqlScript);*/
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)

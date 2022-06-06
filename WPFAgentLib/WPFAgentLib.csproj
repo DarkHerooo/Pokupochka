@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\print.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
     <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
@@ -83,6 +87,11 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+    <PackageReference Include="TemplateEngine.Docx" Version="1.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\print.png" />
   </ItemGroup>
 
 </Project>

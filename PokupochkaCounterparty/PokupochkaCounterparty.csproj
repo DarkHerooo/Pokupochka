@@ -19,6 +19,8 @@
     <None Remove="Images\request_template.png" />
     <None Remove="Images\Roles\client.png" />
     <None Remove="Images\Roles\supplier.png" />
+    <None Remove="Scripts\clear_script.sql" />
+    <None Remove="Scripts\data_script.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +49,8 @@
     <Resource Include="Images\request_template.png" />
     <Resource Include="Images\Roles\client.png" />
     <Resource Include="Images\Roles\supplier.png" />
+    <Resource Include="Scripts\clear_script.sql" />
+    <Resource Include="Scripts\data_script.sql" />
   </ItemGroup>
 
   <ItemGroup>

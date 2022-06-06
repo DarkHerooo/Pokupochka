@@ -1,9 +1,14 @@
 ﻿using DbLib.DB.Entity;
 using DbLib.DB.Enums;
+using GeneralLib;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using TemplateEngine.Docx;
 
 namespace WPFAgentLib.View.Contracts
 {
@@ -72,6 +77,58 @@ namespace WPFAgentLib.View.Contracts
         {
             NavigationService.GoBack();
             NavigationService.RemoveBackEntry();
+        }
+
+        private void BtnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            string fileName = "ContractTemplate.docx";
+            File.Copy(AppPath.Path + "/Docs/" + fileName, fileName, true);
+
+            TableContent productTable = new("Products");
+            foreach (var product in _contract.Products)
+            {
+                productTable.AddRow(
+                    new FieldContent("ProductName", product.Title),
+                    new FieldContent("ProductPrice", product.Price.ToString())
+                    );
+            }
+
+            var content = new Content();
+            if (_contract.Counterparty!.User!.RoleId == (int)RoleKey.Supplier)
+            {
+                content = new Content(
+                    new FieldContent("Number", _contract.Number.ToString()),
+                    new FieldContent("Address", _contract.Counterparty!.Address),
+                    new FieldContent("DateStart", _contract.ShortDateStart),
+                    new FieldContent("SupCompany", _contract.Counterparty!.Company),
+                    new FieldContent("SupFIO", _contract.Counterparty!.FIO),
+                    new FieldContent("CliCompany", "ООО Покупочка"),
+                    new FieldContent("CliFIO", "Коршунов Артём Леонидович"),
+                    productTable,
+                    new FieldContent("DateOver", _contract.ShortDateOver)
+                    );
+            }
+            else if (_contract.Counterparty!.User!.RoleId == (int)RoleKey.Client)
+            {
+                content = new Content(
+                    new FieldContent("Number", _contract.Number.ToString()),
+                    new FieldContent("Address", _contract.Counterparty!.Address),
+                    new FieldContent("DateStart", _contract.ShortDateStart),
+                    new FieldContent("SupCompany", "ООО Покупочка"),
+                    new FieldContent("SupFIO", "Коршунов Артём Леонидович"),
+                    new FieldContent("CliCompany", _contract.Counterparty!.Company),
+                    new FieldContent("CliFIO", _contract.Counterparty!.FIO),
+                    productTable,
+                    new FieldContent("DateOver", _contract.ShortDateOver)
+                    );
+            }
+
+            using (var doc = new TemplateProcessor(fileName).SetRemoveContentControls(true))
+            {
+                doc.FillContent(content);
+                doc.SaveChanges();
+                Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true });
+            }
         }
     }
 }

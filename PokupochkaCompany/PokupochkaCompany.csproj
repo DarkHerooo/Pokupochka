@@ -9,12 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Docs\ContractTemplate.docx" />
     <None Remove="Images\Logo\box.png" />
     <None Remove="Images\Logo\cat.jpg" />
     <None Remove="Images\Messages\error.png" />
     <None Remove="Images\Messages\loading.gif" />
     <None Remove="Images\new_template.png" />
     <None Remove="Images\not_found.png" />
+    <None Remove="Images\print.png" />
     <None Remove="Images\request_template.png" />
     <None Remove="Images\Roles\admin.png" />
     <None Remove="Images\Roles\agent.png" />
@@ -22,6 +24,8 @@
     <None Remove="Images\Roles\storekeeper.png" />
     <None Remove="Images\Roles\supplier.png" />
     <None Remove="Images\Roles\unk.png" />
+    <None Remove="Scripts\clear_script.sql" />
+    <None Remove="Scripts\data_script.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,11 +45,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Docs\ContractTemplate.docx" />
     <Resource Include="Images\Logo\box.png" />
     <Resource Include="Images\Messages\error.png" />
     <Resource Include="Images\Messages\loading.gif" />
     <Resource Include="Images\new_template.png" />
     <Resource Include="Images\not_found.png" />
+    <Resource Include="Images\print.png" />
     <Resource Include="Images\request_template.png" />
     <Resource Include="Images\Roles\admin.png" />
     <Resource Include="Images\Roles\agent.png" />
@@ -55,6 +61,8 @@
     <Resource Include="Images\Roles\unk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Scripts\clear_script.sql" />
+    <Resource Include="Scripts\data_script.sql" />
   </ItemGroup>
 
   <ItemGroup>

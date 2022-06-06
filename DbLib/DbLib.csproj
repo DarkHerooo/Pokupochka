@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <None Remove="box.ico" />
+    <None Remove="Data\clear_script.sql" />
+    <None Remove="Data\data_script.sql" />
+    <None Remove="Data\Suppliers_Clients\clear_script.sql" />
+    <None Remove="DB\clear_script.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +20,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Data\clear_script.sql" />
+    <Resource Include="Data\data_script.sql" />
+    <Resource Include="Data\Suppliers_Clients\clear_script.sql" />
+    <Resource Include="DB\clear_script.sql" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
