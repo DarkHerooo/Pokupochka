@@ -54,7 +54,11 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Contracts\Counterparties\CntrShowContractPage.xaml">
+    <Page Update="View\Contracts\Counterparties\CliShowContractPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Contracts\Counterparties\SupShowContractPage.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -80,7 +84,10 @@
     <Compile Update="View\Contracts\Counterparties\CntrContractsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Contracts\Counterparties\CntrShowContractPage.xaml.cs">
+    <Compile Update="View\Contracts\Counterparties\CliShowContractPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Contracts\Counterparties\SupShowContractPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

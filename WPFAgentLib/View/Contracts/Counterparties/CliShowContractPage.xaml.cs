@@ -15,10 +15,10 @@ namespace WPFAgentLib.View.Contracts
     /// <summary>
     /// Логика взаимодействия для ShowContractPage.xaml
     /// </summary>
-    public partial class CntrShowContractPage : Page
+    public partial class CliShowContractPage : Page
     {
         Contract _contract;
-        public CntrShowContractPage(Contract contract)
+        public CliShowContractPage(Contract contract)
         {
             InitializeComponent();
 
@@ -89,28 +89,11 @@ namespace WPFAgentLib.View.Contracts
             {
                 productTable.AddRow(
                     new FieldContent("ProductName", product.Title),
-                    new FieldContent("ProductPrice", product.Price.ToString())
+                    new FieldContent("ProductPrice", product.CompanyPrice.ToString())
                     );
             }
 
-            var content = new Content();
-            if (_contract.Counterparty!.User!.RoleId == (int)RoleKey.Supplier)
-            {
-                content = new Content(
-                    new FieldContent("Number", _contract.Number.ToString()),
-                    new FieldContent("Address", _contract.Counterparty!.Address),
-                    new FieldContent("DateStart", _contract.ShortDateStart),
-                    new FieldContent("SupCompany", _contract.Counterparty!.Company),
-                    new FieldContent("SupFIO", _contract.Counterparty!.FIO),
-                    new FieldContent("CliCompany", "ООО Покупочка"),
-                    new FieldContent("CliFIO", "Коршунов Артём Леонидович"),
-                    productTable,
-                    new FieldContent("DateOver", _contract.ShortDateOver)
-                    );
-            }
-            else if (_contract.Counterparty!.User!.RoleId == (int)RoleKey.Client)
-            {
-                content = new Content(
+            var content = new Content(
                     new FieldContent("Number", _contract.Number.ToString()),
                     new FieldContent("Address", _contract.Counterparty!.Address),
                     new FieldContent("DateStart", _contract.ShortDateStart),
@@ -121,7 +104,6 @@ namespace WPFAgentLib.View.Contracts
                     productTable,
                     new FieldContent("DateOver", _contract.ShortDateOver)
                     );
-            }
 
             using (var doc = new TemplateProcessor(fileName).SetRemoveContentControls(true))
             {

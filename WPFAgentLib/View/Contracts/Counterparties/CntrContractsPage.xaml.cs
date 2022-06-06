@@ -78,8 +78,15 @@ namespace WPFAgentLib.View.Contracts
 
             if (contract != null)
             {
-                NavigationService.Navigate(new CntrShowContractPage(contract));
-                return;
+                switch(contract.Counterparty!.User!.RoleId)
+                {
+                    case (int)RoleKey.Supplier:
+                        NavigationService.Navigate(new SupShowContractPage(contract));
+                        break;
+                    case (int)RoleKey.Client:
+                        NavigationService.Navigate(new CliShowContractPage(contract));
+                        break;
+                }
             }
         }
 

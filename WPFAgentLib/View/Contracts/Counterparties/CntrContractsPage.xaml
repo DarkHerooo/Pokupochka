@@ -56,7 +56,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical" Margin="5" >
-                                <TextBlock FontSize="20" FontWeight="Bold">
+                                <TextBlock FontSize="20" FontWeight="Bold" Name="TblNumber">
                                     <Run Text="Договор №"/><Run Text="{Binding Number}"/>
                                 </TextBlock>
                                 
