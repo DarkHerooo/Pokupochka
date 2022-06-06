@@ -3,12 +3,95 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WPFAgentLib.View.Requests.Client"
+      xmlns:local="clr-namespace:WPFSupplierLib.View.Requests"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CliRequestsPage">
+      Title="SupRequestsPage" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/TargetStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/DataStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="55"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="5, 0, 0, 0" Text="Поиск (Enter):"/>
+            <TextBox Grid.Column="0" Grid.Row="1" Margin="5" Style="{StaticResource TbData}"
+                     Name="TbFinder" KeyDown="TbFinder_KeyDown"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="5, 0, 0, 0" Text="Фильтрация:"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" Margin="5" Style="{StaticResource CbData}"
+                      Name="CbFilter" SelectionChanged="CbFilter_SelectionChanged">
+            </ComboBox>
+
+            <TextBlock Grid.Column="3" Grid.Row="0" Margin="5, 0, 0, 0" Text="Сброс:"/>
+            <Button Grid.Column="3" Grid.Row="1" Margin="5" ToolTip="Сбросить все фильтры" Content="X"
+                    Style="{StaticResource RedButton}"
+                    Name="BtnClear" Click="BtnClear_Click"/>
+        </Grid>
+
+        <DataGrid Grid.Row="1" Margin="5" Name="DgRequests" SelectionChanged="DgRequests_SelectionChanged"
+                  MouseDoubleClick="DgRequests_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*" Header="Информация о заявке">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Margin="5" >
+                                <TextBlock FontSize="20" FontWeight="Bold">
+                                    <Run Text="Заявка №"/><Run Text="{Binding Number}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="15">
+                                    <Run Text="Количество товаров:" FontWeight="Bold"/>
+                                    <Run Text="{Binding ProductRequests.Count, Mode=OneWay}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="15">
+                                    <Run Text="Статус:" FontWeight="Bold"/>
+                                    <Run Text="{Binding Status.Title}" Foreground="{Binding Status.Color}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="200" Header="Общая сумма">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           FontSize="30" FontWeight="Bold">
+                                    <Run Text="{Binding Price}"/><Run Text="₽"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="2" Margin="5" IsEnabled="False"
+                Content="Открыть заявку" Style="{StaticResource GreenButton}"
+                Name="BtnOpenRequest" Click="BtnOpenRequest_Click"/>
     </Grid>
 </Page>

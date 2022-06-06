@@ -1,6 +1,7 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
+using GeneralLib.Usr;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace WPFAgentLib.View.Requests.Supplier
+namespace WPFClientLib.View.Requests
 {
     /// <summary>
     /// Логика взаимодействия для AgentNewRequestPage.xaml
     /// </summary>
-    public partial class SupNewRequestPage : Page
+    public partial class CliNewRequestPage : Page
     {
-        private List<ProductItemTemplate> _productItemTemplates = new();
+        private List<CliProductItemTemplate> _cliProductItemTemplates = new();
         private Counterparty _counterparty = null!;
-        public SupNewRequestPage()
+        public CliNewRequestPage()
         {
             InitializeComponent();
             ShowProducts();
@@ -30,21 +31,21 @@ namespace WPFAgentLib.View.Requests.Supplier
             LbAllProducts.ItemsSource = GetAllProducts();
 
             LbSelectedProducts.Items.Clear();
-            foreach (var productItemTemplate in _productItemTemplates)
-                LbSelectedProducts.Items.Add(productItemTemplate.GridProductItemTemplate);
+            foreach (var cliProductItemTemplate in _cliProductItemTemplates)
+                LbSelectedProducts.Items.Add(cliProductItemTemplate.GridProductItemTemplate);
         }
 
         private List<Product> GetAllProducts()
         {
             List<Product> products = new();
             List<Contract> contracts = DbConnect.Db.Contracts.Where(c =>
-                c.StatusId == (int)StatusKey.Active && c.Counterparty!.User!.RoleId == (int)RoleKey.Supplier)
+                c.StatusId == (int)StatusKey.Active && c.Counterparty! == CurrentUser.User.Counterparty!)
                 .Include(c => c.Products)
                 .ToList();
 
-            if (_productItemTemplates.Count > 0)
+            if (_cliProductItemTemplates.Count > 0)
             {
-                Product product = _productItemTemplates[0].Product;
+                Product product = _cliProductItemTemplates[0].Product;
                 foreach (var contract in contracts)
                 {
                     bool findContract = false;
@@ -65,7 +66,7 @@ namespace WPFAgentLib.View.Requests.Supplier
                     }
                 }
 
-                foreach (var productItemTemplate in _productItemTemplates)
+                foreach (var productItemTemplate in _cliProductItemTemplates)
                     products.Remove(productItemTemplate.Product);
             }
             else
@@ -74,10 +75,10 @@ namespace WPFAgentLib.View.Requests.Supplier
                     products.AddRange(conract.Products);
             }
 
+            products = products.Where(p => p.CountInStock > 0).ToList();
+
             if (!String.IsNullOrEmpty(TbFindProducts.Text) && !String.IsNullOrWhiteSpace(TbFindProducts.Text))
                 products = products.Where(p => p.Title.ToLower().Contains(TbFindProducts.Text.ToLower())).ToList();
-
-            products = products.OrderBy(p => p.CountInStock).ToList();
 
             return products;
         }
@@ -85,8 +86,8 @@ namespace WPFAgentLib.View.Requests.Supplier
         private void TbCount_TextChanged(object sender, TextChangedEventArgs e)
         {
             decimal fullPrice = 0;
-            foreach (var pit in _productItemTemplates)
-                fullPrice += pit.Price;
+            foreach (var pit in _cliProductItemTemplates)
+                fullPrice += pit.CompanyPrice;
 
             TblFullPrice.Text = fullPrice.ToString();
         }
@@ -97,9 +98,9 @@ namespace WPFAgentLib.View.Requests.Supplier
 
             if (product != null)
             {
-                ProductItemTemplate productItemTemplate = new(product);
+                CliProductItemTemplate productItemTemplate = new(product);
                 productItemTemplate.TbCount.TextChanged += TbCount_TextChanged;
-                _productItemTemplates.Add(productItemTemplate);
+                _cliProductItemTemplates.Add(productItemTemplate);
                 ShowProducts();
                 TbCount_TextChanged(null!, null!);
             }
@@ -121,10 +122,10 @@ namespace WPFAgentLib.View.Requests.Supplier
 
             if (gridProductItemTemplate != null)
             {
-                ProductItemTemplate? productItemTemplate = _productItemTemplates.FirstOrDefault(pit => pit.GridProductItemTemplate == gridProductItemTemplate);
+                CliProductItemTemplate? productItemTemplate = _cliProductItemTemplates.FirstOrDefault(pit => pit.GridProductItemTemplate == gridProductItemTemplate);
                 if (productItemTemplate != null)
                 {
-                    _productItemTemplates.Remove(productItemTemplate);
+                    _cliProductItemTemplates.Remove(productItemTemplate);
                     ShowProducts();
                     TbCount_TextChanged(null!, null!);
                 }
@@ -163,15 +164,15 @@ namespace WPFAgentLib.View.Requests.Supplier
             bool trueData = true;
             string errorMessage = "Введены некорректные данные:\n";
 
-            if (_productItemTemplates.Count == 0)
+            if (_cliProductItemTemplates.Count == 0)
             {
                 errorMessage += "Не выбран ни один товар\n";
                 trueData = false;
             }
 
-            for (int i = 0; i < _productItemTemplates.Count(); i++)
+            for (int i = 0; i < _cliProductItemTemplates.Count(); i++)
             {
-                if (!_productItemTemplates[i].CheckData())
+                if (!_cliProductItemTemplates[i].CheckData())
                 {
                     errorMessage += "Товар #" + (i + 1) + "\n";
                     trueData = false;
@@ -199,12 +200,12 @@ namespace WPFAgentLib.View.Requests.Supplier
                 request.Number = number;
 
                 decimal fullPrice = 0;
-                foreach(var productItemTemplate in _productItemTemplates)
+                foreach(var productItemTemplate in _cliProductItemTemplates)
                 {
                     ProductRequest pr = new();
                     pr.Product = productItemTemplate.Product;
                     pr.Count = int.Parse(productItemTemplate.TbCount.Text);
-                    fullPrice += productItemTemplate.Price;
+                    fullPrice += productItemTemplate.CompanyPrice;
                     request.ProductRequests.Add(pr);
                 }
                 request.Price = fullPrice;

@@ -10,10 +10,10 @@ namespace WPFAgentLib.View.Contracts
     /// <summary>
     /// Логика взаимодействия для ShowContractPage.xaml
     /// </summary>
-    public partial class ShowContractPage : Page
+    public partial class CntrShowContractPage : Page
     {
         Contract _contract;
-        public ShowContractPage(Contract contract)
+        public CntrShowContractPage(Contract contract)
         {
             InitializeComponent();
 

@@ -1,4 +1,4 @@
-﻿<Page x:Class="WPFCounterpartyLib.View.Contracts.CntrShowContract"
+﻿<Page x:Class="WPFCounterpartyLib.View.Contracts.CntrShowContractPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -48,7 +48,7 @@
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Border Grid.Column="0" Style="{StaticResource BrdImage}">
+                                <Border Grid.Column="0" Style="{StaticResource BrdImage}" Width="64" Height="64">
                                     <Border.Background>
                                         <ImageBrush ImageSource="{Binding Image}"/>
                                     </Border.Background>

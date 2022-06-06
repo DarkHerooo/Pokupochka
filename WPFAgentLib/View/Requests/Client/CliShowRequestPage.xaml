@@ -1,11 +1,12 @@
-﻿<Page x:Class="WPFAgentLib.View.Contracts.ShowContractPage"
+﻿<Page x:Class="WPFAgentLib.View.Requests.Client.CliShowRequestPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ShowContractPage">
+      Title="ShowRequestPage">
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,11 +16,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
@@ -31,19 +33,15 @@
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                 <TextBlock FontSize="20" FontWeight="Bold">
-                    <Run Text="Договор №"/><Run Text="{Binding Number}"/>
+                    <Run Text="Заявка №"/><Run Text="{Binding Number}"/>
                 </TextBlock>
                 <TextBlock FontSize="15">
                     <Run Text="Компания:" FontWeight="Bold"/>
                     <Run Text="{Binding Counterparty.Company}"/>
                 </TextBlock>
                 <TextBlock FontSize="15">
-                    <Run Text="Дата начала:" FontWeight="Bold"/>
-                    <Run Text="{Binding ShortDateStart}"/>
-                </TextBlock>
-                <TextBlock FontSize="15">
-                    <Run Text="Дата окончания:" FontWeight="Bold"/>
-                    <Run Text="{Binding ShortDateOver}"/>
+                    <Run Text="Дата создания:" FontWeight="Bold"/>
+                    <Run Text="{Binding ShortDate}"/>
                 </TextBlock>
             </StackPanel>
 
@@ -57,44 +55,67 @@
         <Grid Grid.Row="1">
             <DataGrid Grid.Column="1" Margin="5" Name="DgProducts">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="*" Header="Данные о товаре">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical" Margin="5" >
-                                    <TextBlock FontSize="20">
-                                    <Run Text="Название:" FontWeight="Bold"/>
-                                    <Run Text="{Binding Title}"/>
-                                    </TextBlock>
-
-                                    <TextBlock FontSize="15">
-                                    <Run Text="Цена за ед.:" FontWeight="Bold"/>
-                                    <Run Text="{Binding Price}"/>
-                                    <Run Text="руб."/>
-                                    </TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
                     <DataGridTemplateColumn Width="100" Header="Изображение">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Border CornerRadius="5" BorderBrush="Black" BorderThickness="2"
                                         Width="64" Height="64">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="{Binding Image}"/>
+                                        <ImageBrush ImageSource="{Binding Product.Image}"/>
                                     </Border.Background>
                                 </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="*" Header="Данные о товаре">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" Margin="5" >
+                                    <TextBlock FontSize="20">
+                                    <Run Text="Название:" FontWeight="Bold"/>
+                                    <Run Text="{Binding Product.Title}"/>
+                                    </TextBlock>
+
+                                    <TextBlock FontSize="15">
+                                    <Run Text="Цена за ед.:" FontWeight="Bold"/>
+                                    <Run Text="{Binding Product.CompanyPrice}"/>
+                                    <Run Text="₽"/>
+                                    </TextBlock>
+
+                                    <TextBlock FontSize="15">
+                                    <Run Text="Количество.:" FontWeight="Bold"/>
+                                    <Run Text="{Binding Count}"/>
+                                    <Run Text="шт."/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Общая сумма" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           FontSize="30" FontWeight="Bold">
+                                    <Run Text="{Binding CompanyPrice}"/><Run Text="₽"/>
+                                </TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
-            
+
         </Grid>
 
-        <Grid Grid.Row="2">
+        <TextBlock Grid.Row="2" HorizontalAlignment="Right" Margin="5" FontSize="30" FontWeight="Bold">
+            <Run Text="Итог:"/>
+            <Run Text="{Binding Price}"/>
+            <Run Text="₽"/>
+        </TextBlock>
+
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition/>
@@ -105,10 +126,10 @@
                     Name="BtnBack" Click="BtnBack_Click"/>
 
             <Button Grid.Column="1" Grid.Row="0" Margin="5" Content="Отклонить" Style="{StaticResource RedButton}"
-                        Name="BtnCancel" Click="BtnCancel_Click"/>
+                    Name="BtnCancel" Click="BtnCancel_Click"/>
 
             <Button Grid.Column="2" Grid.Row="0" Margin="5" Content="Принять" Style="{StaticResource GreenButton}"
-                        Name="BtnAccept" Click="BtnAccept_Click"/>
+                    Name="BtnAccept" Click="BtnAccept_Click"/>
         </Grid>
     </Grid>
 </Page>

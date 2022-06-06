@@ -90,7 +90,7 @@ namespace WPFCounterpartyLib.View.Contracts
                 }
 
                 if (findTemplate != null)
-                    NavigationService.Navigate(new CntrShowContract(findTemplate.Contract));
+                    NavigationService.Navigate(new CntrShowContractPage(findTemplate.Contract));
             }
         }
 

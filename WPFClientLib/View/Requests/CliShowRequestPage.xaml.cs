@@ -16,15 +16,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFSupplierLib.View.Requests
+namespace WPFClientLib.View.Requests
 {
     /// <summary>
     /// Логика взаимодействия для ShowRequestPage.xaml
     /// </summary>
-    public partial class SupShowRequestPage : Page
+    public partial class CliShowRequestPage : Page
     {
         private Request _request = null!;
-        public SupShowRequestPage(Request request)
+        public CliShowRequestPage(Request request)
         {
             _request = request;
             InitializeComponent();
@@ -36,23 +36,13 @@ namespace WPFSupplierLib.View.Requests
             DataContext = _request;
             DgProducts.ItemsSource = _request.ProductRequests.ToList();
 
-            if (_request.StatusId != (int)StatusKey.Considered)
-            {
-                BtnAccept.Visibility = Visibility.Hidden;
-                BtnCancel.Visibility = Visibility.Hidden;
-            }
+            if (_request.StatusId != (int)StatusKey.InTheWay)
+                BtnDelivered.Visibility = Visibility.Hidden;
         }
 
-        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        private void BtnDelivered_Click(object sender, RoutedEventArgs e)
         {
-            _request.StatusId = (int)StatusKey.Cancel;
-            _request.AddOrChange();
-            BtnBack_Click(null!, null!);
-        }
-
-        private void BtnAccept_Click(object sender, RoutedEventArgs e)
-        {
-            _request.StatusId = (int)StatusKey.InTheWay;
+            _request.StatusId = (int)StatusKey.Delivered;
             _request.AddOrChange();
             BtnBack_Click(null!, null!);
         }

@@ -74,41 +74,46 @@ namespace WPFAgentLib.View.Contracts
 
         private void BtnOpenContract_Click(object sender, RoutedEventArgs e)
         {
-            Contract? contract = DgNewContracts.SelectedItem as Contract;
+            Contract? contract = DgContracts.SelectedItem as Contract;
 
             if (contract != null)
             {
-                NavigationService.Navigate(new ShowContractPage(contract));
+                NavigationService.Navigate(new CntrShowContractPage(contract));
                 return;
             }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DgNewContracts.ItemsSource = GetContracts();
+            DgContracts.ItemsSource = GetContracts();
         }
 
-        private void Dg_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DgContracts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BtnOpenContract_Click(null!, null!);
+        }
+
+        private void DgContracts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BtnOpenContract.IsEnabled = DgContracts.SelectedItem != null ? true : false;
         }
 
         private void TbFinder_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                DgNewContracts.ItemsSource = GetContracts();
+                DgContracts.ItemsSource = GetContracts();
         }
 
         private void CbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DgNewContracts.ItemsSource = GetContracts();
+            DgContracts.ItemsSource = GetContracts();
         }
 
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             TbFinder.Text = "";
             CbFilter.SelectedIndex = 0;
-            DgNewContracts.ItemsSource = GetContracts();
+            DgContracts.ItemsSource = GetContracts();
         }
     }
 }

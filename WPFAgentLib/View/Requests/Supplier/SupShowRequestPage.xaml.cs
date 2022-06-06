@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFSupplierLib.View.Requests
+namespace WPFAgentLib.View.Requests.Supplier
 {
     /// <summary>
     /// Логика взаимодействия для ShowRequestPage.xaml
@@ -36,23 +36,16 @@ namespace WPFSupplierLib.View.Requests
             DataContext = _request;
             DgProducts.ItemsSource = _request.ProductRequests.ToList();
 
-            if (_request.StatusId != (int)StatusKey.Considered)
-            {
-                BtnAccept.Visibility = Visibility.Hidden;
-                BtnCancel.Visibility = Visibility.Hidden;
-            }
+            if (_request.StatusId != (int)StatusKey.InTheWay)
+                BtnDelivered.Visibility = Visibility.Hidden;
         }
 
-        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        private void BtnDelivered_Click(object sender, RoutedEventArgs e)
         {
-            _request.StatusId = (int)StatusKey.Cancel;
-            _request.AddOrChange();
-            BtnBack_Click(null!, null!);
-        }
+            _request.StatusId = (int)StatusKey.Delivered;
+            foreach(var productRequest in _request.ProductRequests)
+                productRequest.Product.CountInStock += productRequest.Count;
 
-        private void BtnAccept_Click(object sender, RoutedEventArgs e)
-        {
-            _request.StatusId = (int)StatusKey.InTheWay;
             _request.AddOrChange();
             BtnBack_Click(null!, null!);
         }

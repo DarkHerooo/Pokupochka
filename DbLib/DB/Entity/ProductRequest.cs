@@ -21,5 +21,12 @@ namespace DbLib.DB.Entity
             get => Math.Round(Product.Price * Count, 2);
             set { }
         }
+
+        [NotMapped]
+        public decimal CompanyPrice
+        {
+            get => Math.Round(Product.CompanyPrice * Count, 2);
+            set { }
+        }
     }
 }

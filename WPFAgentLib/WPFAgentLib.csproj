@@ -10,6 +10,7 @@
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
     <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
+    <ProjectReference Include="..\WPFClientLib\WPFClientLib.csproj" />
     <ProjectReference Include="..\WPFSupplierLib\WPFSupplierLib.csproj" />
   </ItemGroup>
 
@@ -49,9 +50,19 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Contracts\Counterparties\ShowContractPage.xaml">
+    <Page Update="View\Contracts\Counterparties\CntrShowContractPage.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Requests\Client\CliShowRequestPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Requests\Client\CliRequestsPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\Requests\Supplier\SupShowRequestPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
 
@@ -65,7 +76,7 @@
     <Compile Update="View\Contracts\Counterparties\CntrContractsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Contracts\Counterparties\ShowContractPage.xaml.cs">
+    <Compile Update="View\Contracts\Counterparties\CntrShowContractPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

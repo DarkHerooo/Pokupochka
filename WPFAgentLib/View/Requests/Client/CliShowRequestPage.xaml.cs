@@ -16,15 +16,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFSupplierLib.View.Requests
+namespace WPFAgentLib.View.Requests.Client
 {
     /// <summary>
     /// Логика взаимодействия для ShowRequestPage.xaml
     /// </summary>
-    public partial class SupShowRequestPage : Page
+    public partial class CliShowRequestPage : Page
     {
         private Request _request = null!;
-        public SupShowRequestPage(Request request)
+        public CliShowRequestPage(Request request)
         {
             _request = request;
             InitializeComponent();
@@ -41,6 +41,16 @@ namespace WPFSupplierLib.View.Requests
                 BtnAccept.Visibility = Visibility.Hidden;
                 BtnCancel.Visibility = Visibility.Hidden;
             }
+
+            foreach(var productRequest in _request.ProductRequests)
+            {
+                if (productRequest.Count > productRequest.Product.CountInStock)
+                {
+                    BtnAccept.Content = "Товара нет на складе!";
+                    BtnAccept.IsEnabled = false;
+                    break;
+                }
+            }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -53,6 +63,9 @@ namespace WPFSupplierLib.View.Requests
         private void BtnAccept_Click(object sender, RoutedEventArgs e)
         {
             _request.StatusId = (int)StatusKey.InTheWay;
+            foreach (var productRequest in _request.ProductRequests)
+                productRequest.Product.CountInStock -= productRequest.Count;
+
             _request.AddOrChange();
             BtnBack_Click(null!, null!);
         }

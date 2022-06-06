@@ -49,8 +49,8 @@
                     Name="BtnClear" Click="BtnClear_Click"/>
         </Grid>
 
-        <DataGrid Grid.Row="1" Margin="0, 5, 0, 5" Name="DgNewContracts"
-                  MouseDoubleClick="Dg_MouseDoubleClick">
+        <DataGrid Grid.Row="1" Margin="0, 5, 0, 5" Name="DgContracts" SelectionChanged="DgContracts_SelectionChanged"
+                  MouseDoubleClick="DgContracts_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*" Header="Информация о договоре">
                     <DataGridTemplateColumn.CellTemplate>
@@ -99,7 +99,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Row="2" Margin="5"
+        <Button Grid.Row="2" Margin="5" IsEnabled="False"
                 Content="Открыть договор" Style="{StaticResource GreenButton}"
                 Name="BtnOpenContract" Click="BtnOpenContract_Click"/>
     </Grid>

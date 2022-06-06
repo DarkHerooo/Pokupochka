@@ -47,4 +47,8 @@
     <ProjectReference Include="..\WPFSupplierLib\WPFSupplierLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="View\Requests\" />
+  </ItemGroup>
+
 </Project>

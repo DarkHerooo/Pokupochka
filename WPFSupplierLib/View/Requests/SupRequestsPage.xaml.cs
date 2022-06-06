@@ -96,6 +96,11 @@ namespace WPFSupplierLib.View.Requests
             BtnOpenRequest_Click(null!, null!);
         }
 
+        private void DgRequests_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BtnOpenRequest.IsEnabled = DgRequests.SelectedItem != null ? true : false;
+        }
+
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             TbFinder.Text = "";

@@ -6,6 +6,7 @@ using StylesLib;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using WPFClientLib.View.Requests;
 using WPFCounterpartyLib.View.Contracts;
 using WPFSupplierLib.View.Requests;
 
@@ -48,7 +49,7 @@ namespace WPFCounterpartyLib.View
             switch(role.Id)
             {
                 case (int)RoleKey.Supplier: _fwhMain.Navigate(new SupRequestsPage()); break;
-                case (int)RoleKey.Client: break;
+                case (int)RoleKey.Client: _fwhMain.Navigate(new CliRequestsPage()); break;
             }
         }
     }

@@ -1,25 +1,31 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
-using DbLib.DB.Enums;
 using GeneralLib.Usr;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using WPFClientLib.View.Requests;
+using System.Windows.Shapes;
 
-namespace WPFAgentLib.View.Requests.Supplier
+namespace WPFClientLib.View.Requests
 {
     /// <summary>
     /// Логика взаимодействия для SuppRequestsPage.xaml
     /// </summary>
-    public partial class SupRequestsPage : Page
+    public partial class CliRequestsPage : Page
     {
         private List<RequestTemplate> _requestTemplates = new();
-        public SupRequestsPage()
+        public CliRequestsPage()
         {
             InitializeComponent();
             ShowRequests();
@@ -42,7 +48,7 @@ namespace WPFAgentLib.View.Requests.Supplier
                 {
                     RequestTemplate newRequest = new(new Request());
                     newRequest.BrdRequest.Margin = new Thickness(5);
-                    newRequest.BrdRequest.MouseLeftButtonDown += NewBrdRequest_MouseLeftButtonDown;
+                    newRequest.BrdRequest.MouseLeftButtonDown += NewBrdRequest_MouseLeftButtonDown; ;
                     spRow.Children.Add(newRequest.BrdRequest);
                     _requestTemplates.Add(newRequest);
                     countInRow = 8;
@@ -55,7 +61,7 @@ namespace WPFAgentLib.View.Requests.Supplier
 
                     RequestTemplate requestTemplate = new(requests[j]);
                     requestTemplate.BrdRequest.Margin = new Thickness(5);
-                    requestTemplate.BrdRequest.MouseLeftButtonDown += BrdRequest_MouseLeftButtonDown;
+                    requestTemplate.BrdRequest.MouseLeftButtonDown += BrdRequest_MouseLeftButtonDown; ;
                     spRow.Children.Add(requestTemplate.BrdRequest);
                     _requestTemplates.Add(requestTemplate);
                 }
@@ -79,20 +85,21 @@ namespace WPFAgentLib.View.Requests.Supplier
                 }
 
                 if (findTemplate != null)
-                    NavigationService.Navigate(new SupShowRequestPage(findTemplate.Request));
+                    NavigationService.Navigate(new CliShowRequestPage(findTemplate.Request));
             }
         }
 
         private void NewBrdRequest_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 1)
-                NavigationService.Navigate(new SupNewRequestPage());
+                NavigationService.Navigate(new CliNewRequestPage());
         }
 
         private List<Request> GetRequests()
         {
+            User user = CurrentUser.User!;
             List<Request> requests = DbConnect.Db.Requests
-                .Where(r => r.Counterparty!.User!.RoleId == (int)RoleKey.Supplier)
+                .Where(r => r.Counterparty! == user.Counterparty!)
                 .Include(c => c.Status)
                 .Include(c => c.ProductRequests).ToList();
 

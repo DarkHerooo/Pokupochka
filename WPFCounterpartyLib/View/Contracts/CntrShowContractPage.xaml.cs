@@ -22,10 +22,10 @@ namespace WPFCounterpartyLib.View.Contracts
     /// <summary>
     /// Логика взаимодействия для CntrShowContract.xaml
     /// </summary>
-    public partial class CntrShowContract : Page
+    public partial class CntrShowContractPage : Page
     {
         private Contract _contract = null!;
-        public CntrShowContract(Contract contract)
+        public CntrShowContractPage(Contract contract)
         {
             InitializeComponent();
 
