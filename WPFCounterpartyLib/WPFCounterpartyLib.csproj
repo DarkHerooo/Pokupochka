@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="View\Requests\**" />
+    <EmbeddedResource Remove="View\Requests\**" />
+    <None Remove="View\Requests\**" />
+    <Page Remove="View\Requests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
   </ItemGroup>
 
@@ -45,10 +52,6 @@
     <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
     <ProjectReference Include="..\WPFClientLib\WPFClientLib.csproj" />
     <ProjectReference Include="..\WPFSupplierLib\WPFSupplierLib.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="View\Requests\" />
   </ItemGroup>
 
 </Project>

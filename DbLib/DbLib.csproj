@@ -10,6 +10,8 @@
     <None Remove="box.ico" />
     <None Remove="Data\clear_script.sql" />
     <None Remove="Data\data_script.sql" />
+    <None Remove="Data\Scripts\clear_script.sql" />
+    <None Remove="Data\Scripts\data_script.sql" />
     <None Remove="Data\Suppliers_Clients\clear_script.sql" />
     <None Remove="DB\clear_script.sql" />
   </ItemGroup>
@@ -25,6 +27,8 @@
   <ItemGroup>
     <Resource Include="Data\clear_script.sql" />
     <Resource Include="Data\data_script.sql" />
+    <Resource Include="Data\Scripts\clear_script.sql" />
+    <Resource Include="Data\Scripts\data_script.sql" />
     <Resource Include="Data\Suppliers_Clients\clear_script.sql" />
     <Resource Include="DB\clear_script.sql" />
   </ItemGroup>
