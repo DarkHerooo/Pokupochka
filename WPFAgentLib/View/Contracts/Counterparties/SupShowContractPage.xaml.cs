@@ -81,9 +81,10 @@ namespace WPFAgentLib.View.Contracts
 
         private void BtnPrint_Click(object sender, RoutedEventArgs e)
         {
-            string fileName = "Docs/ContractTemplate.docx";
-            string newFileName = "TempContractTemplate.docx";
-            File.Copy(fileName, newFileName, true);
+            string path = @"Docs\";
+            string oldFullFileName = path + "ContractTemplate.docx";
+            string newFullFileName = path + "TempContractTemplate.docx";
+            File.Copy(oldFullFileName, newFullFileName, true);
 
             TableContent productTable = new("Products");
             foreach (var product in _contract.Products)
@@ -106,12 +107,13 @@ namespace WPFAgentLib.View.Contracts
                     new FieldContent("DateOver", _contract.ShortDateOver)
                     );
 
-            using (var doc = new TemplateProcessor(newFileName).SetRemoveContentControls(true))
+            using (var doc = new TemplateProcessor(newFullFileName).SetRemoveContentControls(true))
             {
                 doc.FillContent(content);
                 doc.SaveChanges();
-                Process.Start(new ProcessStartInfo(newFileName) { UseShellExecute = true });
             }
+
+            Process.Start(new ProcessStartInfo(newFullFileName) { UseShellExecute = true });
         }
     }
 }
