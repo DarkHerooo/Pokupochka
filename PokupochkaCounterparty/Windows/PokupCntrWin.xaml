@@ -35,12 +35,12 @@
 
             <Border Grid.Column="0" Margin="5" Style="{StaticResource BrdImage}">
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding Image}"/>
+                    <ImageBrush ImageSource="{Binding Company.Image}"/>
                 </Border.Background>
             </Border>
 
             <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Company}"/>
+                <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Company.Name}"/>
                 <TextBlock FontSize="20">
                     <Run Text="Пользователь:" FontWeight="Bold"/>
                     <Run Text="{Binding FIO}"/>

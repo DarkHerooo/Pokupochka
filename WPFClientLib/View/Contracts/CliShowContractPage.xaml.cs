@@ -2,30 +2,19 @@
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using StylesLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace WPFCounterpartyLib.View.Contracts
+namespace WPFClientLib.View.Contracts
 {
     /// <summary>
-    /// Логика взаимодействия для CntrShowContract.xaml
+    /// Логика взаимодействия для CliShowContractPage.xaml
     /// </summary>
-    public partial class CntrShowContractPage : Page
+    public partial class CliShowContractPage : Page
     {
         private Contract _contract = null!;
-        public CntrShowContractPage(Contract contract)
+        public CliShowContractPage(Contract contract)
         {
             InitializeComponent();
 

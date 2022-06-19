@@ -12,12 +12,6 @@ namespace DbLib.DB.Entity
         public Worker? Worker { get; set; }
         public Counterparty? Counterparty { get; set; }
 
-        public void SetData(string login, string passsword)
-        {
-            Login = login;
-            Password = passsword;
-        }
-
         public void AddOrChange()
         {
             if (Id == 0) DbConnect.Db.Users.Add(this);

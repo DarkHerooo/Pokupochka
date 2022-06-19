@@ -14,6 +14,7 @@ namespace DbLib.DB
         public DbSet<Role> Roles { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Worker> Workers { get; set; } = null!;
+        public DbSet<Company> Companies { get; set; } = null!;
         public DbSet<Counterparty> Counterparties { get; set; } = null!;
         public DbSet<Contract> Contracts { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;

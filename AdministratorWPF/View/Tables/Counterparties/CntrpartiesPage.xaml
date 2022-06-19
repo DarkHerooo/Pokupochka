@@ -59,11 +59,11 @@
                             <StackPanel Orientation="Vertical" Margin="5">
                                 <TextBlock FontSize="20">
                                     <Run Text="Компания:" FontWeight="Bold"/>
-                                    <Run Text="{Binding Company}"/>
+                                    <Run Text="{Binding Company.Name}"/>
                                 </TextBlock>
                                 <TextBlock FontSize="15">
                                     <Run Text="Адрес:" FontWeight="Bold"/>
-                                    <Run Text="{Binding Address}"/>
+                                    <Run Text="{Binding Company.Address}"/>
                                 </TextBlock>
                                 <TextBlock FontSize="15">
                                     <Run Text="ФИО:" FontWeight="Bold"/>
@@ -96,7 +96,7 @@
                                 <Border CornerRadius="5" BorderBrush="Black" BorderThickness="2"
                                         Width="128" Height="128">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="{Binding Image}"/>
+                                        <ImageBrush ImageSource="{Binding Company.Image}"/>
                                     </Border.Background>
                                 </Border>
                             </StackPanel>

@@ -90,7 +90,16 @@ namespace WPFCounterpartyLib.View.Contracts
                 }
 
                 if (findTemplate != null)
-                    NavigationService.Navigate(new CntrShowContractPage(findTemplate.Contract));
+                {
+                    User user = CurrentUser.User!;
+                    switch (user.RoleId)
+                    {
+                        case (int)RoleKey.Supplier:
+                            NavigationService.Navigate(new SupShowContractPage(findTemplate.Contract)); break;
+                        case (int)RoleKey.Client:
+                            NavigationService.Navigate(new CliShowContractPage(findTemplate.Contract)); break;
+                    }
+                }    
             }
         }
 

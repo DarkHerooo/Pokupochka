@@ -42,7 +42,7 @@ namespace WPFAgentLib.View.Contracts
         {
             contracts = contracts.Where(c =>
                 c.Number.ToString().ToLower().Contains(TbFinder.Text.ToLower()) ||
-                c.Counterparty!.Company.ToLower().Contains(TbFinder.Text.ToLower())).ToList();
+                c.Counterparty!.Company!.Name.ToLower().Contains(TbFinder.Text.ToLower())).ToList();
 
             return contracts;
         }

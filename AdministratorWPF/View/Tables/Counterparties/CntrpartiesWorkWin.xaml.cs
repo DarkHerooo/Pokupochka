@@ -23,7 +23,6 @@ namespace AdministratorWPF.View.Tables
         {
             if (_counterparty.User!.RoleId == (int)RoleKey.Client)
             {
-                TbContragentData.Text = "Данные о клиенте";
                 if (_counterparty.Id == 0)
                 {
                     Title = "Добавить клиента";
@@ -37,7 +36,6 @@ namespace AdministratorWPF.View.Tables
             }
             else if (_counterparty.User!.RoleId == (int)RoleKey.Supplier)
             {
-                TbContragentData.Text = "Данные о поставщике";
                 if (_counterparty.Id == 0)
                 {
                     Title = "Добавить поставщика";
@@ -50,14 +48,14 @@ namespace AdministratorWPF.View.Tables
                 }
             }
 
-            if (_counterparty.Image == null)
-                _counterparty.Image = ImageReader.GetDefaultBytes();
+            if (_counterparty.Company!.Image == null)
+                _counterparty.Company.Image = ImageReader.GetDefaultBytes();
 
             Style = UserStyles.WindowSyle;
             DataContext = _counterparty;
         } 
 
-        private bool CheckData()
+        private bool CheckCompanyData()
         {
             string errorMessage = "";
             if (string.IsNullOrEmpty(TbCompany.Text) || string.IsNullOrWhiteSpace(TbCompany.Text))
@@ -66,6 +64,26 @@ namespace AdministratorWPF.View.Tables
             if (string.IsNullOrEmpty(TbAddress.Text) || string.IsNullOrWhiteSpace(TbAddress.Text))
                 errorMessage += "Не введён адрес\n";
 
+            if (TbINN.Text.Length < TbINN.MaxLength)
+                errorMessage += $"ИНН должен содержать { TbINN.MaxLength } цифр\n";
+
+            if (TbKPP.Text.Length < TbKPP.MaxLength)
+                errorMessage += $"КПП должен содержать { TbKPP.MaxLength } цифр\n";
+
+            if (TbOKPO.Text.Length < TbOKPO.MaxLength)
+                errorMessage += $"ОКПО должен содержать { TbOKPO.MaxLength } цифр\n";
+
+            if (errorMessage.Length > 0)
+            {
+                MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else return true;
+        }
+
+        public bool CheckCntrData()
+        {
+            string errorMessage = "";
             if (string.IsNullOrEmpty(TbSecondName.Text) || string.IsNullOrWhiteSpace(TbSecondName.Text))
                 errorMessage += "Не введена фамилия\n";
 
@@ -103,9 +121,10 @@ namespace AdministratorWPF.View.Tables
 
         private void BtnAddOrChange_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckData())
+            if (CheckCompanyData() && CheckCntrData())
             {
                 _counterparty.User!.AddOrChange();
+                _counterparty.Company!.AddOrChange();
                 _counterparty.AddOrChange();
 
                 DialogResult = true;
@@ -119,7 +138,7 @@ namespace AdministratorWPF.View.Tables
 
             if (dialog.Open())
             {
-                _counterparty.Image = dialog.ImageBytes!;
+                _counterparty.Company!.Image = dialog.ImageBytes!;
                 DataContext = null;
                 DataContext = _counterparty;
             }
@@ -128,6 +147,24 @@ namespace AdministratorWPF.View.Tables
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void TbINN_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text[0]))
+                e.Handled = true;
+        }
+
+        private void TbKPP_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text[0]))
+                e.Handled = true;
+        }
+
+        private void TbOKPO_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text[0]))
+                e.Handled = true;
         }
     }
 }

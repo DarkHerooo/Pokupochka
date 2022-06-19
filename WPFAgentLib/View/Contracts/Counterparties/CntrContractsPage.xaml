@@ -62,11 +62,11 @@
                                 
                                 <TextBlock FontSize="15">
                                     <Run Text="Компания:" FontWeight="Bold"/>
-                                    <Run Text="{Binding Counterparty.Company}"/>
+                                    <Run Text="{Binding Counterparty.Company.Name}"/>
                                 </TextBlock>
 
                                 <TextBlock FontSize="15">
-                                    <Run Text="Количество товаров:" FontWeight="Bold"/>
+                                    <Run Text="Позиций товаров:" FontWeight="Bold"/>
                                     <Run Text="{Binding Products.Count, Mode=OneWay}"/>
                                 </TextBlock>
 
@@ -90,7 +90,7 @@
                             <Border CornerRadius="5" BorderBrush="Black" BorderThickness="2"
                                         Width="64" Height="64">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="{Binding Counterparty.Image}"/>
+                                    <ImageBrush ImageSource="{Binding Counterparty.Company.Image}"/>
                                 </Border.Background>
                             </Border>
                         </DataTemplate>

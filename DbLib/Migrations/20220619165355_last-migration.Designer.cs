@@ -4,6 +4,7 @@ using DbLib.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbLib.Migrations
 {
     [DbContext(typeof(PokupochkaContext))]
-    partial class PokupochkaContextModelSnapshot : ModelSnapshot
+    [Migration("20220619165355_last-migration")]
+    partial class lastmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace DbLib.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("ContractProduct", (string)null);
+                    b.ToTable("ContractProduct");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Company", b =>
@@ -70,7 +72,7 @@ namespace DbLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Contract", b =>
@@ -110,7 +112,7 @@ namespace DbLib.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Contracts", (string)null);
+                    b.ToTable("Contracts");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Counterparty", b =>
@@ -154,7 +156,7 @@ namespace DbLib.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Counterparties", (string)null);
+                    b.ToTable("Counterparties");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Product", b =>
@@ -185,7 +187,7 @@ namespace DbLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.ProductRequest", b =>
@@ -203,7 +205,7 @@ namespace DbLib.Migrations
 
                     b.HasIndex("RequestId");
 
-                    b.ToTable("ProductRequests", (string)null);
+                    b.ToTable("ProductRequests");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Request", b =>
@@ -236,7 +238,7 @@ namespace DbLib.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.ToTable("Requests", (string)null);
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Role", b =>
@@ -256,7 +258,7 @@ namespace DbLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Status", b =>
@@ -273,7 +275,7 @@ namespace DbLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status", (string)null);
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.User", b =>
@@ -299,7 +301,7 @@ namespace DbLib.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DbLib.DB.Entity.Worker", b =>
@@ -337,7 +339,7 @@ namespace DbLib.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Workers", (string)null);
+                    b.ToTable("Workers");
                 });
 
             modelBuilder.Entity("ContractProduct", b =>

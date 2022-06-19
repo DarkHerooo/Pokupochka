@@ -40,13 +40,13 @@ namespace AdministratorWPF.View.Tables
 
             if (_worker.Id == 0)
             {
-                Title = "Добавить пользователя";
-                BtnAddOrChange.Content = "Добавить пользователя";
+                Title = "Добавить работника";
+                BtnAddOrChange.Content = "Добавить работника";
             }
             else
             {
-                Title = "Изменить пользователя";
-                BtnAddOrChange.Content = "Изменить пользователя";
+                Title = "Изменить работника";
+                BtnAddOrChange.Content = "Изменить работника";
             }
 
             DataContext = _worker;

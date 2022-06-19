@@ -36,16 +36,6 @@ namespace DbLib.DB.Entity
             set { }
         }
 
-        // Методы
-        public void SetData(string secondName, string firstName, string patronymic, string phone, string email)
-        {
-            SecondName = secondName;
-            FirstName = firstName;
-            Patronymic = patronymic;
-            Phone = phone;
-            Email = email;
-        }
-
         public void AddOrChange()
         {
             if (Id == 0) DbConnect.Db.Workers.Add(this);

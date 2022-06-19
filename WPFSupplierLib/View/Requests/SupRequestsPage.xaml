@@ -64,7 +64,7 @@
                                 </TextBlock>
 
                                 <TextBlock FontSize="15">
-                                    <Run Text="Количество товаров:" FontWeight="Bold"/>
+                                    <Run Text="Позиций товаров:" FontWeight="Bold"/>
                                     <Run Text="{Binding ProductRequests.Count, Mode=OneWay}"/>
                                 </TextBlock>
 

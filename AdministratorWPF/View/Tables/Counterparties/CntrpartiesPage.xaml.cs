@@ -39,7 +39,7 @@ namespace AdministratorWPF.View.Tables
         /// <returns></returns>
         private Counterparty[] GetCounterparties()
         {
-            List<Counterparty> counterparties = DbConnect.Db.Counterparties.Include(c => c.User).Where(c => c.User!.Role == _role).ToList();
+            List<Counterparty> counterparties = DbConnect.Db.Counterparties.Include(c => c.User).Include(c => c.Company).Where(c => c.User!.Role == _role).ToList();
 
             if (!string.IsNullOrEmpty(TbFinder.Text) && !string.IsNullOrWhiteSpace(TbFinder.Text))
                 counterparties = FindCounterparties(counterparties);

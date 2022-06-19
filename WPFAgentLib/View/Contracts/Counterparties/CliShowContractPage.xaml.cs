@@ -97,11 +97,11 @@ namespace WPFAgentLib.View.Contracts
 
             var content = new Content(
                     new FieldContent("Number", _contract.Number.ToString()),
-                    new FieldContent("Address", _contract.Counterparty!.Address),
+                    new FieldContent("Address", _contract.Counterparty!.Company!.Address),
                     new FieldContent("DateStart", _contract.ShortDateStart),
                     new FieldContent("SupCompany", "ООО Покупочка"),
                     new FieldContent("SupFIO", "Коршунов Артём Леонидович"),
-                    new FieldContent("CliCompany", _contract.Counterparty!.Company),
+                    new FieldContent("CliCompany", _contract.Counterparty!.Company!.Name),
                     new FieldContent("CliFIO", _contract.Counterparty!.FIO),
                     productTable,
                     new FieldContent("DateOver", _contract.ShortDateOver)
