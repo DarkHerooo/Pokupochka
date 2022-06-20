@@ -101,8 +101,9 @@
                         <Run Text="ИНН:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5" MaxLength="12"
-                        Name="TbINN" Text="{Binding Company.INN}" PreviewTextInput="TbINN_PreviewTextInput"/>
+                    <toolkit:MaskedTextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5" 
+                        MaxLength="12" Mask="000000000000"
+                        Name="TbINN" Text="{Binding Company.INN}"/>
                 </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="4">
@@ -116,8 +117,9 @@
                         <Run Text="КПП:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5" MaxLength="9"
-                        Name="TbKPP" Text="{Binding Company.KPP}" PreviewTextInput="TbKPP_PreviewTextInput"/>
+                    <toolkit:MaskedTextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5" 
+                        MaxLength="9" Mask="000000000"
+                        Name="TbKPP" Text="{Binding Company.KPP}"/>
                 </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="5">
@@ -131,8 +133,9 @@
                         <Run Text="ОКПО:"/>
                     </TextBlock>
 
-                    <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5" MaxLength="10"
-                        Name="TbOKPO" Text="{Binding Company.OKPO}" PreviewTextInput="TbOKPO_PreviewTextInput"/>
+                    <toolkit:MaskedTextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5" 
+                        MaxLength="10" Mask="0000000000"
+                        Name="TbOKPO" Text="{Binding Company.OKPO}"/>
                 </Grid>
 
                 <TextBlock Grid.Column="1" Grid.Row="0"
@@ -151,7 +154,7 @@
                     </TextBlock>
 
                     <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
-                     Name="TbSecondName" Text="{Binding SecondName}"/>
+                     Name="TbSecondName" Text="{Binding SecondName}" PreviewTextInput="TbFIO_PreviewTextInput"/>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="2">
@@ -166,7 +169,7 @@
                     </TextBlock>
 
                     <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
-                     Name="TbFirstName" Text="{Binding FirstName}"/>
+                     Name="TbFirstName" Text="{Binding FirstName}" PreviewTextInput="TbFIO_PreviewTextInput"/>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="3">
@@ -179,7 +182,7 @@
                        Text="Отчество:"/>
 
                     <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
-                     Name="TbPatronymic" Text="{Binding Patronymic}"/>
+                     Name="TbPatronymic" Text="{Binding Patronymic}" PreviewTextInput="TbFIO_PreviewTextInput"/>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="4">
@@ -209,7 +212,7 @@
                     </TextBlock>
 
                     <TextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5"
-                     Name="TbEmail" Text="{Binding Email}"/>
+                     Name="TbEmail" Text="{Binding Email}" PreviewTextInput="TbEmail_PreviewTextInput"/>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="6">

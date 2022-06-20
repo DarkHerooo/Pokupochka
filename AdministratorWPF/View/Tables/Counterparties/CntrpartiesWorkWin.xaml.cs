@@ -64,14 +64,17 @@ namespace AdministratorWPF.View.Tables
             if (string.IsNullOrEmpty(TbAddress.Text) || string.IsNullOrWhiteSpace(TbAddress.Text))
                 errorMessage += "Не введён адрес\n";
 
-            if (TbINN.Text.Length < TbINN.MaxLength)
-                errorMessage += $"ИНН должен содержать { TbINN.MaxLength } цифр\n";
+            string tbINN = TbINN.Text.Replace("_", "");
+            if (tbINN.Length < TbINN.MaxLength)
+                errorMessage += $"ИНН заполнен неполностью";
 
-            if (TbKPP.Text.Length < TbKPP.MaxLength)
-                errorMessage += $"КПП должен содержать { TbKPP.MaxLength } цифр\n";
+            string tbKPP = TbKPP.Text.Replace("_", "");
+            if (tbKPP.Length < TbKPP.MaxLength)
+                errorMessage += $"КПП заполнен неполностью\n";
 
-            if (TbOKPO.Text.Length < TbOKPO.MaxLength)
-                errorMessage += $"ОКПО должен содержать { TbOKPO.MaxLength } цифр\n";
+            string tbOKPO = TbOKPO.Text.Replace("_", "");
+            if (tbOKPO.Length < TbOKPO.MaxLength)
+                errorMessage += $"ОКПО заполнен неполностью\n";
 
             if (errorMessage.Length > 0)
             {
@@ -96,8 +99,7 @@ namespace AdministratorWPF.View.Tables
             else if (clearPhone.Length < 11)
                 errorMessage += "Введите телефон полностью\n";
 
-            if (string.IsNullOrEmpty(TbEmail.Text) || string.IsNullOrWhiteSpace(TbEmail.Text))
-                errorMessage += "Не введена почта\n";
+            errorMessage += WPFChecks.CheckEmail(TbEmail.Text);
 
             if (string.IsNullOrEmpty(TbLogin.Text) || string.IsNullOrWhiteSpace(TbLogin.Text))
                 errorMessage += "Не введен логин\n";
@@ -108,8 +110,7 @@ namespace AdministratorWPF.View.Tables
                     errorMessage += "Пользователь с таким логином уже существует\n";
             }
 
-            if (string.IsNullOrEmpty(TbPassword.Text) || string.IsNullOrWhiteSpace(TbPassword.Text))
-                errorMessage += "Не введен пароль\n";
+            errorMessage += WPFChecks.CheckPassword(TbPassword.Text);
 
             if (errorMessage.Length > 0)
             {
@@ -149,21 +150,16 @@ namespace AdministratorWPF.View.Tables
             Close();
         }
 
-        private void TbINN_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void TbFIO_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            if (!char.IsDigit(e.Text[0]))
+            if (char.IsDigit(e.Text[0]))
                 e.Handled = true;
         }
 
-        private void TbKPP_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void TbEmail_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            if (!char.IsDigit(e.Text[0]))
-                e.Handled = true;
-        }
-
-        private void TbOKPO_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            if (!char.IsDigit(e.Text[0]))
+            string email = TbEmail.Text;
+            if (email.Contains('@') && e.Text[0] == '@')
                 e.Handled = true;
         }
     }

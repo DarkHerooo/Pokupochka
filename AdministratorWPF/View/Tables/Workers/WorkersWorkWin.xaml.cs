@@ -1,6 +1,7 @@
 ﻿using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
+using GeneralLib;
 using GeneralLib.Usr;
 using StylesLib;
 using System.Collections.Generic;
@@ -71,8 +72,7 @@ namespace AdministratorWPF.View.Tables
             else if (clearPhone.Length < 11)
                 errorMessage += "Введите телефон полностью\n";
 
-            if (string.IsNullOrEmpty(TbEmail.Text) || string.IsNullOrWhiteSpace(TbEmail.Text))
-                errorMessage += "Не введена почта\n";
+            errorMessage += WPFChecks.CheckEmail(TbEmail.Text);
 
             if (string.IsNullOrEmpty(TbLogin.Text) || string.IsNullOrWhiteSpace(TbLogin.Text))
                 errorMessage += "Не введен логин\n";
@@ -81,10 +81,9 @@ namespace AdministratorWPF.View.Tables
                 User? user = DbConnect.Db.Users.FirstOrDefault(u => u.Login == TbLogin.Text);
                 if (user != null && user != _worker.User)
                     errorMessage += "Пользователь с таким логином уже существует\n";
-            } 
+            }
 
-            if (string.IsNullOrEmpty(TbPassword.Text) || string.IsNullOrWhiteSpace(TbPassword.Text))
-                errorMessage += "Не введен пароль\n";
+            errorMessage += WPFChecks.CheckPassword(TbPassword.Text);
 
             if (errorMessage.Length > 0)
             {
@@ -115,6 +114,19 @@ namespace AdministratorWPF.View.Tables
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void TbEmail_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            string email = TbEmail.Text;
+            if (email.Contains('@') && e.Text[0] == '@')
+                e.Handled = true;
+        }
+
+        private void TbFIO_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (char.IsDigit(e.Text[0]))
+                e.Handled = true;
         }
     }
 }
