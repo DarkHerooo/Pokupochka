@@ -38,6 +38,7 @@ namespace WPFAgentLib.View.Requests.Client
                 .Where(r => r.Counterparty!.User!.RoleId == (int)RoleKey.Client)
                 .Include(r => r.Status)
                 .Include(r => r.ProductRequests)
+                .Include(r => r.Counterparty!.Company)
                 .ToList();
 
             if (!string.IsNullOrEmpty(TbFinder.Text) && !string.IsNullOrWhiteSpace(TbFinder.Text))

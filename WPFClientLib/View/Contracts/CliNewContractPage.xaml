@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Margin="5" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"
-                   Text="Создание нового договора"/>
+                   Text="Номенклатура товаров"/>
 
         <Grid Grid.Row="1" Margin="5">
             <Grid.ColumnDefinitions>

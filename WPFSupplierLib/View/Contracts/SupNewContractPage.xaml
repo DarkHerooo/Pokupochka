@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" FontSize="30" Margin="5" FontWeight="Bold" VerticalAlignment="Center"
-                   Text="Создание нового договора"/>
+                   Text="Номенклатура товаров"/>
 
         <Border Grid.Row="1" Margin="5" Background="White">
             <ScrollViewer>

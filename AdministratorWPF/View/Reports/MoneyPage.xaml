@@ -7,25 +7,41 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MoneyPage" Loaded="Page_Loaded">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/TargetStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <TextBlock FontSize="30" Foreground="Green">
-                <Run Text="Товаров продано:"/>
-                <Run Name="TblCountProductsSell" FontWeight="Bold"/>
-                <Run Text="->"/>
-                <Run Name="TblProductsSellPrice" FontWeight="Bold"/>
-            </TextBlock>
-            <TextBlock FontSize="30" Foreground="Red">
-                <Run Text="Товаров куплено:"/>
-                <Run Name="TblCountProductsBuy" FontWeight="Bold"/>
-                <Run Text="->"/>
-                <Run Name="TblProductsBuyPrice" FontWeight="Bold"/>
-            </TextBlock>
-            <TextBlock FontSize="50" Margin="0, 10, 0, 0" Name="TblSum">
-                <Run Text="Итог:"/>
-                <Run Name="TblSumMoney" FontWeight="Bold"/>
-            </TextBlock>
-        </StackPanel>
+        <DataGrid Name="DgMoneyInfo" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*"
+                    Header="Описание"
+                    Binding="{Binding Name}"/>
+                <DataGridTextColumn Width="200"
+                    Header="Количество"
+                    Binding="{Binding CountProducts}"/>
+                <DataGridTemplateColumn Width="200" Header="Сумма">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding FullPrice}"/>
+                                <Run Text="₽"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="FontSize" Value="25"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
     </Grid>
 </Page>

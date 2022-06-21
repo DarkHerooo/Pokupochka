@@ -49,7 +49,7 @@
 
             <Border Grid.Column="1" Style="{StaticResource BrdImage}" Width="64" Height="64">
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding Counterparty.Image}"/>
+                    <ImageBrush ImageSource="{Binding Counterparty.Company.Image}"/>
                 </Border.Background>
             </Border>
         </Grid>

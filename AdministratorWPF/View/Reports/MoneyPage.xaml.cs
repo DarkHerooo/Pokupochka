@@ -29,52 +29,70 @@ namespace WPFAdministratorLib.View.Reports
             InitializeComponent();
         }
 
-    /*    private void Calculate()
-        {  
+        private MoneyInfo CalculateSupProducts()
+        {
             List<Request> supRequests = DbConnect.Db.Requests
-                .Where(c => c.Counterparty!.User!.RoleId == (int)RoleKey.Supplier)
+                .Where(c => c.Counterparty!.User!.RoleId == (int)RoleKey.Supplier &&
+                c.StatusId == (int)StatusKey.Delivered)
                 .Include(c => c.ProductRequests)
                 .ToList();
 
-            int supCountProducts = 0;
-            decimal supFullPrice = 0;
-            foreach(var request in supRequests)
-            {
-                foreach(var productRequest in request.ProductRequests)
-                {
-                    supCountProducts += productRequest.Count;
-                    supFullPrice += productRequest.Product.Price;
-                }
-            }
-            TblCountProductsBuy.Text = supCountProducts.ToString();
-            TblProductsBuyPrice.Text = supFullPrice.ToString();
+            decimal supfullPrice = supRequests.Select(sr => sr.Price).Sum();
+            int countProducts = supRequests.Select(sr => sr.ProductRequests.Select(pr => pr.Count).Sum()).Sum();
 
-            List<Request> cliRequests = DbConnect.Db.Requests
-                .Where(c => c.Counterparty!.User!.RoleId == (int)RoleKey.Client)
+            MoneyInfo moneyInfo = new("Купленные товары", countProducts, supfullPrice);
+            return moneyInfo;
+        }
+
+        private MoneyInfo CalculateCliProducts()
+        {
+            List<Request> supRequests = DbConnect.Db.Requests
+                .Where(c => c.Counterparty!.User!.RoleId == (int)RoleKey.Client &&
+                c.StatusId == (int)StatusKey.Delivered)
                 .Include(c => c.ProductRequests)
                 .ToList();
 
-            int cliCountProducts = 0;
-            decimal cliFullPrice = 0;
-            foreach (var request in cliRequests)
-            {
-                foreach (var productRequest in request.ProductRequests)
-                {
-                    cliCountProducts += productRequest.Count;
-                    cliFullPrice += productRequest.Product.Price;
-                }
-            }
-            TblCountProductsSell.Text = cliCountProducts.ToString();
-            TblProductsSellPrice.Text = cliFullPrice.ToString();
+            decimal supfullPrice = supRequests.Select(sr => sr.Price).Sum();
+            int countProducts = supRequests.Select(sr => sr.ProductRequests.Select(pr => pr.Count).Sum()).Sum();
 
-            decimal sum = cliFullPrice - supFullPrice;
-            TblSumMoney.Text = sum.ToString();
-            TblSum.Foreground = sum <= 0 ? Brushes.Red : Brushes.Green;
-        }*/
+            MoneyInfo moneyInfo = new("Проданные товары", countProducts, supfullPrice);
+            return moneyInfo;
+        }
+
+        private MoneyInfo CalculateAll()
+        {
+            MoneyInfo sup = CalculateSupProducts();
+            MoneyInfo cli = CalculateCliProducts();
+
+            decimal fullPrice = cli.FullPrice - sup.FullPrice;
+            int fullCount = cli.CountProducts + sup.CountProducts;
+
+            MoneyInfo moneyInfo = new("Итог", fullCount, fullPrice);
+            return moneyInfo;
+        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //Calculate();
+            List<MoneyInfo> moneyInfos = new();
+            moneyInfos.Add(CalculateSupProducts());
+            moneyInfos.Add(CalculateCliProducts());
+            moneyInfos.Add(CalculateAll());
+
+            DgMoneyInfo.ItemsSource = moneyInfos.ToList();
+        }
+
+        private class MoneyInfo
+        {
+            public string Name { get; set; } = null!;
+            public int CountProducts { get; set; }
+            public decimal FullPrice { get; set; }
+
+            public MoneyInfo(string name, int countProducts, decimal fullPrice)
+            {
+                Name = name;
+                CountProducts = countProducts;
+                FullPrice = fullPrice;
+            }
         }
     }
 }
