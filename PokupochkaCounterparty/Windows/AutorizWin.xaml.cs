@@ -62,7 +62,7 @@ namespace PokupochkaCounterparty.Windows
             CustomMessage message = new();
             await message.ShowMessage(SpMessage, MessageType.Loading, "Подождите...");
 
-            List<User> users = DbConnect.Db.Users.Include(u => u.Role).Include(u => u.Counterparty).ToList();
+            List<User> users = DbConnect.Db.Users.Include(u => u.Role).Include(u => u.Counterparty).Include(u => u.Counterparty!.Company).ToList();
 
             User? findUser = users.FirstOrDefault(user => 
                 user.Login == TbLogin.Text &&

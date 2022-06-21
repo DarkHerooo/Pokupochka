@@ -47,7 +47,7 @@ namespace AdministratorWPF.View.Reports
 
         private void BtnProducts_Click(object sender, RoutedEventArgs e)
         {
-
+            _fwhTables.Navigate(new ProductsPage());
         }
 
         private void BtnAgents_Click(object sender, RoutedEventArgs e)
