@@ -21,10 +21,6 @@
                     Name="BtnProducts" Click="BtnProducts_Click"/>
             <Button Content="Агенты"
                     Name="BtnAgents" Click="BtnAgents_Click"/>
-            <Button Content="Поставщики" 
-                    Name="BtnSuppliers" Click="BtnSuppliers_Click"/>
-            <Button Content="Клиенты" 
-                    Name="BtnClients" Click="BtnClients_Click"/>
         </StackPanel>
 
         <Rectangle Grid.Column="1" Fill="Black"/>

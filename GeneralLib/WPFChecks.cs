@@ -20,7 +20,7 @@ namespace GeneralLib
 
             string message = "";
             if (!trueEmail)
-                message = "Почта введена неверно!";
+                message = "Почта введена неверно!\n";
 
             return message;
         }
