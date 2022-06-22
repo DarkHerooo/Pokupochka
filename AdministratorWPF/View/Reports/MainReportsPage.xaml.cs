@@ -52,17 +52,7 @@ namespace AdministratorWPF.View.Reports
 
         private void BtnAgents_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void BtnSuppliers_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnClients_Click(object sender, RoutedEventArgs e)
-        {
-
+            _fwhTables.Navigate(new AgentsPage());
         }
     }
 }

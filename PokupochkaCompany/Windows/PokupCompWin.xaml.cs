@@ -6,6 +6,8 @@ using GeneralLib.Usr;
 using System.Windows;
 using StylesLib;
 using AdministratorWPF.View.Tables;
+using DbLib.DB;
+using System.Linq;
 
 namespace PokupochkaCompany.Windows
 {
@@ -64,6 +66,8 @@ namespace PokupochkaCompany.Windows
                 DataContext = null;
                 DataContext = user.Worker!;
             }
+
+            DbConnect.Db.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
         }
     }
 }

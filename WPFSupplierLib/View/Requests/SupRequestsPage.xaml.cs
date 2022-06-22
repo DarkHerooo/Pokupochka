@@ -119,5 +119,10 @@ namespace WPFSupplierLib.View.Requests
         {
             DgRequests.ItemsSource = GetRequests();
         }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Page_Loaded(null!, null!);
+        }
     }
 }

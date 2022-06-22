@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\refresh.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
   </ItemGroup>
 
@@ -14,6 +18,12 @@
     <ProjectReference Include="..\DbLib\DbLib.csproj" />
     <ProjectReference Include="..\GeneralLib\GeneralLib.csproj" />
     <ProjectReference Include="..\StylesLib\StylesLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\refresh.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

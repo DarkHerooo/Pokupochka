@@ -1,6 +1,7 @@
 ﻿using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib;
+using GeneralLib.Usr;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -67,8 +68,10 @@ namespace WPFAgentLib.View.Contracts
         private void BtnAccept_Click(object sender, RoutedEventArgs e)
         {
             _contract.StatusId = (int)StatusKey.Active;
-            _contract.AddOrChange();
+            if (_contract.Worker == null)
+                _contract.Worker = CurrentUser.User.Worker!;
 
+            _contract.AddOrChange();
             NavigationService.GoBack();
             NavigationService.RemoveBackEntry();
         }

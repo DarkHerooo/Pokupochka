@@ -74,16 +74,16 @@ namespace AdministratorWPF.View.Tables
 
             errorMessage += WPFChecks.CheckEmail(TbEmail.Text);
 
-            if (string.IsNullOrEmpty(TbLogin.Text) || string.IsNullOrWhiteSpace(TbLogin.Text))
-                errorMessage += "Не введен логин\n";
-            else
-            {
-                User? user = DbConnect.Db.Users.FirstOrDefault(u => u.Login == TbLogin.Text);
-                if (user != null && user != _worker.User)
-                    errorMessage += "Пользователь с таким логином уже существует\n";
-            }
+            errorMessage += WPFChecks.CheckLogin(TbLogin.Text);
 
             errorMessage += WPFChecks.CheckPassword(TbPassword.Text);
+
+            if (_worker.Id == 0)
+            {
+                User? user = DbConnect.Db.Users.FirstOrDefault(u => u.Login == TbLogin.Text /*&& u.Id != CurrentUser.User.Id*/);
+                if (user != null)
+                    errorMessage += "Пользователь с таким логином уже существует\n";
+            }
 
             if (errorMessage.Length > 0)
             {

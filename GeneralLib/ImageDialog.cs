@@ -11,15 +11,22 @@ namespace GeneralLib
         public bool Open()
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image files (*.BMP, *.JPG, *.PNG)|*.bmp;*.jpg;*.png;";
+            dialog.Filter = "Image files (*.BMP, *.JPG, *.JPEG, *.PNG)|*.bmp;*.jpg;*.jpeg;*.png;";
 
             if (dialog.ShowDialog() == true)
             {
-                using (FileStream fs = new FileStream(dialog.FileName, FileMode.Open))
+                try
                 {
-                    ImageBytes = new byte[fs.Length];
-                    fs.Read(ImageBytes, 0, ImageBytes.Length);
-                    return true;
+                    using (FileStream fs = new FileStream(dialog.FileName, FileMode.Open))
+                    {
+                        ImageBytes = new byte[fs.Length];
+                        fs.Read(ImageBytes, 0, ImageBytes.Length);
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
                 }
             }
             else return false;

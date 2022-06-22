@@ -34,21 +34,21 @@ namespace WPFAdministratorLib.View.Reports
         private PopularAgent[] Calculate()
         {
             List<Contract> contracts = DbConnect.Db.Contracts.Where(c => c.StatusId == (int)StatusKey.Active)
-                .Include(c => c.Counterparty).ToList();
+                .Include(c => c.Worker).ToList();
 
             List<PopularAgent> popularAgents = new();
             foreach (var contract in contracts)
             {
-                PopularAgent? findAgent = popularAgents.FirstOrDefault(pa => pa.Counterparty.Id == contract.CounterpartyId);
+                PopularAgent? findAgent = popularAgents.FirstOrDefault(pa => pa.Worker.Id == contract.WorkerId);
                 if (findAgent == null)
                 {
-                    PopularAgent popularAgent = new PopularAgent(contract.Counterparty!, 1);
+                    PopularAgent popularAgent = new PopularAgent(contract.Worker!, 1);
                     popularAgents.Add(popularAgent);
                 }
                 else findAgent.Count++;
             }
 
-            popularAgents = popularAgents.OrderBy(pa => pa.Count).ToList();
+            popularAgents = popularAgents.OrderByDescending(pa => pa.Count).ToList();
 
             int countInTop = 10;
             if (popularAgents.Count > countInTop)
@@ -59,12 +59,12 @@ namespace WPFAdministratorLib.View.Reports
 
         public class PopularAgent
         {
-            public Counterparty Counterparty { get; set; } = null!;
+            public Worker Worker { get; set; } = null!;
             public int Count { get; set; }
 
-            public PopularAgent(Counterparty counterparty, int count)
+            public PopularAgent(Worker worker, int count)
             {
-                Counterparty = counterparty;
+                Worker = worker;
                 Count = count;
             }
         }

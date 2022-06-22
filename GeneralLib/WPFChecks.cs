@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DbLib.DB;
+using DbLib.DB.Entity;
+using GeneralLib.Usr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +27,37 @@ namespace GeneralLib
 
             return message;
         }
+
+        public static string CheckLogin(string login)
+        {
+            bool trueLogin = true;
+            if (trueLogin)
+                trueLogin = login.Length > 3;
+
+            if (trueLogin)
+            {
+                foreach (var letter in login)
+                {
+                    if (letter == ' ')
+                    {
+                        trueLogin = false;
+                        break;
+                    }
+                }
+            }
+
+            string message = "";
+            if (!trueLogin)
+            {
+                message = "Логин должен отвечать следующим требованиям:\n" +
+                    "Минимум 4 символов\n" +
+                    "Не содержать пробелов\n";
+            }
+
+            return message;
+        }
+
+
         public static string CheckPassword(string password)
         {
             bool truePassword = true;

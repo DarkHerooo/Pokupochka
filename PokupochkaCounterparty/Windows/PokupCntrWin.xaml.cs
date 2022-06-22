@@ -1,4 +1,5 @@
 ﻿using AdministratorWPF.View.Tables;
+using DbLib.DB;
 using DbLib.DB.Entity;
 using DbLib.DB.Enums;
 using GeneralLib;
@@ -58,6 +59,8 @@ namespace PokupochkaCounterparty.Windows
                 DataContext = null;
                 DataContext = user.Counterparty!;
             }
+
+            DbConnect.Db.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)

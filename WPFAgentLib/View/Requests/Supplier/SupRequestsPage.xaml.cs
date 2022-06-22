@@ -104,5 +104,10 @@ namespace WPFAgentLib.View.Requests.Supplier
             DbConnect.Db.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
             ShowRequests();
         }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Page_Loaded(null!, null!);
+        }
     }
 }

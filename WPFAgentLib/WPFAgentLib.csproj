@@ -8,6 +8,13 @@
 
   <ItemGroup>
     <None Remove="Images\print.png" />
+    <None Remove="Images\refresh.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\refresh.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

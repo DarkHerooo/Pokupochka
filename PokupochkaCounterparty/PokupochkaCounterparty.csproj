@@ -16,6 +16,7 @@
     <None Remove="Images\Messages\loading.gif" />
     <None Remove="Images\new_template.png" />
     <None Remove="Images\not_found.png" />
+    <None Remove="Images\refresh.png" />
     <None Remove="Images\request_template.png" />
     <None Remove="Images\Roles\client.png" />
     <None Remove="Images\Roles\supplier.png" />
@@ -25,6 +26,9 @@
 
   <ItemGroup>
     <Content Include="Images\Logo\box.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\refresh.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -35,7 +35,7 @@
                 </TextBlock>
                 <TextBlock FontSize="15">
                     <Run Text="Компания:" FontWeight="Bold"/>
-                    <Run Text="{Binding Counterparty.Company}"/>
+                    <Run Text="{Binding Counterparty.Company.Name}"/>
                 </TextBlock>
                 <TextBlock FontSize="15">
                     <Run Text="Дата начала:" FontWeight="Bold"/>

@@ -68,11 +68,10 @@ namespace WPFAgentLib.View.Contracts
         private void BtnAccept_Click(object sender, RoutedEventArgs e)
         {
             _contract.StatusId = (int)StatusKey.Active;
+            if (_contract.Worker == null)
+                _contract.Worker = CurrentUser.User.Worker!;
+
             _contract.AddOrChange();
-
-            if (_contract.Counterparty == null)
-                _contract.Counterparty = CurrentUser.User.Counterparty;
-
             NavigationService.GoBack();
             NavigationService.RemoveBackEntry();
         }

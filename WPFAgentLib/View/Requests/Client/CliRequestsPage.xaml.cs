@@ -120,5 +120,10 @@ namespace WPFAgentLib.View.Requests.Client
         {
             DgRequests.ItemsSource = GetRequests();
         }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Page_Loaded(null!, null!);
+        }
     }
 }

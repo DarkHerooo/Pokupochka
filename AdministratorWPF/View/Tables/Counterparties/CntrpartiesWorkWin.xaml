@@ -130,11 +130,11 @@
 
                     <TextBlock Grid.Column="0" Style="{StaticResource TblData}">
                         <Run Text="*" Foreground="Red"/>
-                        <Run Text="ОКПО:"/>
+                        <Run Text="ОГРН:"/>
                     </TextBlock>
 
                     <toolkit:MaskedTextBox Grid.Column="1" Style="{StaticResource TbData}" Margin="5" 
-                        MaxLength="10" Mask="0000000000"
+                        MaxLength="13" Mask="0000000000000"
                         Name="TbOKPO" Text="{Binding Company.OKPO}"/>
                 </Grid>
 

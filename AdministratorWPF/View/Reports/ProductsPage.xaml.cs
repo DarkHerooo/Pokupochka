@@ -58,7 +58,7 @@ namespace WPFAdministratorLib.View.Reports
                 }
             }
 
-            popularProducts = popularProducts.OrderBy(pp => pp.Count).ToList();
+            popularProducts = popularProducts.OrderByDescending(pp => pp.Count).ToList();
 
             int countInTop = 10;
             if (popularProducts.Count > countInTop)

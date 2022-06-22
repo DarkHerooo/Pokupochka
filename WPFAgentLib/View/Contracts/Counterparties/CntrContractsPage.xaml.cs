@@ -126,5 +126,10 @@ namespace WPFAgentLib.View.Contracts
             CbFilter.SelectedIndex = 0;
             DgContracts.ItemsSource = GetContracts();
         }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            DgContracts.ItemsSource = GetContracts();
+        }
     }
 }

@@ -66,7 +66,7 @@ namespace AdministratorWPF.View.Tables
 
             string tbINN = TbINN.Text.Replace("_", "");
             if (tbINN.Length < TbINN.MaxLength)
-                errorMessage += $"ИНН заполнен неполностью";
+                errorMessage += $"ИНН заполнен неполностью\n";
 
             string tbKPP = TbKPP.Text.Replace("_", "");
             if (tbKPP.Length < TbKPP.MaxLength)
@@ -74,7 +74,7 @@ namespace AdministratorWPF.View.Tables
 
             string tbOKPO = TbOKPO.Text.Replace("_", "");
             if (tbOKPO.Length < TbOKPO.MaxLength)
-                errorMessage += $"ОКПО заполнен неполностью\n";
+                errorMessage += $"ОГРН заполнен неполностью\n";
 
             if (errorMessage.Length > 0)
             {
@@ -101,16 +101,16 @@ namespace AdministratorWPF.View.Tables
 
             errorMessage += WPFChecks.CheckEmail(TbEmail.Text);
 
-            if (string.IsNullOrEmpty(TbLogin.Text) || string.IsNullOrWhiteSpace(TbLogin.Text))
-                errorMessage += "Не введен логин\n";
-            else
-            {
-                User? user = DbConnect.Db.Users.FirstOrDefault(u => u.Login == TbLogin.Text);
-                if (user != null && user != _counterparty.User)
-                    errorMessage += "Пользователь с таким логином уже существует\n";
-            }
+            errorMessage += WPFChecks.CheckLogin(TbLogin.Text);
 
             errorMessage += WPFChecks.CheckPassword(TbPassword.Text);
+
+            if (_counterparty.Id == 0)
+            {
+                User? user = DbConnect.Db.Users.FirstOrDefault(u => u.Login == TbLogin.Text /*&& u.Id != CurrentUser.User.Id*/);
+                if (user != null)
+                    errorMessage += "Пользователь с таким логином уже существует\n";
+            }
 
             if (errorMessage.Length > 0)
             {

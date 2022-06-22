@@ -29,6 +29,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="55"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -45,10 +46,16 @@
                       Name="CbFilter" SelectionChanged="CbFilter_SelectionChanged">
             </ComboBox>
 
-            <TextBlock Grid.Column="3" Grid.Row="0" Margin="5, 0, 0, 0" Text="Сброс:"/>
-            <Button Grid.Column="3" Grid.Row="1" Margin="5" ToolTip="Сбросить все фильтры" Content="X"
+            <TextBlock Grid.Column="2" Grid.Row="0" Margin="5, 0, 0, 0" Text="Сброс:"/>
+            <Button Grid.Column="2" Grid.Row="1" Margin="5" ToolTip="Сбросить все фильтры" Content="X"
                     Style="{StaticResource RedButton}"
                     Name="BtnClear" Click="BtnClear_Click"/>
+
+            <Button Grid.Column="3" Grid.Row="1" Margin="5" ToolTip="Сбросить все фильтры"
+                    Style="{StaticResource BlueButton}"
+                    Name="BtnRefresh" Click="BtnRefresh_Click">
+                <Image Source="/Images/refresh.png" Margin="5"/>
+            </Button>
         </Grid>
 
         <DataGrid Grid.Row="1" Margin="5" Name="DgRequests" SelectionChanged="DgRequests_SelectionChanged"

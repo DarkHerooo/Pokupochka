@@ -16,7 +16,18 @@
     </Page.Resources>
 
     <Grid>
-        <ScrollViewer>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Width="50" HorizontalAlignment="Right" Margin="5"
+                Style="{StaticResource BlueButton}"
+                Name="BtnRefresh" Click="BtnRefresh_Click">
+            <Image Source="/Images/refresh.png" Margin="5"/>
+        </Button>
+        
+        <ScrollViewer Grid.Row="1">
             <StackPanel Orientation="Vertical" Name="SpContracts"/>
         </ScrollViewer>
     </Grid>
