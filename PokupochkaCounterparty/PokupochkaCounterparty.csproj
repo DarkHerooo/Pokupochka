@@ -107,6 +107,7 @@
     <Page Update="UserStyles\ClientStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="UserStyles\CounterpartyStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
@@ -115,6 +116,7 @@
     <Page Update="UserStyles\SupplierStyles.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Windows\AutorizWin.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

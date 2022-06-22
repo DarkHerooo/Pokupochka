@@ -18,6 +18,13 @@
     </Style>
 
     <Style x:Key="SelectButtonStyle" TargetType="Button">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock TextDecorations="Underline" Text="{TemplateBinding Content}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="TextBlock.TextAlignment" Value="Center"/>
         <Setter Property="Background" Value="#FF14E2D3"/>
         <Setter Property="FontWeight" Value="Bold"/>
